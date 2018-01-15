@@ -1,0 +1,20 @@
+// Fyrir comments:
+// > Upphafs staður á skypunarlínu > [upphaf,c2,c3, ... ,cn]
+// c = char
+
+Clone repository:
+> cd // To location
+> git clone <URL> // Nær allt repository í heild sinni
+
+
+Status check:
+> git status // Breytingar á files
+
+Update everything in repository:
+>
+Update a single file in repository:
+>
+Get updated repository:
+>
+Get a single file from update repository:
+>
