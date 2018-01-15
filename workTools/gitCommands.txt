@@ -13,9 +13,18 @@ Status check:
 This command updates the index using the current content found in the working tree, to prepare the content staged for the next commit:
 > git add <fileName> 
 
-If no <pathspec> is given when -A option is used, all files in the entire working tree are updated:
-> git add -A
+If no <pathspec> is given when --a option is used, all files in the entire working tree are updated:
+> git add --a
 
-?? Undir býr breitingar ?? allar ??
-> git push --all
 
+>git log
+
+Bætir breitingum við úr index gert
+>git commit -m 'Lýsing fyrir commit'
+
+Bætir við repository sem á að vera vinna með
+> git remote add origin <url>
+
+
+Bætir við nýrum breitingum og eða nýjum gögnum
+> git push -u origin master
