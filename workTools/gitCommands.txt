@@ -10,11 +10,12 @@ Clone repository:
 Status check:
 > git status // Breytingar á files
 
-Update everything in repository:
->
-Update a single file in repository:
->
-Get updated repository:
->
-Get a single file from update repository:
->
+This command updates the index using the current content found in the working tree, to prepare the content staged for the next commit:
+> git add <fileName> 
+
+If no <pathspec> is given when -A option is used, all files in the entire working tree are updated:
+> git add -A
+
+?? Undir býr breitingar ?? allar ??
+> git push --all
+
