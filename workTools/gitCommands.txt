@@ -1,4 +1,6 @@
 // Fyrir comments:
+// Repository skoli: https://github.com/rutep/Skoli.git
+
 // > Upphafs staður á skypunarlínu > [upphaf,c2,c3, ... ,cn]
 // c = char
 

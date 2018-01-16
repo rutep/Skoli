@@ -90,16 +90,20 @@ public class Formula
  {
   double x=L(s);
 
-  while( s.getNextToken().equals("+") )
+  for(;;)
   {
-   s.advance();
-   x = x+L(s);
-  }
-  
-  while( s.getNextToken().equals("-") )
-  {
-   s.advance();
-   x = x-L(s);
+   if( s.getNextToken().equals("+") )
+   {
+    s.advance();
+    x = x+L(s);
+   }
+   else if( s.getNextToken().equals("-") )
+   {
+    s.advance();
+    x = x-L(s);
+   }
+   else
+    break;       
   }
 
   return x;
@@ -108,17 +112,23 @@ public class Formula
  static double L( Scanner s )
  {
   double x=T(s);
-  while( s.getNextToken().equals("*") )
+  
+  for(;;)
   {
-   s.advance();
-   x = x*T(s);
+   if( s.getNextToken().equals("*") )
+   {
+    s.advance();
+    x = x*T(s);
+   }
+   else if( s.getNextToken().equals("/") )
+   {
+    s.advance();
+    x = x/T(s);
+   }
+   else
+    break;       
   }
 
-  while( s.getNextToken().equals("/") )
-  {
-   s.advance();
-   x = x/T(s);
-  }
 
   return x;
  }
