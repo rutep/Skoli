@@ -1,0 +1,78 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+\begin{document}
+\title{Aðgerðagreining glósur}
+\maketitle
+
+\section*{Dæmi úr kafla 1 í AMPL bók: Stálsmiðja}
+
+Vörur
+
+\subsection*{Gögn}
+Framleiðslutími (tons per hour): Bands 200, Coils 140\\
+Arðsemi (\$ per ton) : Bands \$25, Coils \$30 \\
+Vikurleg hámarks framleiðsla: Band 6000 einingar, coils 400 einingar \\
+\\
+Hot many tons of bands and coils should be produced, given 40 hour production time per week to bring in the greatest profit?
+\subsection*{Ákvarðanarbreitur}
+Xb: quantity of Bands to produce \\
+$C_{c}$: quantity of coils to produce \\
+
+\subsection*{Skorður}
+
+$ \frac{1}{200} * X_{b} + \frac{1}{140}*X_{c} <= 40 klst $ \\
+$0 <= X_{B} <= 6000$\\
+$0 <= C_{C} <= 4000$\\
+
+\subsection*{Leysum myndrænt}
+Maximize: $25X^{B} + 30X_{C}$ \\
+$\frac{1}{200}X_{B} + \frac{1}{140}X^{C}<=40$ \\
+$0 <= X_{B} <= 6000$ \\
+$0 <= X_{C} <= 4000$ \\
+
+\subsection*{Leisa algebruna}
+$\frac{1}{200}X_{B} + \frac{1}{140}X_{C} = 40$ \\
+$X_{B} = 200(40) - \frac{20}{140}X_{C}$ \\
+$X_{B} = 8000 - 1.42X_{C}$
+
+\section*{AMPL}
+
+\subsection*{Gögn:}
+\begin{itemize}
+	\item set
+	\item fasti, parameter, param
+	\item var, breytur, var
+	\item markfall, objective, maximize eða minimize
+	\item Skorður, constrains,  subject to
+\end{itemize}
+
+\subsection*{Skilgreining gagna:}
+\begin{itemize}
+	\item P set of products
+	\item aj = tons per hour of product j, for each j in P
+	\item b = hours available at the mill
+	\item cj = profit per ton of product j, for each j in P
+	\item uj = maximize tons of product j, for each j in p	
+	\item Varible  Xj = tons of product j to b made for each j in P
+\end{itemize}
+maximize $\sum_{}^{j stak í P}C_{j}X_{j}$ \\
+subject to $\sum_{}^{j stak í P}(\frac{1}{aj})X_{j} <= b$
+$0 <= X_{j} <= u_{j}, fyrir öll j í P$
+
+
+\end{document}
