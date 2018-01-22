@@ -19,6 +19,8 @@
 \title{Aðgerðagreining glósur}
 \maketitle
 
+\section*{Vika 2, T1}
+
 \section*{Dæmi úr kafla 1 í AMPL bók: Stálsmiðja}
 
 Vörur
@@ -73,6 +75,44 @@ $X_{B} = 8000 - 1.42X_{C}$
 maximize $\sum_{}^{j stak í P}C_{j}X_{j}$ \\
 subject to $\sum_{}^{j stak í P}(\frac{1}{aj})X_{j} <= b$
 $0 <= X_{j} <= u_{j}, fyrir öll j í P$
+
+\section*{Vika 2, T2}
+
+\subsection*{Diet problem}
+Finna mat sem uppfyllir næringar þörf sem uppfyllir minnsta kostnað.\\
+Ath að það þarf að finna matar pakka sem uppfyllir alla næringar þörf fyrir heila viku.\\
+
+\begin{table}[h]
+	\centering
+	\caption{Matargögn}
+	\label{my-label}
+	\begin{tabular}{llllll}
+		Vara & kostnaður & A Vítamín & C Vítamín & B1    & B2    \\
+		Beef & num\$     & num\%     & num\%     & num\% & num\% \\   
+		Food & num\$     & num\%     & num\%     & num\% & num\% \\
+		Food & num\$     & num\%     & num\%     & num\% & num\% \\
+	\end{tabular}
+\end{table}
+
+\textbf{Gögn}
+
+\begin{itemize}
+	\item Set (mengi) Matarpakki = {Beef,food,food}
+	\item parameter $C_{j}$ costnaður per næringarpakka j, $\epsilon$ Matapakka 
+	\item $a_{ij}$ næringarefni(\%) i í matapakka j, i $\epsilon$ Næringarefni, j $\epsilon$ matarpakki
+\end{itemize}
+
+\textbf{Ákvörðunarbreytur:}\\
+$X_{j}$: Fjöld matarpakka j sem á að kaupa fyrir vikuna.
+
+\textbf{Marfall:} \\
+minimize z * $\sum\limits_{j \epsilon Matur}^{} C_{j}X_{j}$\\
+
+\textbf{Skorður} \\
+$\sum\limits_{j \epsilon Matarpakki}^{} a_{ij}X_{j} >= amini (700\%)$\\
+$X_{j} >= 0, \epsilon matarpakkar$\\
+
+\textbf{ATH Bók}\\
 
 
 \end{document}

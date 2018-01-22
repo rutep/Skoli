@@ -30,3 +30,6 @@ Bætir við repository sem á að vera vinna með
 
 Bætir við nýrum breitingum og eða nýjum gögnum
 > git push -u origin master
+
+Ná í gögn frá nýju repo
+> git clone <URL>
