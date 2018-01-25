@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  25 JAN 2018 08:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  24 JAN 2018 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Glosur.tex
-(./Glosur.tex
+**Verkefni2.tex
+(./Verkefni2.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -889,8 +889,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
-(./Glosur.aux)
-\openout1 = `Glosur.aux'.
+(./Verkefni2.aux)
+\openout1 = `Verkefni2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -988,132 +988,94 @@ LaTeX Info: Redefining \ref on input line 18.
 LaTeX Info: Redefining \pageref on input line 18.
 LaTeX Info: Redefining \nameref on input line 18.
 
-(./Glosur.out) (./Glosur.out)
+(./Verkefni2.out) (./Verkefni2.out)
 \@outlinefile=\write4
-\openout4 = `Glosur.out'.
+\openout4 = `Verkefni2.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 21.
+(Font)              <12> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 21.
+(Font)              <8> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
+(Font)              <6> on input line 24.
 
 
 LaTeX Warning: No \author given.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--34
-
- []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 36.
+(Font)              <7> on input line 27.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 36.
+(Font)              <5> on input line 27.
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--37
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--43
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--49
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 59.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
+<tree.png, id=7, 417.56pt x 388.45125pt>
+File: tree.png Graphic file (type png)
+ <use tree.png>
+Package pdftex.def Info: tree.png used on input line 35.
+(pdftex.def)             Requested size: 208.77948pt x 194.22514pt.
+
+<NFAa.png, id=8, 624.3325pt x 300.12125pt>
+File: NFAa.png Graphic file (type png)
+ <use NFAa.png>
+Package pdftex.def Info: NFAa.png used on input line 45.
+(pdftex.def)             Requested size: 437.02977pt x 210.08344pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./tree.png>]
+<NFAb.png, id=26, 628.3475pt x 409.53pt>
+File: NFAb.png Graphic file (type png)
+ <use NFAb.png>
+Package pdftex.def Info: NFAb.png used on input line 49.
+(pdftex.def)             Requested size: 377.0114pt x 245.7199pt.
 
-LaTeX Warning: Command \' invalid in math mode on input line 75.
-
-Missing character: There is no í in font cmr7!
-
-LaTeX Warning: Command \' invalid in math mode on input line 76.
-
-Missing character: There is no í in font cmr7!
-
-LaTeX Warning: Command \" invalid in math mode on input line 77.
-
-
-LaTeX Warning: Command \' invalid in math mode on input line 77.
-
-Missing character: There is no ö in font cmr10!
-Missing character: There is no í in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 108--110
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--114
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--123
-
- []
-
-[3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 126.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 126.
- (./Glosur.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 126.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 126.
-Package rerunfilecheck Info: File `Glosur.out' has not changed.
+<NFAc.png, id=28, 627.34375pt x 317.185pt>
+File: NFAc.png Graphic file (type png)
+ <use NFAc.png>
+Package pdftex.def Info: NFAc.png used on input line 53.
+(pdftex.def)             Requested size: 376.40915pt x 190.31245pt.
+ [2 <./NFAb.png> <./NFAa.png>] <NFAd.png, id=38, 631.35875pt x 463.7325pt>
+File: NFAd.png Graphic file (type png)
+ <use NFAd.png>
+Package pdftex.def Info: NFAd.png used on input line 57.
+(pdftex.def)             Requested size: 378.81818pt x 278.24164pt.
+ [3 <./NFAc.png> <./NFAd.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 65.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 65.
+ (./Verkefni2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 65.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 65.
+Package rerunfilecheck Info: File `Verkefni2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 126.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
  ) 
 Here is how much of TeX's memory you used:
- 23931 strings out of 494953
- 506656 string characters out of 6180977
- 645172 words of memory out of 5000000
+ 23922 strings out of 494953
+ 506526 string characters out of 6180977
+ 642131 words of memory out of 5000000
  26856 multiletter control sequences out of 15000+600000
- 11766 words of font info for 30 fonts, out of 8000000 for 9000
+ 10990 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,8n,56p,429b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/petur/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/p
+ 62i,6n,56p,432b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/petur/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/p
 etur/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/petur/.texmf
--var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/petur/.texmf-var/fonts/
-pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/petur/.texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecrm1200.600pk> </home/petur/.texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Glosur.pdf (3 pages, 115301 bytes).
+-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/petur/.texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/petur/.texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb>
+Output written on Verkefni2.pdf (3 pages, 179296 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 
