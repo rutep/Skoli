@@ -23,3 +23,11 @@ function test(cp){
 test((z,t) => {console.log(z+t)});
 
 
+// Straumar http request, við, stdout.
+// Lesa og skrifa á sama tíma.
+// Straumar leifa hraðan aðgang að gögnum.
+
+// Straumar ---chunk-----chunk----->Stórhlutur
+
+
+
