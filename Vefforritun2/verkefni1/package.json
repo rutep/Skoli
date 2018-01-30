@@ -7,11 +7,13 @@
     "eslint": "eslint *.js **/*.js"
   },
   "devDependencies": {
+    "browser-sync": "^2.23.6",
     "ejs": "^2.5.7",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "gulp-nodemon": "^2.2.1"
   },
   "dependencies": {
     "express": "^4.16.2",
