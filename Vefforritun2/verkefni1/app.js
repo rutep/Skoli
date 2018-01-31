@@ -1,10 +1,8 @@
-
-
 const express = require('express');
 const frontmatter = require('frontmatter');
 const fs = require('fs');
 
-const app = express('article');
+const app = express();
 
 
 const hostname = '127.0.0.1';
@@ -20,6 +18,7 @@ app.set('view engine', 'ejs');
  * Lætur mann fá aðgang að skrám í public skráarsafninu
  */
 app.use(express.static('public'));
+app.use(express.static('articles'));
 
 /**
  * Býr til local þjón með ip töluna 3000

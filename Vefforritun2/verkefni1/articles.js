@@ -13,13 +13,18 @@ module.exports = function(app,fs,frontmatter){
      */
     var artOne = fs.readFileSync('articles/batman-ipsum.md', 'utf8');
     var artTwo = fs.readFileSync('articles/corporate-ipsum.md', 'utf-8');
+    var artThree = fs.readFileSync('articles/deloren-ipsum.md', 'utf-8');
+    var artFour = fs.readFileSync('articles/lorem-ipsum.md', 'utf-8');
+    
     /**
      * Parse gögninn í array
      */
     var artOne = frontmatter(artOne);
     var artTwo = frontmatter(artTwo);
-
-    console.log(md.render(artTwo['content']));
+    var artThree = frontmatter(artThree);
+    var artFour = frontmatter(artFour);
+    
+    console.log(artFour);
 
     /**
      * Routs
@@ -29,26 +34,44 @@ module.exports = function(app,fs,frontmatter){
             title: "Verkefni 1",
             artOne: artOne["data"]["title"],
             artOneDate: artOne["data"]["date"].substr(0,15),
-            slugBat: artOne["data"]["slug"]
+            slugBat: artOne["data"]["slug"],
+        
+            artTwo: ['data']['title'],
+            artTwoDate: artTwo['data']['date'].substr(0,15),
+            slugCorp: artTwo['data']['slug'],
+            imgCorp:artTwo['data']['image'],
+        
+            artThree: artThree['data']['title'],
+            artThreeDate: artThree['data']['date'].substr(0,15),
+            slugFlux: artThree['data']['slug'],
+
+            artFour: artFour['data']['title'],
+            artFourDate: artFour['data']['date'].substr(0,15),
+            slugLor: artFour['data']['slug'],
+            imgLor: artFour['data']['image']
+        
+
         });
     });
 
-    app.get('/corporate', (req, res) => {
-        res.render('corporate',{
-            title: "Verkefni 1"
+    app.get('/'+artFour['data']['slug'], (req, res) => {
+        res.render(artFour['data']['slug'],{
+            title: artFour['data']['title'],
+            content: '<div class="articleText"> <div class="articleTextBox">'+md.render(artFour['content'])
         });
     });
 
-    app.get('/deloren', (req, res) => {
-        res.render('deloren',{
-            title: "Verkefni 1"
+    app.get('/'+artThree['data']['slug'], (req, res) => {
+        res.render(artThree['data']['slug'],{
+            title: artThree['data']['title'],
+            content: '<div class="articleText"> <div class="articleTextBox">'+md.render(artThree['content'])
         });
     });
 
     app.get('/'+artTwo['data']['slug'], (req, res) => {
         res.render(artTwo['data']['slug'],{
             title: artTwo['data']['title'],
-            content: '<div class="articleText">'+md.render(artTwo['content'])
+            content: '<div class="articleText"> <div class="articleTextBox">'+md.render(artTwo['content'])
         });
     });
 
@@ -56,7 +79,7 @@ module.exports = function(app,fs,frontmatter){
     app.get('/'+artOne['data']['slug'], (req, res) => {
         res.render(artOne['data']['slug'],{
           title: artOne['data']['title'],
-          content: '<div class="articleText">'+md.render(artOne['content'])
+          content: '<div class="articleText"> <div class="articleTextBox">'+md.render(artOne['content'])
         });
       });
 }
