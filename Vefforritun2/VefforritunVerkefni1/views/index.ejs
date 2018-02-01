@@ -3,27 +3,7 @@
 
 <div class="seperater box"></div>
 <div class="content box">
-    <div class="article box">
-        <div class="img">
-            <img src=<%= imgCorp %> alt="">
-        </div>
-        <div class="text box">
-            <a href=<%= slugCorp %>><%= slugCorp%></a>
-            <p><%= artTwoDate%></p>
-        </div>
-    </div>
-    <div class="article box">
-        <div class="img">
-            <img src="img/none.jpg" alt="">
-        </div>
-        <div class="text box">
-            <a href=<%= slugBat %>><%= artOne %></a>
-            <p><%= artOneDate %></p>
-        </div>
-    </div>
-</div>
-<div class="seperater box"></div>
-<div class="content box">
+    
     <div class="article box">
         <div class="img">
             <img src="img/none.jpg" alt="">
@@ -33,6 +13,22 @@
             <p><%= artThreeDate %></p>
         </div>
     </div>
+    
+    <div class="article box">
+        <div class="img">
+            <img src=<%= imgCorp %> alt="">
+        </div>
+        <div class="text box">
+            <a href=<%= slugCorp %>><%= slugCorp%></a>
+            <p><%= artTwoDate%></p>
+        </div>
+    </div>
+
+    
+</div>
+<div class="seperater box"></div>
+<div class="content box">
+   
     <div class="article box">
         <div class="img">
             <img src=<%= imgLor %> alt="">
@@ -42,5 +38,16 @@
             <p><%= artFourDate %></p>
         </div>
     </div>
+
+    <div class="article box">
+        <div class="img">
+            <img src="img/none.jpg" alt="">
+        </div>
+        <div class="text box">
+            <a href=<%= slugBat %>><%= artOne %></a>
+            <p><%= artOneDate %></p>
+        </div>
+    </div>
+
 </div>
 <%- include('footer')%>

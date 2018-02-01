@@ -1,3 +1,6 @@
+/**
+ * frontmatter notað til þess að ná gögn úr grein sem er svo geimt í js obj
+ */
 const express = require('express');
 const frontmatter = require('frontmatter');
 const fs = require('fs');
@@ -27,4 +30,7 @@ app.listen(port, hostname, () => {
   console.info(`Server running at http://${hostname}:${port}/`);
 });
 
+/**
+ * export til þess að nota app,fs og frontmatter í articles
+ */
 require('./articles')(app,fs,frontmatter);

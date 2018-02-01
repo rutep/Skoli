@@ -1,13 +1,14 @@
 /* útfæra greina virkni */
 /**
- * 
- * 
+ * MarkdownIt Notað til þess að breyta conent í grein yfir í html
  */
 
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
 module.exports = function(app,fs,frontmatter){
 
+    
+    
     /**
      * lesa skrá
      */
@@ -24,8 +25,6 @@ module.exports = function(app,fs,frontmatter){
     var artThree = frontmatter(artThree);
     var artFour = frontmatter(artFour);
     
-    console.log(artFour);
-
     /**
      * Routs
      */
@@ -82,6 +81,17 @@ module.exports = function(app,fs,frontmatter){
           content: '<div class="articleText"> <div class="articleTextBox">'+md.render(artOne['content'])
         });
       });
+
+    /**
+     * Meðhöndla villu 404
+     */
+    app.use(function(req, res, next) {
+        if(req.accepts('html') && res.status(404)) {
+            res.render('404.ejs', {
+                title: 'Fannst ekki'
+            });
+        }
+    });
 }
 
 
