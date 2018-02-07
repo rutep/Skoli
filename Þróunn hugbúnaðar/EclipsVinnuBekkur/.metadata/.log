@@ -1,0 +1,159 @@
+!SESSION 2018-02-05 09:33:38.943 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2018-02-05 09:35:50.866
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: An error occurred while downloading http://download.eclipse.org/releases/indigo/201109230900/content.jar. The cache file /home/petur/.eclipse/org.eclipse.platform_3.8_155965261/p2/org.eclipse.equinox.p2.repository/cache/downloading/content1727518060.jar could not be renamed to /home/petur/.eclipse/org.eclipse.platform_3.8_155965261/p2/org.eclipse.equinox.p2.repository/cache/downloading/content1727518060.jar.
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.updateCache(CacheManager.java:371)
+	at org.eclipse.equinox.internal.p2.repository.CacheManager.createCache(CacheManager.java:208)
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.getLocalFile(SimpleMetadataRepositoryFactory.java:66)
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:88)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.addChild(CompositeMetadataRepository.java:165)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.<init>(CompositeMetadataRepository.java:105)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepositoryFactory.load(CompositeMetadataRepositoryFactory.java:122)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.equinox.p2.repository 4 0 2018-02-05 09:35:50.920
+!MESSAGE An error occurred while downloading http://download.eclipse.org/releases/indigo/201109230900/content.jar. The cache file /home/petur/.eclipse/org.eclipse.platform_3.8_155965261/p2/org.eclipse.equinox.p2.repository/cache/downloading/content1727518060.jar could not be renamed to /home/petur/.eclipse/org.eclipse.platform_3.8_155965261/p2/org.eclipse.equinox.p2.repository/cache/downloading/content1727518060.jar.
+!SESSION 2018-02-05 09:37:21.087 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2018-02-05 09:42:22.280
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.280
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.280
+!MESSAGE Software being installed: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201108100925-4-19oB5885P7C687B (org.eclipse.jpt.jpadiagrameditor.feature.feature.group 1.0.1.v201108100925-4-19oB5885P7C687B)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.280
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.280
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.280
+!MESSAGE International Components for Unicode for Java (ICU4J) 4.4.2.v20110208 (com.ibm.icu 4.4.2.v20110208)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.280
+!MESSAGE International Components for Unicode for Java (ICU4J) 4.4.2.v20110823 (com.ibm.icu 4.4.2.v20110823)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE ICU4J 49.1.0 (com.ibm.icu 49.1.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.281
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE From: EMF Model Transaction Core 1.4.0.v20100331-1738 (org.eclipse.emf.transaction 1.4.0.v20100331-1738)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE To: bundle org.eclipse.emf.validation [1.2.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.281
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE From: EMF Validation Framework Core 1.4.0.v20100428-2315 (org.eclipse.emf.validation 1.4.0.v20100428-2315)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE To: package com.ibm.icu.lang [4.0.0,5.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.281
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.281
+!MESSAGE From: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201108100925-4-19oB5885P7C687B (org.eclipse.jpt.jpadiagrameditor.feature.feature.group 1.0.1.v201108100925-4-19oB5885P7C687B)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE To: org.eclipse.jpt.jpadiagrameditor.ui [1.0.1.v201109150000]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.282
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE From: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201109150000 (org.eclipse.jpt.jpadiagrameditor.ui 1.0.1.v201109150000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE To: bundle org.eclipse.emf.transaction [1.4.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.282
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-92A7GODFSNQBG]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.282
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.282
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.283
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.283
+!MESSAGE From: Eclipse RCP 3.8.1.dist-92A7GODFSNQBG (org.eclipse.rcp.feature.group 3.8.1.dist-92A7GODFSNQBG)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.283
+!MESSAGE To: com.ibm.icu [49.1.0]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2018-02-05 09:42:22.297
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.297
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.297
+!MESSAGE Software being installed: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201108100925-4-19oB5885P7C687B (org.eclipse.jpt.jpadiagrameditor.feature.feature.group 1.0.1.v201108100925-4-19oB5885P7C687B)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.297
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.297
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.297
+!MESSAGE International Components for Unicode for Java (ICU4J) 4.4.2.v20110208 (com.ibm.icu 4.4.2.v20110208)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.297
+!MESSAGE International Components for Unicode for Java (ICU4J) 4.4.2.v20110823 (com.ibm.icu 4.4.2.v20110823)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.297
+!MESSAGE ICU4J 49.1.0 (com.ibm.icu 49.1.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.298
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.298
+!MESSAGE From: EMF Model Transaction Core 1.4.0.v20100331-1738 (org.eclipse.emf.transaction 1.4.0.v20100331-1738)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.298
+!MESSAGE To: bundle org.eclipse.emf.validation [1.2.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.298
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.298
+!MESSAGE From: EMF Validation Framework Core 1.4.0.v20100428-2315 (org.eclipse.emf.validation 1.4.0.v20100428-2315)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.298
+!MESSAGE To: package com.ibm.icu.lang [4.0.0,5.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.298
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.298
+!MESSAGE From: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201108100925-4-19oB5885P7C687B (org.eclipse.jpt.jpadiagrameditor.feature.feature.group 1.0.1.v201108100925-4-19oB5885P7C687B)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE To: org.eclipse.jpt.jpadiagrameditor.ui [1.0.1.v201109150000]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.299
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE From: Dali Java Persistence Tools - JPA Diagram Editor 1.0.1.v201109150000 (org.eclipse.jpt.jpadiagrameditor.ui 1.0.1.v201109150000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE To: bundle org.eclipse.emf.transaction [1.4.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.299
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-92A7GODFSNQBG]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.299
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.299
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.300
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4WGSImg7oLZb9p1HecSFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2018-02-05 09:42:22.300
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.300
+!MESSAGE From: Eclipse RCP 3.8.1.dist-92A7GODFSNQBG (org.eclipse.rcp.feature.group 3.8.1.dist-92A7GODFSNQBG)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2018-02-05 09:42:22.300
+!MESSAGE To: com.ibm.icu [49.1.0]
