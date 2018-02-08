@@ -1,0 +1,7 @@
+X [*] :=
+magazine  80
+      tv  10
+;
+
+Total_Customers = 9.8e+07
+

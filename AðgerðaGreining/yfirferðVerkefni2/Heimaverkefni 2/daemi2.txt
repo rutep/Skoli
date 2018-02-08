@@ -1,0 +1,13 @@
+Liður a.
+
+Búum til AMPL model sem minimizar kostnað við að búa til blöndur
+sem innihalda 52 tonn af cane sugar, 56 tonn af corn sugar og 59 tonn af beet sugar.
+Gefin er tafla sem sýnir okkur gerð sykurs (A-G) og hvað það kostar og aðrar upplýsingar.
+
+Liður b.
+
+Hvað ef það þarf að kaupa amk 10 tonn af öllum gerðum?
+
+Liður c.
+
+Hvað ef magnið af hverjum sykri er milli 30 og 37%?

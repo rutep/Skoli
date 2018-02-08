@@ -1,0 +1,28 @@
+set employee_per_day := MON TUE WED THU FRI SAT SUN;
+			#Dagar vikunar
+set employees_type := SCH1 SCH2 SCH3 SCH4 SCH5 SCH6 SCH7 SCH8 SCH9 SCH0; 
+			#Tegund vaktar
+
+param minimum_employees :=
+	MON 45
+	TUE 45
+	WED 40
+	THU 50
+	FRI 65
+	SAT 35
+	SUN 35;
+			#Minnsti fjöldi starfsmanna á hverjum degi
+	 
+param shift_on_day (tr): MON TUE WED THU FRI SAT SUN :=
+	
+	SCH1 0 1 1 1 1 1 0
+	SCH2 1 0 1 1 1 1 0
+	SCH3 1 1 0 1 1 1 0
+	SCH4 1 1 1 0 1 1 0
+	SCH5 1 1 1 1 0 1 0
+	SCH6 0 1 1 1 1 0 1
+	SCH7 1 0 1 1 1 0 1
+	SCH8 1 1 0 1 1 0 1
+	SCH9 1 1 1 0 1 0 1
+	SCH0 1 1 1 1 0 0 1;
+			#Fylki sem synir hvort ad tiltekin vakt er a tilteknum degi.
