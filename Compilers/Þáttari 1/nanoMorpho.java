@@ -2,15 +2,6 @@ import java.io.*;
 public class nanoMorpho{
 
 
-// þetta keyrir lexgreininn:
-//   <F> ::= <L> <Fm>
-//   <Fm> ::= + <L> <Fm>
-//   <Fm> ::= e
-//   <L> ::= <T> <Lm>
-//   <Lm> ::= * <T> <Lm>
-//   <Lm> ::= e
-//   <T> ::= ( <F> )
-//   <T> ::= tala
 
 // **************************************
 static class Scanner
@@ -67,70 +58,8 @@ static class Scanner
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  // *************************************************************
-
- static double F( Scanner s )
- {
-  double x=L(s);
-
-  for(;;)
-  {
-   if( s.getNextToken().equals("+") )
-   {
-    s.advance();
-    x = x+L(s);
-   }
-   else if( s.getNextToken().equals("-") )
-   {
-    s.advance();
-    x = x-L(s);
-   }
-   else
-    break;       
-  }
-
-  return x;
- }
+ /*
 
  static double L( Scanner s )
  {
@@ -191,66 +120,90 @@ static class Scanner
    throw new Error("expected ( or number, found "+s.nextToken);
   }
  }
+ 
+ static double F( Scanner s )
+ {
+  double x=L(s);
+ 
+  for(;;)
+  {
+   if( s.getNextToken().equals("+") )
+   {
+    s.advance();
+    x = x+L(s);
+   }
+   else if( s.getNextToken().equals("-") )
+   {
+    s.advance();
+    x = x-L(s);
+   }
+   else
+    break;       
+  }
+ 
+  return x;
+ }
+*/
+// *************************** Formula kóði ******************
 
 
- public static void main( String[] args )
+
+// *************************** Endir formúlu kóði ************
+
+static double program( Scanner s )
+{
+  if( s.getNextToken().equals("define") )
+  {
+   s.advance();
+   System.out.println("Virkar");
+  }
+  return 0.0;
+}
+
+
+// þetta keyrir lexgreininn:
+//   <F> ::= <L> <Fm>
+//   <Fm> ::= + <L> <Fm>
+//   <Fm> ::= e
+//   <L> ::= <T> <Lm>
+//   <Lm> ::= * <T> <Lm>
+//   <Lm> ::= e
+//   <T> ::= ( <F> )
+//   <T> ::= tala
+
+// Þetta keiri nanoMorpho þáttari 1
+//  <program>  ::= <function>
+//  <function> ::= <name> (  ) | <name>(<name>)
+
+// Þarf 4 breitur 
+// 2 token breitur    nextToken og nextnextToken
+// tvær lexembreitur  nextLexem og nextnextLexem
+
+// Gera advance til þess að hliðra breitunum
+
+// 
+// over(næsta toker er þetta , bjóst við þessu)
+// 
+static NanoLexer lexer;
+
+public static void main( String[] args )
   throws Exception
  {
-  NanoLexer lexer = new NanoLexer(new FileReader(args[0]));
+  lexer = new NanoLexer(new FileReader(args[0]));
   int token = lexer.yylex();
   String arg = "";
   while( token!=0 )
 	{
     System.out.println(token + ": " + NanoLexer.getlexeme());
     arg += NanoLexer.getlexeme();
-	token = lexer.yylex();
+  	token = lexer.yylex();
   }
-
-// **********************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   Scanner s = new Scanner(new java.io.StringReader(arg));
   try
   {
-   double x = F(s);
+   // double x = F(s);
+   double x = program(s);
    if( !s.nextToken.equals("eof") )
     throw new Error("expected eof or operation");
    System.out.println(" = " + x);
