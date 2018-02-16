@@ -402,6 +402,10 @@ final static int ELSE = 1009;
 // Breyta sem mun innihalda les (lexeme):
 public static String lexeme;
 
+public static String getlexeme(){
+  return lexeme;
+}
+
 // þetta keyrir lexgreininn:
 //   <F> ::= <L> <Fm>
 //   <Fm> ::= + <L> <Fm>
