@@ -1,6 +1,6 @@
 const { Client } = require('pg')
 const connectionString = 
-'postgres://peturd:1234@localhost/v2'; const client = new Client({ 
+'postgres://notandi:123@localhost/test'; const client = new Client({ 
 connectionString });
 client.connect(); 
 client.query('SELECT * FROM test;', 

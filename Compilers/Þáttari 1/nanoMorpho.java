@@ -1,217 +1,160 @@
 import java.io.*;
 public class nanoMorpho{
 
+final static int ERROR = -1;
+final static int IF = 1001;
+final static int DEFINE = 1002;
+final static int NAME = 1003;
+final static int LITERAL = 1004;
+final static int WHILE = 1005;
+final static int VAR = 1006;
+final static int ELSIF = 1007;
+final static int RETURN = 1008;
+final static int ELSE = 1009;
 
+public static NanoLexer lexer;
+public static int token;
+public static int nextToken;
+public static String lexem;
+public static String nextLexem;
 
-// **************************************
-static class Scanner
- {
-  private String nextToken;
-  private double nextNumber;
-  private java.io.StreamTokenizer tokenizer;
-
-  public String getNextToken()
+public static void init()
+  throws Exception
   {
-   return nextToken;
-  }
+  lexer = new NanoLexer(new FileReader("test.s"));
+  token = lexer.yylex();
+  lexem = NanoLexer.getlexeme();
+  nextToken = lexer.yylex();
+  nextLexem = NanoLexer.getlexeme();
+}
 
-  public double getNextNumber()
-  {
-   return nextNumber;
-  }
-
-  public Scanner( java.io.Reader r )
-  {
-  // Breyta
-   tokenizer = new java.io.StreamTokenizer(r);
-   tokenizer.ordinaryChars(0,255);
-   tokenizer.parseNumbers();
-   tokenizer.ordinaryChar('-');
-   advance();
-  }
- 
-  public void advance()
-  {
-   try
-   {
-    int type = tokenizer.nextToken();
-    if( type==java.io.StreamTokenizer.TT_NUMBER )
-    {
-     nextToken = "number";
-     nextNumber = tokenizer.nval;
+public static void advance(){
+  try{
+    if(token != 0){
+      token = nextToken;
+      lexem = nextLexem;
+      nextToken = lexer.yylex();
+      nextLexem = NanoLexer.getlexeme();
     }
-    else if( type==java.io.StreamTokenizer.TT_EOF )
-    {
-     nextToken = "eof";
-    }
-    else
-    {
-     nextToken = ""+(char)type;
-    }
-    }
-   catch( Exception e )
-   {
+  } catch(Exception e) {
     throw new Error(e);
-   }
   }
- }
+}
 
-
-
- // *************************************************************
- /*
-
- static double L( Scanner s )
- {
-  double x=T(s);
-  
-  for(;;)
-  {
-   if( s.getNextToken().equals("*") )
-   {
-    s.advance();
-    x = x*T(s);
-   }
-   else if( s.getNextToken().equals("/") )
-   {
-    s.advance();
-    x = x/T(s);
-   }
-   else
-    break;       
-  }
-
-
-  return x;
- }
-
- static double T(Scanner s){
-  double x=P(s);
-  
-  while( s.getNextToken().equals("^") )
-  {
-   s.advance();
-   x=java.lang.Math.pow(x,T(s));
-  }
-  return x;
- }
-
- static double P( Scanner s )
- {
-  if( s.getNextToken().equals("(") )
-  {
-   s.advance();
-   double x = F(s);
-   if( !s.getNextToken().equals(")") )
-   {
-    throw new Error("expected ), found "+s.nextToken);
-   }
-   s.advance();
-   return x;
-  }
-  else if( s.getNextToken().equals("number") )
-  {
-   double x = s.getNextNumber();
-   s.advance();
-   return x;
-  }
-  else
-  {
-   throw new Error("expected ( or number, found "+s.nextToken);
-  }
- }
- 
- static double F( Scanner s )
- {
-  double x=L(s);
- 
-  for(;;)
-  {
-   if( s.getNextToken().equals("+") )
-   {
-    s.advance();
-    x = x+L(s);
-   }
-   else if( s.getNextToken().equals("-") )
-   {
-    s.advance();
-    x = x-L(s);
-   }
-   else
-    break;       
-  }
- 
-  return x;
- }
-*/
-// *************************** Formula kóði ******************
-
-
-
-// *************************** Endir formúlu kóði ************
-
-static double program( Scanner s )
-{
-  if( s.getNextToken().equals("define") )
-  {
-   s.advance();
-   System.out.println("Virkar");
-  }
-  return 0.0;
+public static void println(String message){
+  System.out.println(message);
+}
+public static void printlexeme(){
+  System.out.println(lexem);
 }
 
 
-// þetta keyrir lexgreininn:
-//   <F> ::= <L> <Fm>
-//   <Fm> ::= + <L> <Fm>
-//   <Fm> ::= e
-//   <L> ::= <T> <Lm>
-//   <Lm> ::= * <T> <Lm>
-//   <Lm> ::= e
-//   <T> ::= ( <F> )
-//   <T> ::= tala
+public static void over(String s){
+  if(s.equals(lexem)){
+    advance();
+  } else {
+    println("Villa fann " + lexem + " bjóst við " + s);
+  }
+}
 
-// Þetta keiri nanoMorpho þáttari 1
-//  <program>  ::= <function>
-//  <function> ::= <name> (  ) | <name>(<name>)
+// <program> ::= <function>
+public static void program(){
+  if(token == DEFINE){
+    while(token == DEFINE){
+      advance();
+      function();
+    } 
+  } else {
+    println("Bjóst við falli fann " + lexem);
+  }
+}
 
-// Þarf 4 breitur 
-// 2 token breitur    nextToken og nextnextToken
-// tvær lexembreitur  nextLexem og nextnextLexem
+// <function> ::= <name>(names){expr;} | <name>(names){var <name>[,<name>]* [expr;]+}
+public static void function(){
+  if(NAME == token){
+    advance();
+    name();
+    over("(");
+    names();
+    over(")");
+  } else {
+    println("Bjóst við nafni á falli fann " + lexem);
+  }
+  over("{");
+  if(VAR == token){
+    advance();
+    var();
+    if(NAME == token){
+      advance();
+      name();
+      while(",".equals(lexem) && nextToken == NAME){
+        over(",");
+        advance();
+        name();
+      }
+    } else {
+      println("Villa vanntar breytunafn fann " + lexem);
+      token = -1;
+    }
+    over(";");
+  }
+  if(!"}".equals(lexem)){
+    while(!"}".equals(lexem)){
+      expr();
+      over(";");
+    }
+  } else {
+    println("Það vanntar útleiðslu forrits");
+    token = -1;
+  }
+  over("}");
+}
 
-// Gera advance til þess að hliðra breitunum
 
-// 
-// over(næsta toker er þetta , bjóst við þessu)
-// 
-static NanoLexer lexer;
+// <expr> ::= return <expr> | name = <expr> | binopexpr
+public static void expr(){
+  if(RETURN == token){
+    advance();
+    expr();
+  }
+  if(NAME == token){
+    if(nextLexem.equals("=")){
+      advance();
+      over("=");
+      expr();
+    } 
+  }
+  binopexpr();
+}
+
+// <binopexpr>
+public static void binopexpr(){
+  
+}
+// <var> ::= 
+public static void var(){
+
+}
+// <name> ::= 
+public static void name(){
+
+}
+// <names> ::= <name>,<names> | name | ""
+public static void names(){
+  if(NAME == token){
+    advance();
+    name();
+    if(",".equals(lexem) && nextToken == NAME){
+      over(",");
+      names();
+    }
+  }
+}
 
 public static void main( String[] args )
   throws Exception
  {
-  lexer = new NanoLexer(new FileReader(args[0]));
-  int token = lexer.yylex();
-  String arg = "";
-  while( token!=0 )
-	{
-    System.out.println(token + ": " + NanoLexer.getlexeme());
-    arg += NanoLexer.getlexeme();
-  	token = lexer.yylex();
-  }
-
-  Scanner s = new Scanner(new java.io.StringReader(arg));
-  try
-  {
-   // double x = F(s);
-   double x = program(s);
-   if( !s.nextToken.equals("eof") )
-    throw new Error("expected eof or operation");
-   System.out.println(" = " + x);
-  }
-  catch( Throwable e )
-  {
-   System.out.println("Error: "+e.getMessage()+", Next token: "+s.nextToken);
-  }
+  init();
+  program();
  }
-
 }

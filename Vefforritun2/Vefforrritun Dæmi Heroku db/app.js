@@ -3,11 +3,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 const users = require('./users');
-
 const app = express();
 const notes = require('./notes');
 
@@ -74,12 +72,13 @@ app.get('/', (req, res) => {
       <p><a href="/admin">Skoða leyndarmál</a></p>
     `);
   }
-
+  // byrjun link á login
   return res.send(`
     <p><a href="/login">Innskráning</a></p>
   `);
 });
 
+// / innskráningarform
 app.get('/login', (req, res) => {
   res.send(`
     <form method="post" action="/login">
@@ -112,3 +111,5 @@ const port = 3000;
 app.listen(port, hostname, () => {
   console.info(`Server running at http://${hostname}:${port}/`);
 });
+
+// create table Forms(id serial primary key, date varchar(70), nafn varchar(70), netfang varchar(70), kt int, fjoldi int);
