@@ -1,6 +1,6 @@
 import java.io.*;
 public class nanoMorpho{
-
+// token
 final static int ERROR = -1;
 final static int IF = 1001;
 final static int DEFINE = 1002;
@@ -55,6 +55,8 @@ public static void over(String s){
     advance();
   } else {
     println("Villa fann " + lexem + " bjóst við " + s);
+    nextToken = -1;
+    token = -1;
   }
 }
 
@@ -72,7 +74,7 @@ public static void program(){
 
 // <function> ::= NAME(<names)
 //                [VAR [NAME,]*NAME ;]*
-//                [[<expr>,]*<expr>;]*
+//                <express>
 public static void function(){
   if(NAME == token){
     advance();
@@ -97,18 +99,24 @@ public static void function(){
     }
     over(";");
   }
-  if(!"}".equals(lexem)){
-    while(!"}".equals(lexem)){
-      expr();
-      over(";");
-    }
-  } else {
-    println("Það vanntar útleiðslu forrits");
-    token = -1;
-  }
+
+  express();
+  println("Mjá");
   over("}");
 }
 
+// <exrpess> ::= <expr>;<express>
+public static void express(){
+  if(lexem.equals("}")){
+    return;
+  } else {
+    expr();
+    if(lexem.equals(";") && nextToken != 0){
+      over(";");
+      express();
+    }
+  }
+}
 
 // <expr> ::= RETURN<expr> | NAME = <expr> | <binopexpr>
 public static void expr(){
@@ -116,12 +124,10 @@ public static void expr(){
     advance();
     expr();
   }
-  if(NAME == token){
-    if(nextLexem.equals("=")){
-      advance();
-      over("=");
-      expr();
-    } 
+  if(NAME == token && nextLexem.equals("=")){
+    advance();
+    over("=");
+    expr();
   }
   binopexpr();
 }
@@ -137,13 +143,20 @@ public static void binopexpr(){
   }
 }
 
-// <smallexpr> ::= (<expr>) | LITERAL | NAME | OPNAME<smallexpr>
+// <smallexpr> ::= (<expr>) | LITERAL | NAME | OPNAME<smallexpr> | <ifexpr> | NAME(<args>)
 public static void smallexpr(){
   if ("(".equals(lexem)) {
     over("(");
     expr();
     over(")");
   }
+  if (NAME == token && nextLexem.equals("(")){
+    advance();
+    over("(");
+    // args();
+    over(")");
+  }
+  
   if (LITERAL == token) {
     advance();
   }
@@ -154,6 +167,46 @@ public static void smallexpr(){
   if (NAME == token) {
     advance();
   }
+  if (IF == token){
+    advance();
+    ifexpr();
+   }
+  if (WHILE == token){
+    advance();
+    over("(");
+    expr();
+    over(")");
+    body();
+  }
+}
+
+
+// <args> ::= <expr> | <expr>,<args>
+public static void args(){
+  if(lexem.equals(")")){
+    return;
+  } else {
+    expr();
+    if(lexem.equals(",") && nextToken != 0){
+      over(",");
+      args();
+    }
+  }
+}
+
+// <ifexpr> ::= (<expr)<body>
+public static void ifexpr(){
+  over("(");
+  expr();
+  over(")");
+  body();
+}
+
+// <body> ::= {<express>}
+public static void body(){
+  over("{");
+  express();
+  over("}");
 }
 
 // <names> ::= <name>,<names> | name | ""
