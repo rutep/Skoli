@@ -11,6 +11,7 @@ final static int VAR = 1006;
 final static int ELSIF = 1007;
 final static int RETURN = 1008;
 final static int ELSE = 1009;
+final static int OPNAME = 1010;
 
 public static NanoLexer lexer;
 public static int token;
@@ -57,7 +58,7 @@ public static void over(String s){
   }
 }
 
-// <program> ::= <function>
+// <program> ::= <function> | 
 public static void program(){
   if(token == DEFINE){
     while(token == DEFINE){
@@ -69,11 +70,12 @@ public static void program(){
   }
 }
 
-// <function> ::= <name>(names){expr;} | <name>(names){var <name>[,<name>]* [expr;]+}
+// <function> ::= NAME(<names)
+//                [VAR [NAME,]*NAME ;]*
+//                [[<expr>,]*<expr>;]*
 public static void function(){
   if(NAME == token){
     advance();
-    name();
     over("(");
     names();
     over(")");
@@ -83,14 +85,11 @@ public static void function(){
   over("{");
   if(VAR == token){
     advance();
-    var();
     if(NAME == token){
       advance();
-      name();
       while(",".equals(lexem) && nextToken == NAME){
         over(",");
         advance();
-        name();
       }
     } else {
       println("Villa vanntar breytunafn fann " + lexem);
@@ -111,7 +110,7 @@ public static void function(){
 }
 
 
-// <expr> ::= return <expr> | name = <expr> | binopexpr
+// <expr> ::= RETURN<expr> | NAME = <expr> | <binopexpr>
 public static void expr(){
   if(RETURN == token){
     advance();
@@ -127,29 +126,47 @@ public static void expr(){
   binopexpr();
 }
 
-// <binopexpr>
+// <binopexpr> ::= <smallexp> | [<smallexp><op>]+<smallexp>
 public static void binopexpr(){
-  
+  if (token == LITERAL && nextToken == OPNAME) {
+    while (token == LITERAL && nextToken == OPNAME) {
+      smallexpr();
+    }
+  } else {
+    smallexpr();
+  }
 }
-// <var> ::= 
-public static void var(){
 
+// <smallexpr> ::= (<expr>) | LITERAL | NAME | OPNAME<smallexpr>
+public static void smallexpr(){
+  if ("(".equals(lexem)) {
+    over("(");
+    expr();
+    over(")");
+  }
+  if (LITERAL == token) {
+    advance();
+  }
+  if (OPNAME == token) {
+    advance();
+    smallexpr();
+  }
+  if (NAME == token) {
+    advance();
+  }
 }
-// <name> ::= 
-public static void name(){
 
-}
 // <names> ::= <name>,<names> | name | ""
 public static void names(){
   if(NAME == token){
     advance();
-    name();
     if(",".equals(lexem) && nextToken == NAME){
       over(",");
       names();
     }
   }
 }
+
 
 public static void main( String[] args )
   throws Exception

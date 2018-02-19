@@ -33,6 +33,7 @@ final static int VAR = 1006;
 final static int ELSIF = 1007;
 final static int RETURN = 1008;
 final static int ELSE = 1009;
+final static int OPNAME = 1010;
 
 
 // Breyta sem mun innihalda les (lexeme):
@@ -76,7 +77,7 @@ _OPNAME=[\+\-*/!%&=><\^\|\|]+
 
 {_OPNAME} {
 	lexeme = yytext();
-	return yycharat(0);
+	return OPNAME;
 }
 
 {_STRING} | {_FLOAT} | {_CHAR} | {_INT} | null | true | false {
