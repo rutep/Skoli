@@ -1,6 +1,7 @@
 import java.io.*;
+
 public class nanoMorpho{
-// token
+
 final static int ERROR = -1;
 final static int IF = 1001;
 final static int DEFINE = 1002;
@@ -45,18 +46,12 @@ public static void advance(){
 public static void println(String message){
   System.out.println(message);
 }
-public static void printlexeme(){
-  System.out.println(lexem);
-}
-
 
 public static void over(String s){
   if(s.equals(lexem)){
     advance();
   } else {
     println("Villa fann " + lexem + " bjóst við " + s);
-    nextToken = -1;
-    token = -1;
   }
 }
 
@@ -95,14 +90,24 @@ public static void function(){
       }
     } else {
       println("Villa vanntar breytunafn fann " + lexem);
-      token = -1;
     }
     over(";");
   }
-
+  expr();
+  over(";");
   express();
-  println("Mjá");
   over("}");
+}
+
+// <names> ::= <name>,<names> | name | ""
+public static void names(){
+  if(NAME == token){
+    advance();
+    if(",".equals(lexem) && nextToken == NAME){
+      over(",");
+      names();
+    }
+  }
 }
 
 // <exrpess> ::= <expr>;<express>
@@ -153,7 +158,7 @@ public static void smallexpr(){
   if (NAME == token && nextLexem.equals("(")){
     advance();
     over("(");
-    // args();
+    args();
     over(")");
   }
   
@@ -180,6 +185,30 @@ public static void smallexpr(){
   }
 }
 
+// <ifexpr> ::= (<expr)<body>
+public static void ifexpr(){
+  over("(");
+  expr();
+  over(")");
+  body();
+  while (ELSIF == token) {
+    advance();
+    ifexpr();
+  } 
+  if (ELSE == token) {
+    advance();
+    body();
+  }
+}
+
+// <body> ::= {<express>}
+public static void body(){
+  over("{");
+  express();
+  over("}");
+  express();
+}
+
 
 // <args> ::= <expr> | <expr>,<args>
 public static void args(){
@@ -193,33 +222,6 @@ public static void args(){
     }
   }
 }
-
-// <ifexpr> ::= (<expr)<body>
-public static void ifexpr(){
-  over("(");
-  expr();
-  over(")");
-  body();
-}
-
-// <body> ::= {<express>}
-public static void body(){
-  over("{");
-  express();
-  over("}");
-}
-
-// <names> ::= <name>,<names> | name | ""
-public static void names(){
-  if(NAME == token){
-    advance();
-    if(",".equals(lexem) && nextToken == NAME){
-      over(",");
-      names();
-    }
-  }
-}
-
 
 public static void main( String[] args )
   throws Exception
