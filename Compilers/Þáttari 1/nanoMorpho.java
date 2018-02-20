@@ -51,11 +51,11 @@ public static void over(String s){
   if(s.equals(lexem)){
     advance();
   } else {
-    println("Villa fann " + lexem + " bjóst við " + s);
+    println("Villa fann " + lexem + " bjost vid " + s);
   }
 }
 
-// <program> ::= <function> | 
+// <program> ::= <function>
 public static void program(){
   if(token == DEFINE){
     while(token == DEFINE){
@@ -63,13 +63,13 @@ public static void program(){
       function();
     } 
   } else {
-    println("Bjóst við falli fann " + lexem);
+    println("Bjost vid falli fann " + lexem);
   }
 }
 
-// <function> ::= NAME(<names)
+// <function> ::= NAME(<names){
 //                [VAR [NAME,]*NAME ;]*
-//                <express>
+//                <exp><express>}
 public static void function(){
   if(NAME == token){
     advance();
@@ -77,7 +77,7 @@ public static void function(){
     names();
     over(")");
   } else {
-    println("Bjóst við nafni á falli fann " + lexem);
+    println("Bjost vid nafni a falli fann " + lexem);
   }
   over("{");
   if(VAR == token){
@@ -110,7 +110,7 @@ public static void names(){
   }
 }
 
-// <exrpess> ::= <expr>;<express>
+// <exrpess> ::= <expr>;<express> |
 public static void express(){
   if(lexem.equals("}")){
     return;
@@ -201,7 +201,7 @@ public static void ifexpr(){
   }
 }
 
-// <body> ::= {<express>}
+// <body> ::= {<express>}<express>
 public static void body(){
   over("{");
   express();

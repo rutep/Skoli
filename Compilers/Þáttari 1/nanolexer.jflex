@@ -1,13 +1,7 @@
 /**
-	JFlex lexgreiningard�mi byggt � lesgreini fyrir NanoLisp.
-	H�fundur: Snorri Agnarsson, jan�ar 2017
-
-	�ennan lesgreini m� ���a og keyra me� skipununum
 		java -jar JFlex-1.6.0.jar nanolexer.jflex
 		javac NanoLexer.java
-		java NanoLexer inntaksskr� > �ttaksskr�
-	Einnig m� nota forriti� 'make', ef vi�eigandi 'makefile'
-	er til sta�ar:
+		java NanoLexer inntaksskra > uttaksskra
 		make test
  */
 
@@ -39,7 +33,6 @@ final static int OPNAME = 1010;
 // Breyta sem mun innihalda les (lexeme):
 public static String lexeme;
 
-// �etta keyrir lexgreininn:
 public static void main( String[] args ) throws Exception
 {
 	NanoLexer lexer = new NanoLexer(new FileReader(args[0]));
