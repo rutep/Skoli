@@ -1,6 +1,7 @@
 import java.io.*;
+
 public class nanoMorpho{
-// token
+
 final static int ERROR = -1;
 final static int IF = 1001;
 final static int DEFINE = 1002;
@@ -45,22 +46,16 @@ public static void advance(){
 public static void println(String message){
   System.out.println(message);
 }
-public static void printlexeme(){
-  System.out.println(lexem);
-}
-
 
 public static void over(String s){
   if(s.equals(lexem)){
     advance();
   } else {
-    println("Villa fann " + lexem + " bjóst við " + s);
-    nextToken = -1;
-    token = -1;
+    println("Villa fann " + lexem + " bjost vid " + s);
   }
 }
 
-// <program> ::= <function> | 
+// <program> ::= <function>
 public static void program(){
   if(token == DEFINE){
     while(token == DEFINE){
@@ -68,13 +63,13 @@ public static void program(){
       function();
     } 
   } else {
-    println("Bjóst við falli fann " + lexem);
+    println("Bjost vid falli fann " + lexem);
   }
 }
 
-// <function> ::= NAME(<names)
+// <function> ::= NAME(<names){
 //                [VAR [NAME,]*NAME ;]*
-//                <express>
+//                <exp><express>}
 public static void function(){
   if(NAME == token){
     advance();
@@ -82,7 +77,7 @@ public static void function(){
     names();
     over(")");
   } else {
-    println("Bjóst við nafni á falli fann " + lexem);
+    println("Bjost vid nafni a falli fann " + lexem);
   }
   over("{");
   if(VAR == token){
@@ -95,17 +90,27 @@ public static void function(){
       }
     } else {
       println("Villa vanntar breytunafn fann " + lexem);
-      token = -1;
     }
     over(";");
   }
-
+  expr();
+  over(";");
   express();
-  println("Mjá");
   over("}");
 }
 
-// <exrpess> ::= <expr>;<express>
+// <names> ::= <name>,<names> | name | ""
+public static void names(){
+  if(NAME == token){
+    advance();
+    if(",".equals(lexem) && nextToken == NAME){
+      over(",");
+      names();
+    }
+  }
+}
+
+// <exrpess> ::= <expr>;<express> |
 public static void express(){
   if(lexem.equals("}")){
     return;
@@ -153,7 +158,7 @@ public static void smallexpr(){
   if (NAME == token && nextLexem.equals("(")){
     advance();
     over("(");
-    // args();
+    args();
     over(")");
   }
   
@@ -180,6 +185,30 @@ public static void smallexpr(){
   }
 }
 
+// <ifexpr> ::= (<expr)<body>
+public static void ifexpr(){
+  over("(");
+  expr();
+  over(")");
+  body();
+  while (ELSIF == token) {
+    advance();
+    ifexpr();
+  } 
+  if (ELSE == token) {
+    advance();
+    body();
+  }
+}
+
+// <body> ::= {<express>}<express>
+public static void body(){
+  over("{");
+  express();
+  over("}");
+  express();
+}
+
 
 // <args> ::= <expr> | <expr>,<args>
 public static void args(){
@@ -193,33 +222,6 @@ public static void args(){
     }
   }
 }
-
-// <ifexpr> ::= (<expr)<body>
-public static void ifexpr(){
-  over("(");
-  expr();
-  over(")");
-  body();
-}
-
-// <body> ::= {<express>}
-public static void body(){
-  over("{");
-  express();
-  over("}");
-}
-
-// <names> ::= <name>,<names> | name | ""
-public static void names(){
-  if(NAME == token){
-    advance();
-    if(",".equals(lexem) && nextToken == NAME){
-      over(",");
-      names();
-    }
-  }
-}
-
 
 public static void main( String[] args )
   throws Exception
