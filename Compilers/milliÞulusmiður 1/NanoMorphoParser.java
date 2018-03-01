@@ -15,6 +15,7 @@ public class NanoMorphoParser
     final static int LITERAL = 1009;
 
     static String[] vars;
+    static String[] decles;
 
     static String advance() throws Exception
     {
@@ -64,8 +65,8 @@ public class NanoMorphoParser
     static Object[] function() throws Exception
     {
         Vector<String> args = new Vector<String>();
-        Vector<String> var = new Vector<String>();
-        Vector<Object> exprargs = new Vector<Object>();
+        Vector<Object> varArgs = new Vector<Object>();
+        Vector<Object> exprArgs = new Vector<Object>();
         
         over(NAME); over('(');
         args.add("N");
@@ -82,47 +83,65 @@ public class NanoMorphoParser
         over(')'); over('{');
         while( getToken1()==VAR )
         {   
-            var.add("V");
-            decl(); over(';');
+            varArgs.add(decl()); over(';');
         }
         while( getToken1()!='}' )
         {
-            // exprargs.add(expr());
-            expr(); over(';');
+            exprArgs.add(expr());
+            over(';');
         }
         over('}');
         vars = new String[args.size()];
         args.toArray(vars);
+        
+
         // geima fall með stærð og fjöld var og expr
-        Object[] res = new Object[]{vars[0],vars.length-1};
+        Object[] res = new Object[]{vars[0],vars.length-1,varArgs,exprArgs};
         return res;
     }
 
-    static void decl() throws Exception
+    static String[] decl() throws Exception
     {
+        Vector<String> args = new Vector<String>();
+        
         over(VAR);
+        args.add("V");
         for(;;)
         {
+            args.add("N");
             over(NAME);
             if( getToken1()!=',' ) break;
             over(',');
         }
+        vars = new String[args.size()];
+        args.toArray(vars);
+        return vars;
     }
 
-    static void expr() throws Exception
-    {
+    static Object expr() throws Exception
+    {   
+        Vector<Object> exprArgs = new Vector<Object>();
+        Vector<String> args = new Vector<String>();
+        
         if( getToken1()==RETURN )
         {
-            over(RETURN); expr();
+            args.add("R");
+            over(RETURN); exprArgs.add(expr());
         }
         else if( getToken1()==NAME && NanoMorphoLexer.getToken2()=='=' )
         {
-            over(NAME); over('='); expr();
+            args.add("N");
+            over(NAME); over('='); exprArgs.add(expr());
         }
         else
         {
             binopexpr();
         }
+        vars = new String[args.size()];
+        args.toArray(vars);
+
+        Object[] res = new Object[]{"1"};
+        return res;
     }
 
     static void  binopexpr() throws Exception
