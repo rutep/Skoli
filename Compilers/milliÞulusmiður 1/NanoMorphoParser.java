@@ -33,7 +33,18 @@ public class NanoMorphoParser
     {
         return NanoMorphoLexer.getToken1();
     }
-    
+    /**
+    * Fetch
+    * Store
+    * MakeVal
+    * Call
+    * Go
+    * GoTrue
+    * GoFalse
+    * Push
+    * Return
+    * Not
+    */
     static public void main( String[] args ) throws Exception
     {
         try
@@ -55,12 +66,13 @@ public class NanoMorphoParser
         } 
         return res.toArray();
     }
-
+    private static int hashCount = 0;
+    private static HashMap<String,Integer> varTable = new HashMap<String,Integer>();
     static Object[] function() throws Exception
     {
-        HashMap<String,Integer> varTable = new HashMap<String,Integer>();
+        varTable = new HashMap<String,Integer>();
         Vector<Object> exprArgs = new Vector<Object>();
-        int hashCount = 0;
+        
         int farg = 0;
         int vname = 0;
         over(NAME); over('(');
@@ -68,6 +80,7 @@ public class NanoMorphoParser
         {
             for(;;)
             {
+                varTable.put(NanoMorphoLexer.getLexeme(),hashCount);
                 farg++;
                 over(NAME);
                 if( getToken1()!=',' ) break;
@@ -95,6 +108,7 @@ public class NanoMorphoParser
         over(VAR);
         for(;;)
         {
+            varTable.put(NanoMorphoLexer.getLexeme(),hashCount);
             count++;
             over(NAME);
             if( getToken1()!=',' ) break;
@@ -108,19 +122,19 @@ public class NanoMorphoParser
         Vector<Object> exprArgs = new Vector<Object>();
         if( getToken1()==RETURN )
         {
-            over(RETURN); 
-            exprArgs.add(expr());
-        }
+            over(RETURN);
+            return new Object[]{"Return",expr()};
+        }   
         else if( getToken1()==NAME && NanoMorphoLexer.getToken2()=='=' )
         {
-            over(NAME); over('='); exprArgs.add(expr());
+            over(NAME); over('='); 
+            return new Object[]{"Store",expr()};
         }
         else
         {
             binopexpr();
         }
-
-        return new Object[]{exprArgs.toArray()};
+        return exprArgs.toArray();
     }
 
     static void  binopexpr() throws Exception

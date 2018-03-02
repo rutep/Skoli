@@ -1,8 +1,8 @@
 /*
- * Byacc/J şáttari fyrir NanoLisp.
- * Höfundur: Snorri Agnarsson, 2014-2016.
+ * Byacc/J Ã¾Ã¡ttari fyrir NanoLisp.
+ * HÃ¶fundur: Snorri Agnarsson, 2014-2016.
  *
- * Şáttara şennan má şığa meğ skipununum
+ * ÃÃ¡ttara Ã¾ennan mÃ¡ Ã¾Ã¡tta meÃ° skipununum
  *    byacc -J -Jclass=NanoLispParser nanolisp.byaccj
  *    javac NanoLispParser.java NanoLispParserVal.java
  */
