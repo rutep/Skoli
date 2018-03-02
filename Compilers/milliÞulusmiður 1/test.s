@@ -1,7 +1,7 @@
 define(petur){
     var name;
-    name = 1 + 1;
-    while(name){
+    
+    while(name=name){
         petur =  1 + 1;
     };
 }

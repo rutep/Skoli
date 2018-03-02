@@ -14,6 +14,9 @@ public class NanoMorphoParser
     final static int OPNAME = 1008;
     final static int LITERAL = 1009;
 
+    static String[] vars;
+    static String[] decles;
+
     static String advance() throws Exception
     {
         return NanoMorphoLexer.advance();
@@ -34,6 +37,9 @@ public class NanoMorphoParser
         return NanoMorphoLexer.getToken1();
     }
     
+    // generateProgam()
+    // generateFuncion()
+    // generateExpr()
     static public void main( String[] args ) throws Exception
     {
         try
@@ -47,6 +53,20 @@ public class NanoMorphoParser
         }
     }
 
+/**
+ * Fetch
+ * Store
+ * MakeVal
+ * Call
+ * Go
+ * GoTrue
+ * GoFalse
+ * Push
+ * Return
+ * Not
+ */
+
+
     static Object[] program() throws Exception
     {
         Vector<Object> res = new Vector<Object>();
@@ -59,7 +79,6 @@ public class NanoMorphoParser
     static Object[] function() throws Exception
     {
         HashMap<String,Integer> varTable = new HashMap<String,Integer>();
-        Vector<Object> exprArgs = new Vector<Object>();
         int hashCount = 0;
         int farg = 0;
         int vname = 0;
@@ -76,40 +95,37 @@ public class NanoMorphoParser
         }
         over(')'); over('{');
         while( getToken1()==VAR )
-        {
-            vname = decl(); over(';');
+        {   
+            vname++;
+            decl(); over(';');
         }
         while( getToken1()!='}' )
         {
-            exprArgs.add(expr()); 
             over(';');
         }
         over('}');
         
-        return new Object[]{"f",farg,vname,exprArgs.toArray()};
+        return new Object[]{"f",farg,vname,expr()};
     }
 
-    static int decl() throws Exception
-    {
-        int count = 0;
+    static void decl() throws Exception
+    {   
         over(VAR);
         for(;;)
         {
-            count++;
             over(NAME);
             if( getToken1()!=',' ) break;
             over(',');
         }
-        return count;
     }
 
-    static Object[] expr() throws Exception
-    {
+    static Object expr() throws Exception
+    {   
         Vector<Object> exprArgs = new Vector<Object>();
+        
         if( getToken1()==RETURN )
         {
-            over(RETURN); 
-            exprArgs.add(expr());
+            over(RETURN); exprArgs.add(expr());
         }
         else if( getToken1()==NAME && NanoMorphoLexer.getToken2()=='=' )
         {
@@ -119,8 +135,7 @@ public class NanoMorphoParser
         {
             binopexpr();
         }
-
-        return new Object[]{exprArgs.toArray()};
+        return exprArgs.toArray();
     }
 
     static void  binopexpr() throws Exception
