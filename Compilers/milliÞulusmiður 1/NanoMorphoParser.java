@@ -70,7 +70,8 @@ public class NanoMorphoParser
     private static HashMap<String,Integer> varTable = new HashMap<String,Integer>();
     static Object[] function() throws Exception
     {
-        varTable = new HashMap<String,Integer>();
+        hashCount = 0;
+        varTable.clear();
         Vector<Object> exprArgs = new Vector<Object>();
         
         int farg = 0;
@@ -80,7 +81,7 @@ public class NanoMorphoParser
         {
             for(;;)
             {
-                varTable.put(NanoMorphoLexer.getLexeme(),hashCount);
+                varTable.put(NanoMorphoLexer.getLexeme(),hashCount++);
                 farg++;
                 over(NAME);
                 if( getToken1()!=',' ) break;
@@ -108,7 +109,8 @@ public class NanoMorphoParser
         over(VAR);
         for(;;)
         {
-            varTable.put(NanoMorphoLexer.getLexeme(),hashCount);
+            System.out.println(NanoMorphoLexer.getLexeme());
+            varTable.put(NanoMorphoLexer.getLexeme(),hashCount++);
             count++;
             over(NAME);
             if( getToken1()!=',' ) break;
