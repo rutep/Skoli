@@ -1,4 +1,5 @@
 import java.util.Vector;
+
 import java.util.HashMap;
 
 public class NanoMorphoParser
@@ -28,29 +29,22 @@ public class NanoMorphoParser
     {
         return NanoMorphoLexer.over(tok);
     }
+
+    static String getLexeme() throws Exception{
+        return NanoMorphoLexer.getLexeme();
+    }
     
     static int getToken1()
     {
         return NanoMorphoLexer.getToken1();
     }
-    /**
-    * Fetch
-    * Store
-    * MakeVal
-    * Call
-    * Go
-    * GoTrue
-    * GoFalse
-    * Push
-    * Return
-    * Not
-    */
+    
     static public void main( String[] args ) throws Exception
     {
         try
         {
             NanoMorphoLexer.startLexer(args[0]);
-            Object[] intermediate =  program();
+            program(args[0].substring(0,args[0].lastIndexOf('.')));
         }
         catch( Throwable e )
         {
@@ -58,31 +52,36 @@ public class NanoMorphoParser
         }
     }
 
-    static Object[] program() throws Exception
+    static void program(String proName) throws Exception
     {
-        Vector<Object> res = new Vector<Object>();
-        while( getToken1()!=0 ){
-            res.add(function());
-        } 
-        return res.toArray();
+        emit("\""+proName+".mexe\" = main in");
+		emit("!{{");
+		while( getToken1()!=0 )generateFunction(function());
+        emit("}}*BASIS;");
+
     }
-    private static int hashCount = 0;
-    private static HashMap<String,Integer> varTable = new HashMap<String,Integer>();
+
+    static HashMap<String,Integer> varTable = new HashMap<String,Integer>();
+    static int hashCount = 0;
+    static int acount = 0;
+    static int vcount = 0;
+        
+
     static Object[] function() throws Exception
-    {
+    {   
+        acount = 0;
+        vcount = 0;
         hashCount = 0;
         varTable.clear();
-        Vector<Object> exprArgs = new Vector<Object>();
-        
-        int farg = 0;
-        int vname = 0;
+        Vector<Object[]> res = new Vector<Object[]>();
+        String funName = getLexeme();
         over(NAME); over('(');
         if( getToken1()!=')' )
         {
             for(;;)
             {
-                varTable.put(NanoMorphoLexer.getLexeme(),hashCount++);
-                farg++;
+                acount++;
+                varTable.put(getLexeme(),hashCount++);
                 over(NAME);
                 if( getToken1()!=',' ) break;
                 over(',');
@@ -91,65 +90,65 @@ public class NanoMorphoParser
         over(')'); over('{');
         while( getToken1()==VAR )
         {
-            vname = decl(); over(';');
+            decl(); over(';');
         }
         while( getToken1()!='}' )
         {
-            exprArgs.add(expr()); 
-            over(';');
+            res.add(expr()); over(';');
         }
         over('}');
-        
-        return new Object[]{"f",farg,vname,exprArgs.toArray()};
+        return new Object[]{funName,acount,vcount,res.toArray()};
     }
 
-    static int decl() throws Exception
+    static void decl() throws Exception
     {
-        int count = 0;
         over(VAR);
         for(;;)
         {
-            System.out.println(NanoMorphoLexer.getLexeme());
-            varTable.put(NanoMorphoLexer.getLexeme(),hashCount++);
-            count++;
+            varTable.put(getLexeme(),hashCount++);
             over(NAME);
+            vcount++;
             if( getToken1()!=',' ) break;
             over(',');
         }
-        return count;
     }
 
     static Object[] expr() throws Exception
     {
-        Vector<Object> exprArgs = new Vector<Object>();
+        Object[] res = new Object[]{};
         if( getToken1()==RETURN )
-        {
+        {   
             over(RETURN);
-            return new Object[]{"Return",expr()};
-        }   
+            res =  new Object[]{RETURN,expr()};
+            return res;
+        }
         else if( getToken1()==NAME && NanoMorphoLexer.getToken2()=='=' )
         {
-            over(NAME); over('='); 
-            return new Object[]{"Store",expr()};
+            res = new Object[]{NAME,varTable.get(getLexeme())};
+            over(NAME); over('='); expr();
+            return res;
         }
         else
         {
-            binopexpr();
+            res = binopexpr();
         }
-        return exprArgs.toArray();
+        return res;
     }
 
-    static void  binopexpr() throws Exception
+    static Object[]  binopexpr() throws Exception
     {
+        Object[] res = new Object[]{};
         smallexpr();
         while( getToken1()==OPNAME )
         {
             over(OPNAME); smallexpr();
         }
+        return res;
     }
 
-    static void smallexpr() throws Exception
+    static Object[] smallexpr() throws Exception
     {
+        Object[] res = new Object[]{};
         switch( getToken1() )
         {
         case NAME:
@@ -168,9 +167,9 @@ public class NanoMorphoParser
                 }
                 over(')');
             }
-            return;
+            return res;
         case WHILE:
-            over(WHILE); expr(); body(); return;
+            over(WHILE); expr(); body(); return res;
         case IF:
             over(IF); expr(); body();
             while( getToken1()==ELSIF )
@@ -181,16 +180,18 @@ public class NanoMorphoParser
             {
                 over(ELSE); body();
             }
-            return;
+            return res;
         case LITERAL:
-            over(LITERAL); return;
+            res = new Object[]{LITERAL,getLexeme()};
+            over(LITERAL); return res;
         case OPNAME:
-            over(OPNAME); smallexpr(); return;
+            over(OPNAME); smallexpr(); return res;
         case '(':
-            over('('); expr(); over(')'); return;
+            over('('); expr(); over(')'); return res;
         default:
             NanoMorphoLexer.expected("expression");
         }
+        return res;
     }
 
     static void body() throws Exception
@@ -201,5 +202,40 @@ public class NanoMorphoParser
             expr(); over(';');
         }
         over('}');
+    }
+
+    static void generateFunction( Object[] f )
+	{
+		// f = {fname,acount,vcount,expr[]}
+		String fname = (String)f[0];
+        int count = (Integer)f[1];
+        Object[] arrs = (Object[])f[3];
+        Object[] arr;
+		emit("#\""+fname+"[f"+count+"]\" =");
+        emit("[");
+        for (int i = 0; i < arrs.length; i++) {
+            arr = (Object[])arrs[i];
+            // generateExpr((Object[])arr[i]);
+            System.out.println(arr[0]);
+        }
+		emit("];");
+	}
+
+    static void generateExpr(Object[] e){
+        if((int)e[0] == NAME){
+            emit("(Fetch "+e[1]+")");
+            emit("(Push)");
+        }
+        if((int)e[0] == LITERAL){
+            emit("(MakeVal "+(String)e[1]+")");
+        }
+        if ((int)e[0] == RETURN) {
+            emit("(Return)");
+            // generateExpr((Object[])e[1]);
+        }
+    }
+
+    static void emit(String s){
+        System.out.println(s);
     }
 }

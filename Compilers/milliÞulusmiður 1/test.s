@@ -1,7 +1,6 @@
-define(petur){
-    var name, is, petur ;
-    
-    while(name=name){
-        petur =  1 + 1;
-    };
+fall(x){
+    var name, name;
+    name = name + name;
+    x+2;
 }
+

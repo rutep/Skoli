@@ -12,39 +12,15 @@ import java.util.Vector;
 public class NanoLisp
 {
 	
-	
-	
-	
-	
-	
-	
 	enum CodeType
 	{
 		IF, LITERAL, NAME, CALL
 	};
-
-	
-	
-	
-	
-	
-	
-	
 	static class LexCase
 	{
 		final Pattern pat;
 		final char token;
 		int end;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		public LexCase( String p, char t )
 		{
@@ -52,12 +28,6 @@ public class NanoLisp
 			token = t;
 		}
 
-		
-		
-		
-		
-		
-		
 		public boolean match( String s, int pos )
 		{
 			Matcher m = pat.matcher(s).region(pos,s.length());
@@ -65,23 +35,12 @@ public class NanoLisp
 			if( res ) end = m.end();
 			return res;
 		}
-
-		
-		
-		
-		
-		
 		
 		public int end()
 		{
 			return end;
 		}
 	}
-
-	
-	
-	
-	
 	static class Lexer
 	{
 		final LexCase[]
@@ -99,44 +58,6 @@ public class NanoLisp
 		int i;
 		char token;
 		String lexeme;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
 		public Lexer( Reader r ) throws IOException
 		{
 			StringBuffer b = new StringBuffer();
@@ -166,10 +87,6 @@ public class NanoLisp
 		{
 			return lexeme;
 		}
-
-		
-		
-		
 		void advance()
 		{
 			for(;;)
@@ -212,12 +129,6 @@ public class NanoLisp
 				}
 			}
 		}
-
-		
-		
-		
-		
-		
 		static String tokenName( char t )
 		{
 			switch( t )
@@ -233,13 +144,6 @@ public class NanoLisp
 			return "?";
 		}
 
-		
-		
-		
-		
-		
-		
-		
 		String over( char tok )
 		{
 			if( token!=tok ) throw new Error("Expected "+tokenName(tok)+", found "+lexeme);
@@ -248,28 +152,12 @@ public class NanoLisp
 			return res;
 		}
 	}
-
-	
 	Lexer lex;
-	
-	
-	
-	
 	String[] vars;
-
-	
-	
-	
-	
 	public NanoLisp( Lexer lexer )
 	{
 		lex = lexer;
 	}
-
-	
-	
-	
-	
 	
 	int varPos( String name )
 	{
@@ -277,15 +165,6 @@ public class NanoLisp
 			if( vars[i].equals(name) ) return i-1;
 		throw new Error("Variable "+name+" is not defined");
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 	Object[] program()
 	{
 		Vector<Object> res = new Vector<Object>();
@@ -293,13 +172,6 @@ public class NanoLisp
 		return res.toArray();
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	Object[] fundecl()
 	{
 		lex.over('(');
@@ -317,13 +189,6 @@ public class NanoLisp
 		return res;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	Object[] expr()
 	{
 		Object[] res;
@@ -567,7 +432,7 @@ public class NanoLisp
 	
 	
 	
-	
+
 	static void generateExprP( Object[] e )
 	{
 		switch( (CodeType)e[0] )
