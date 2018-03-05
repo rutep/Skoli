@@ -137,13 +137,13 @@ public class NanoMorphoParser
 
     static Object[]  binopexpr() throws Exception
     {
-        Object[] res = new Object[]{};
-        smallexpr();
+        Vector<Object[]> res = new Vector<Object[]>();
+        res.add(smallexpr());
         while( getToken1()==OPNAME )
         {
-            over(OPNAME); smallexpr();
+            over(OPNAME); res.add(new Object[]{"CALL",smallexpr()});
         }
-        return res;
+        return res.toArray();
     }
 
     static Object[] smallexpr() throws Exception
@@ -209,19 +209,16 @@ public class NanoMorphoParser
 		// f = {fname,acount,vcount,expr[]}
 		String fname = (String)f[0];
         int count = (Integer)f[1];
-        Object[] arrs = (Object[])f[3];
-        Object[] arr;
 		emit("#\""+fname+"[f"+count+"]\" =");
         emit("[");
-        for (int i = 0; i < arrs.length; i++) {
-            arr = (Object[])arrs[i];
-            // generateExpr((Object[])arr[i]);
-            System.out.println(arr[0]);
-        }
+        Object[] arr = (Object[])f[3];
+        for(int i = 0; i < arr.length; i++)
+        generateExpr((Object[])arr[i]);
 		emit("];");
 	}
 
     static void generateExpr(Object[] e){
+        
         if((int)e[0] == NAME){
             emit("(Fetch "+e[1]+")");
             emit("(Push)");
@@ -233,6 +230,11 @@ public class NanoMorphoParser
             emit("(Return)");
             // generateExpr((Object[])e[1]);
         }
+        /**
+        if (((String)e[0]).equals("CALL")){
+            generateExpr((Object[])e[1]);
+        }
+        */
     }
 
     static void emit(String s){
