@@ -1,5 +1,4 @@
 import java.util.Vector;
-
 import java.util.HashMap;
 
 public class NanoMorphoParser
@@ -29,10 +28,6 @@ public class NanoMorphoParser
     {
         return NanoMorphoLexer.over(tok);
     }
-
-    static String getLexeme() throws Exception{
-        return NanoMorphoLexer.getLexeme();
-    }
     
     static int getToken1()
     {
@@ -48,25 +43,26 @@ public class NanoMorphoParser
         }
         catch( Throwable e )
         {
+            System.out.println("villa");
             System.out.println(e.getMessage());
         }
     }
 
+    static String getLexeme() throws Exception{
+        return NanoMorphoLexer.getLexeme();
+    }
     static void program(String proName) throws Exception
-    {
-        emit("\""+proName+".mexe\" = main in");
-		emit("!{{");
-		while( getToken1()!=0 )generateFunction(function());
-        emit("}}*BASIS;");
-
+    {   
+        Vector<Object[]> res = new Vector<Object[]>();        
+        while( getToken1()!=0 ) res.add(function());
+        generateProgram(proName, res.toArray());
     }
 
     static HashMap<String,Integer> varTable = new HashMap<String,Integer>();
     static int hashCount = 0;
     static int acount = 0;
     static int vcount = 0;
-        
-
+    
     static Object[] function() throws Exception
     {   
         acount = 0;
@@ -105,9 +101,7 @@ public class NanoMorphoParser
         over(VAR);
         for(;;)
         {
-            varTable.put(getLexeme(),hashCount++);
             over(NAME);
-            vcount++;
             if( getToken1()!=',' ) break;
             over(',');
         }
@@ -116,6 +110,7 @@ public class NanoMorphoParser
     static Object[] expr() throws Exception
     {
         Object[] res = new Object[]{};
+        res = new Object[]{RETURN};
         if( getToken1()==RETURN )
         {   
             over(RETURN);
@@ -130,25 +125,22 @@ public class NanoMorphoParser
         }
         else
         {
-            res = binopexpr();
+            binopexpr();
         }
         return res;
     }
 
-    static Object[]  binopexpr() throws Exception
+    static void  binopexpr() throws Exception
     {
-        Vector<Object[]> res = new Vector<Object[]>();
-        res.add(smallexpr());
+        smallexpr();
         while( getToken1()==OPNAME )
         {
-            over(OPNAME); res.add(new Object[]{"CALL",smallexpr()});
+            over(OPNAME); smallexpr();
         }
-        return res.toArray();
     }
 
-    static Object[] smallexpr() throws Exception
+    static void smallexpr() throws Exception
     {
-        Object[] res = new Object[]{};
         switch( getToken1() )
         {
         case NAME:
@@ -167,9 +159,9 @@ public class NanoMorphoParser
                 }
                 over(')');
             }
-            return res;
+            return;
         case WHILE:
-            over(WHILE); expr(); body(); return res;
+            over(WHILE); expr(); body(); return;
         case IF:
             over(IF); expr(); body();
             while( getToken1()==ELSIF )
@@ -180,18 +172,16 @@ public class NanoMorphoParser
             {
                 over(ELSE); body();
             }
-            return res;
+            return;
         case LITERAL:
-            res = new Object[]{LITERAL,getLexeme()};
-            over(LITERAL); return res;
+            over(LITERAL); return;
         case OPNAME:
-            over(OPNAME); smallexpr(); return res;
+            over(OPNAME); smallexpr(); return;
         case '(':
-            over('('); expr(); over(')'); return res;
+            over('('); expr(); over(')'); return;
         default:
             NanoMorphoLexer.expected("expression");
         }
-        return res;
     }
 
     static void body() throws Exception
@@ -209,16 +199,23 @@ public class NanoMorphoParser
 		// f = {fname,acount,vcount,expr[]}
 		String fname = (String)f[0];
         int count = (Integer)f[1];
+        Object[] args = (Object[])f[3];
 		emit("#\""+fname+"[f"+count+"]\" =");
         emit("[");
-        Object[] arr = (Object[])f[3];
-        for(int i = 0; i < arr.length; i++)
-        generateExpr((Object[])arr[i]);
-		emit("];");
+        for(int i = 0; i < args.length; i++) generateExpr((Object[])args[i]);
+        emit("];");
+    }
+
+    static void generateProgram( String name, Object[] p )
+	{
+		emit("\""+name+".mexe\" = main in");
+		emit("!{{");
+		for( int i=0 ; i!=p.length ; i++ ) generateFunction((Object[])p[i]);
+		emit("}}*BASIS;");
 	}
 
     static void generateExpr(Object[] e){
-        
+    
         if((int)e[0] == NAME){
             emit("(Fetch "+e[1]+")");
             emit("(Push)");
@@ -230,11 +227,6 @@ public class NanoMorphoParser
             emit("(Return)");
             // generateExpr((Object[])e[1]);
         }
-        /**
-        if (((String)e[0]).equals("CALL")){
-            generateExpr((Object[])e[1]);
-        }
-        */
     }
 
     static void emit(String s){
