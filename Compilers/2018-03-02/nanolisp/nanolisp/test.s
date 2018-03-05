@@ -1,5 +1,5 @@
-; MiniLisp prófunarforrit.
-; Höfundur: Snorri Agnarsson, janúar 2014.
+; MiniLisp prï¿½funarforrit.
+; Hï¿½fundur: Snorri Agnarsson, janï¿½ar 2014.
 
 ; Notkun: (fibo n)
 ; Fyrir:  n er heiltala, n>=0
@@ -13,7 +13,8 @@
 
 ; Notkun: (main)
 ; Fyrir:  Ekkert
-; Eftir:  Búið er að reikna og skrifa fibo(30)
+; Eftir:  Bï¿½iï¿½ er aï¿½ reikna og skrifa fibo(30)
 (define (main)
   (writeln (++ "fibo(30)=" (fibo 30)))
 )
+

@@ -101,12 +101,14 @@ public class NanoMorphoParser
         over(VAR);
         for(;;)
         {
+            varTable.put(getLexeme(),hashCount++);
             over(NAME);
+            vcount++;
             if( getToken1()!=',' ) break;
             over(',');
         }
     }
-
+    public static int BINOP;
     static Object[] expr() throws Exception
     {
         Object[] res = new Object[]{};
@@ -125,25 +127,31 @@ public class NanoMorphoParser
         }
         else
         {
-            binopexpr();
+            return new Object[]{BINOP,binopexpr()};
         }
-        return res;
     }
 
-    static void  binopexpr() throws Exception
-    {
+    static int CALL = 1111;
+    static Object[]  binopexpr() throws Exception
+    {   
+        Vector<Object[]> res = new Vector<Object[]>();
         smallexpr();
         while( getToken1()==OPNAME )
-        {
+        {   
+            res.add(new Object[]{CALL,getLexeme(),2});
             over(OPNAME); smallexpr();
         }
+        return res.toArray();
     }
 
+    static int FunCall = 2000;
     static void smallexpr() throws Exception
     {
+        Vector<Object> args = new Vector<Object>();
         switch( getToken1() )
         {
         case NAME:
+            String name = getLexeme();
             over(NAME);
             if( getToken1()=='(' )
             {
@@ -152,7 +160,7 @@ public class NanoMorphoParser
                 {
                     for(;;)
                     {
-                        expr();
+                        args.add(expr());
                         if( getToken1()==')' ) break;
                         over(',');
                     }
@@ -192,6 +200,7 @@ public class NanoMorphoParser
             expr(); over(';');
         }
         over('}');
+
     }
 
     static void generateFunction( Object[] f )
@@ -226,6 +235,15 @@ public class NanoMorphoParser
         if ((int)e[0] == RETURN) {
             emit("(Return)");
             // generateExpr((Object[])e[1]);
+        }
+        if((int)e[0] == BINOP){
+            Object[] args = (Object[])e[1];
+            for(int i = 0; i < args.length; i++){
+                generateExpr((Object[])args[i]);
+            } 
+        }
+        if((int)e[0] == CALL){
+            emit("(Call #\""+e[1]+"[f"+e[2]+"]\" "+e[2]+")");
         }
     }
 

@@ -1,6 +1,6 @@
-fall(x){
-    var name, name;
-    name = name + name;
-    x+2;
+fun(x){
+    var petur, petur, petur;
+    1+1+1+1+1-1;
+    return petur;
 }
 
