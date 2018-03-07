@@ -58,7 +58,7 @@ public class NanoMorphoParser
     {
         emit("\""+proName+".mexe\" = main in");
 		emit("!{{");
-		while( getToken1()!=0 )generateFunction(function());
+		while( getToken1()!=0 ) generateFunction(function());
         emit("}}*BASIS;");
 
     }
