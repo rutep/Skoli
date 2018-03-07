@@ -1,4 +1,7 @@
 import java.util.Vector;
+
+import javafx.beans.binding.ObjectExpression;
+
 import java.util.HashMap;
 
 public class NanoMorphoParser
@@ -131,6 +134,7 @@ public class NanoMorphoParser
         }
     }
 
+<<<<<<< HEAD
     static int CALL = 1111;
     static Object[]  binopexpr() throws Exception
     {   
@@ -148,6 +152,30 @@ public class NanoMorphoParser
     static void smallexpr() throws Exception
     {
         Vector<Object> args = new Vector<Object>();
+=======
+     /**
+     * (MakeVal null)
+     * (Push) breitur og viðfaung
+     * ATH AC(acumilator) Hlaða
+     */
+    static Object  binopexpr() throws Exception
+    {
+        Object[] e = smallexpr();
+        smallexpr();
+        while( getToken1()==OPNAME )
+        {   
+            String op = getLexeme();
+            over(OPNAME); 
+            Object[] r = smallexpr();
+            e = new Object[]{"CALL",op,2,new Object[]{e,r}};
+        }
+        return e;
+    }
+
+    static Object[] smallexpr() throws Exception
+    {
+        Object[] res = new Object[]{};
+>>>>>>> c4ba1dec0622924979fbbb9c7b9ef3939ba6f165
         switch( getToken1() )
         {
         case NAME:
@@ -167,9 +195,9 @@ public class NanoMorphoParser
                 }
                 over(')');
             }
-            return;
+            return res;
         case WHILE:
-            over(WHILE); expr(); body(); return;
+            over(WHILE); expr(); body(); return res;
         case IF:
             over(IF); expr(); body();
             while( getToken1()==ELSIF )
@@ -180,16 +208,17 @@ public class NanoMorphoParser
             {
                 over(ELSE); body();
             }
-            return;
+            return res;
         case LITERAL:
-            over(LITERAL); return;
+            over(LITERAL); return res;
         case OPNAME:
-            over(OPNAME); smallexpr(); return;
+            over(OPNAME); smallexpr(); return res;
         case '(':
-            over('('); expr(); over(')'); return;
+            over('('); expr(); over(')'); return res;
         default:
             NanoMorphoLexer.expected("expression");
         }
+        return res;
     }
 
     static void body() throws Exception
@@ -211,6 +240,13 @@ public class NanoMorphoParser
         Object[] args = (Object[])f[3];
 		emit("#\""+fname+"[f"+count+"]\" =");
         emit("[");
+        emit("(MakeVal null)");
+        while(vcount != -1){
+            emit("(Push)"); vcount--;
+        } 
+        while(acount != -1){
+            emit("(Push)"); acount--;
+        } 
         for(int i = 0; i < args.length; i++) generateExpr((Object[])args[i]);
         emit("];");
     }
@@ -224,7 +260,10 @@ public class NanoMorphoParser
 	}
 
     static void generateExpr(Object[] e){
-    
+        
+        if (e == null) {
+            return;
+        }
         if((int)e[0] == NAME){
             emit("(Fetch "+e[1]+")");
             emit("(Push)");
