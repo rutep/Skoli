@@ -16,6 +16,7 @@ _1:
 (MakeValP 2)
 (Call #"-[f2]" 2)
 (Call #"fibo[f1]" 1)
+this is test output +
 (CallR #"+[f2]" 2)
 ];
 #"main[f0]" =
@@ -24,6 +25,7 @@ _1:
 (MakeValP 30)
 (Call #"fibo[f1]" 1)
 (Call #"++[f2]" 2)
+this is test output writeln
 (CallR #"writeln[f1]" 1)
 ];
 }}*BASIS;

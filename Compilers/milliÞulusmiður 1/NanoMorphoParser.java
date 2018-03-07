@@ -111,11 +111,9 @@ public class NanoMorphoParser
             over(',');
         }
     }
-    public static int BINOP;
     static Object[] expr() throws Exception
     {
         Object[] res = new Object[]{};
-        res = new Object[]{RETURN};
         if( getToken1()==RETURN )
         {   
             over(RETURN);
@@ -124,62 +122,48 @@ public class NanoMorphoParser
         }
         else if( getToken1()==NAME && NanoMorphoLexer.getToken2()=='=' )
         {
-            res = new Object[]{NAME,varTable.get(getLexeme())};
-            over(NAME); over('='); expr();
+            int i = varTable.get(getLexeme());
+            over(NAME); over('=');
+            res = new Object[]{SNAME,i,expr()};
             return res;
         }
         else
         {
-            return new Object[]{BINOP,binopexpr()};
+            return binopexpr();
         }
     }
 
-<<<<<<< HEAD
-    static int CALL = 1111;
-    static Object[]  binopexpr() throws Exception
-    {   
-        Vector<Object[]> res = new Vector<Object[]>();
-        smallexpr();
-        while( getToken1()==OPNAME )
-        {   
-            res.add(new Object[]{CALL,getLexeme(),2});
-            over(OPNAME); smallexpr();
-        }
-        return res.toArray();
-    }
-
-    static int FunCall = 2000;
-    static void smallexpr() throws Exception
-    {
-        Vector<Object> args = new Vector<Object>();
-=======
      /**
      * (MakeVal null)
      * (Push) breitur og viðfaung
      * ATH AC(acumilator) Hlaða
      */
-    static Object  binopexpr() throws Exception
+     static int CALL = 10;
+    static Object[]  binopexpr() throws Exception
     {
         Object[] e = smallexpr();
-        smallexpr();
         while( getToken1()==OPNAME )
         {   
             String op = getLexeme();
             over(OPNAME); 
             Object[] r = smallexpr();
-            e = new Object[]{"CALL",op,2,new Object[]{e,r}};
+            e = new Object[]{CALL,op,2,new Object[]{e,r}};
         }
         return e;
     }
-
+    static int FCALL = 100;
+    static int SNAME = 1123;
+    static int FNAME = 2299;
     static Object[] smallexpr() throws Exception
     {
         Object[] res = new Object[]{};
->>>>>>> c4ba1dec0622924979fbbb9c7b9ef3939ba6f165
         switch( getToken1() )
         {
         case NAME:
             String name = getLexeme();
+            int pos = varTable.get(name);
+            int arg = 0;
+            Vector <Object[]> st = new Vector<Object[]>();
             over(NAME);
             if( getToken1()=='(' )
             {
@@ -187,15 +171,17 @@ public class NanoMorphoParser
                 if( getToken1()!=')' )
                 {
                     for(;;)
-                    {
-                        args.add(expr());
+                    {   
+                        arg++;
+                        st.add(expr());
                         if( getToken1()==')' ) break;
                         over(',');
                     }
                 }
                 over(')');
+                return new Object[]{FCALL,name,arg,st.toArray()};
             }
-            return res;
+            return new Object[]{FNAME,pos};
         case WHILE:
             over(WHILE); expr(); body(); return res;
         case IF:
@@ -210,6 +196,7 @@ public class NanoMorphoParser
             }
             return res;
         case LITERAL:
+            res = new Object[]{LITERAL,getLexeme()};
             over(LITERAL); return res;
         case OPNAME:
             over(OPNAME); smallexpr(); return res;
@@ -235,16 +222,18 @@ public class NanoMorphoParser
     static void generateFunction( Object[] f )
 	{
 		// f = {fname,acount,vcount,expr[]}
+        acount = (Integer)f[1];
+        vcount = (Integer)f[2];
 		String fname = (String)f[0];
         int count = (Integer)f[1];
         Object[] args = (Object[])f[3];
 		emit("#\""+fname+"[f"+count+"]\" =");
         emit("[");
         emit("(MakeVal null)");
-        while(vcount != -1){
+        while(vcount != 0){
             emit("(Push)"); vcount--;
         } 
-        while(acount != -1){
+        while(acount != 0){
             emit("(Push)"); acount--;
         } 
         for(int i = 0; i < args.length; i++) generateExpr((Object[])args[i]);
@@ -261,28 +250,47 @@ public class NanoMorphoParser
 
     static void generateExpr(Object[] e){
         
+        Object[] res;
         if (e == null) {
             return;
         }
         if((int)e[0] == NAME){
+            // {NAME,i,expr()}
             emit("(Fetch "+e[1]+")");
-            emit("(Push)");
+            generateExpr((Object[])e[2]);
         }
+        if((int)e[0] == SNAME){
+            // {NAME,i,expr()}
+            generateExpr((Object[])e[2]);
+            emit("(Store "+e[1]+")");
+        }
+        if((int)e[0] == FNAME){
+            // {NAME,i,expr()}
+            emit("(Fetch "+e[1]+")");
+        }
+        
+
         if((int)e[0] == LITERAL){
             emit("(MakeVal "+(String)e[1]+")");
+            emit("(Push)");
         }
         if ((int)e[0] == RETURN) {
-            emit("(Return)");
-            // generateExpr((Object[])e[1]);
+            res = (Object[])e[1];
+            generateExpr((Object[])e[1]);
+            emit("(CallR #\""+"writeln"+"[f1]\" 1)");
+            // emit("(Return)");
+
         }
-        if((int)e[0] == BINOP){
-            Object[] args = (Object[])e[1];
-            for(int i = 0; i < args.length; i++){
-                generateExpr((Object[])args[i]);
-            } 
-        }
+        // e = new Object[]{CALL,op,2,new Object[]{e,r}};
         if((int)e[0] == CALL){
+            res = (Object[])e[3];
+            generateExpr((Object[])res[0]);
+            generateExpr((Object[])res[1]);
             emit("(Call #\""+e[1]+"[f"+e[2]+"]\" "+e[2]+")");
+        }
+        if((int)e[0] == FCALL){
+            emit("(Call #\""+e[1]+"[f"+e[2]+"]\" "+e[2]+")");
+
         }
     }
 

@@ -174,7 +174,6 @@ public class NanoMorphoParser
                 }
                 over(')');
                 return new Object[]{CALL,name,args.toArray()};
-            
             }
             return res;
         case WHILE:

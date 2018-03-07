@@ -554,6 +554,7 @@ public class NanoLisp
 					generateExpr((Object[])args[i]);
 				else
 					generateExprP((Object[])args[i]);
+			System.out.println("this is test output " + e[1]);
 			emit("(CallR #\""+e[1]+"[f"+i+"]\" "+i+")");
 			return;
 		}
