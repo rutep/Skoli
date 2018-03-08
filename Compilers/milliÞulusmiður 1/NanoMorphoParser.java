@@ -46,14 +46,20 @@ public class NanoMorphoParser
         }
         catch( Throwable e )
         {
-            System.out.println("villa");
+            
+            System.out.println("villa lína " + NanoMorphoLexer.getLine());
             System.out.println(e.getMessage());
         }
+    }
+    
+    static String getLexeme2() throws Exception{
+        return NanoMorphoLexer.getLexeme2();
     }
 
     static String getLexeme() throws Exception{
         return NanoMorphoLexer.getLexeme();
     }
+
     static void program(String proName) throws Exception
     {   
         Vector<Object[]> res = new Vector<Object[]>();        
@@ -105,8 +111,8 @@ public class NanoMorphoParser
         for(;;)
         {
             varTable.put(getLexeme(),hashCount++);
-            over(NAME);
             vcount++;
+            over(NAME);
             if( getToken1()!=',' ) break;
             over(',');
         }
@@ -151,7 +157,7 @@ public class NanoMorphoParser
         }
         return e;
     }
-    static int FCALL = 100;
+    static int FCALL = 3012;
     static int SNAME = 1123;
     static int FNAME = 2299;
     static Object[] smallexpr() throws Exception
@@ -164,14 +170,15 @@ public class NanoMorphoParser
             int pos = varTable.get(name);
             int arg = 0;
             Vector <Object[]> st = new Vector<Object[]>();
-            over(NAME);
+            over(NAME);               
             if( getToken1()=='(' )
             {
                 over('(');
                 if( getToken1()!=')' )
                 {
                     for(;;)
-                    {   
+                    {  
+                        System.out.println(getLexeme());
                         arg++;
                         st.add(expr());
                         if( getToken1()==')' ) break;
@@ -179,21 +186,28 @@ public class NanoMorphoParser
                     }
                 }
                 over(')');
-                return new Object[]{FCALL,name,arg,st.toArray()};
+                res= new Object[]{FCALL,name,arg,st.toArray()};
+                return res;
+            } else {
+                res = new Object[]{FNAME,pos};
+                return res;
             }
-            return new Object[]{FNAME,pos};
         case WHILE:
             over(WHILE); expr(); body(); return res;
         case IF:
-            over(IF); expr(); body();
+            Vector <Object[]> bo = new Vector<Object[]>();
+            Object[] e, b, s = new Object[]{};
+            over(IF); e = expr(); b = body();
             while( getToken1()==ELSIF )
-            {
-                over(ELSIF); expr(); body();
+            {   
+                over(ELSIF); 
+                s = new Object[]{IF1,expr(),body()};
             }
             if( getToken1()==ELSE )
             {
                 over(ELSE); body();
             }
+            res = new Object[]{IF,e,b,s};         
             return res;
         case LITERAL:
             res = new Object[]{LITERAL,getLexeme()};
@@ -208,15 +222,20 @@ public class NanoMorphoParser
         return res;
     }
 
-    static void body() throws Exception
+    static int BODY =1235466;
+    static int IF1 = 12355313;
+
+    static Object[] body() throws Exception
     {
         over('{');
+        Vector <Object[]> st = new Vector<Object[]>();
         while( getToken1()!='}' )
-        {
-            expr(); over(';');
+        {   
+            st.add(expr());
+            over(';');
         }
         over('}');
-
+        return new Object[]{WHILE,st.toArray()};
     }
 
     static void generateFunction( Object[] f )
@@ -258,9 +277,10 @@ public class NanoMorphoParser
             // {NAME,i,expr()}
             emit("(Fetch "+e[1]+")");
             generateExpr((Object[])e[2]);
+            
         }
         if((int)e[0] == SNAME){
-            // {NAME,i,expr()}
+            // {SNAME,i,expr()}
             generateExpr((Object[])e[2]);
             emit("(Store "+e[1]+")");
         }
@@ -269,7 +289,6 @@ public class NanoMorphoParser
             emit("(Fetch "+e[1]+")");
         }
         
-
         if((int)e[0] == LITERAL){
             emit("(MakeVal "+(String)e[1]+")");
             emit("(Push)");
@@ -289,8 +308,26 @@ public class NanoMorphoParser
             emit("(Call #\""+e[1]+"[f"+e[2]+"]\" "+e[2]+")");
         }
         if((int)e[0] == FCALL){
+            res = (Object[])e[3];
+            for(int i = 0; i < res.length; i++) generateExpr((Object[])res[i]);
             emit("(Call #\""+e[1]+"[f"+e[2]+"]\" "+e[2]+")");
+        }
 
+        /**
+        over(ELSIF); 
+        s = new Object[]{IF1,expr(),body()};
+        }
+        if( getToken1()==ELSE )
+        {
+            over(ELSE); body();
+        }
+        res = new Object[]{IF,e,b,s};
+         */
+        if((int)e[0] == IF){
+            
+        }
+        if((int)e[0] == IF1){
+            
         }
     }
 

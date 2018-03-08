@@ -1,11 +1,13 @@
 
-this(p,f){
-    p = 0;
-    return 0;
+petur(){
+
 }
 
 main(){
-    var s, t,x;
-    s = this(1,1);
+    var x;
+    x = 1;
+    if(1==1){
+        x=2;
+    };
     return x;
 }
