@@ -1,5 +1,5 @@
-// ï¿½ï¿½ï¿½andi fyrir ofureinfalt NanoLisp forritunarmï¿½l.
-// Hï¿½fundur: Snorri Agnarsson, 2014-2017.
+// Þýðandi fyrir ofureinfalt NanoLisp forritunarmál.
+// Höfundur: Snorri Agnarsson, 2014-2017.
 
 import java.io.Reader;
 import java.io.FileReader;
@@ -11,24 +11,24 @@ import java.util.Vector;
 
 public class NanoLisp
 {
-	// Eftirfarandi fastar standa fyrir allar ï¿½ï¿½r
-	// mï¿½gulegu gerï¿½ir af segï¿½um sem milliï¿½ula
-	// (intermediate code) getur innihaldiï¿½.
-	// ï¿½essar fjï¿½rar gerï¿½ir segï¿½a (ï¿½samt ï¿½eim
-	// mï¿½guleika aï¿½ skrifa fï¿½ll sem nota slï¿½kar
-	// segï¿½ir) duga reyndar til aï¿½ hï¿½gt sï¿½ aï¿½
-	// reikna hvaï¿½ sem er reiknanlegt.
+	// Eftirfarandi fastar standa fyrir allar þær
+	// mögulegu gerðir af segðum sem milliþula
+	// (intermediate code) getur innihaldið.
+	// Þessar fjórar gerðir segða (ásamt þeim
+	// möguleika að skrifa föll sem nota slíkar
+	// segðir) duga reyndar til að hægt sé að
+	// reikna hvað sem er reiknanlegt.
 	enum CodeType
 	{
 		IF, LITERAL, NAME, CALL
 	};
 
 	// Tilvik af klasanum LexCase er skilgreining
-	// ï¿½ einhverju lesgreinanlegu fyrirbï¿½ri, sem
-	// mï¿½ ï¿½ï¿½ koma fyrir ï¿½ lï¿½glegum forritstexta.
-	// Lesgreinirinn ï¿½ ï¿½essum ï¿½ï¿½ï¿½anda er skrifaï¿½ur
-	// ï¿½ mjï¿½g frumstï¿½ï¿½an hï¿½tt og aï¿½ferï¿½in er ekki
-	// til eftirbreytni ï¿½ neinum ï¿½ï¿½ï¿½anda sem ï¿½tlaï¿½ur
+	// á einhverju lesgreinanlegu fyrirbæri, sem
+	// má þá koma fyrir í löglegum forritstexta.
+	// Lesgreinirinn í þessum þýðanda er skrifaður
+	// á mjög frumstæðan hátt og aðferðin er ekki
+	// til eftirbreytni í neinum þýðanda sem ætlaður
 	// er til raunverulegrar notkunar.
 	static class LexCase
 	{
@@ -38,14 +38,14 @@ public class NanoLisp
 		
 		// Notkun: LexCase c = new LexCase(p,t);
 		// Fyrir:  p er strengur sem inniheldur reglulega
-		//         segï¿½ sem skilgreinir mï¿½l sem inniheldur
-		//         ï¿½ï¿½ strengi sem sem eiga aï¿½ flokkast sem
-		//         eitthvert tiltekiï¿½ lesgreinanlegt
-		//         fyrirbï¿½ri (les, lexeme). t er stafur
-		//         sem er ï¿½aï¿½ tï¿½k (token) sem stendur
-		//         fyrir ï¿½etta mengi strengja (ï¿½etta mï¿½l).
-		// Eftir:  c vï¿½sar ï¿½ hlut sem nota mï¿½ til aï¿½
-		//         bera kennsl ï¿½ strengi ï¿½ mï¿½linu.
+		//         segð sem skilgreinir mál sem inniheldur
+		//         þá strengi sem sem eiga að flokkast sem
+		//         eitthvert tiltekið lesgreinanlegt
+		//         fyrirbæri (les, lexeme). t er stafur
+		//         sem er það tók (token) sem stendur
+		//         fyrir þetta mengi strengja (þetta mál).
+		// Eftir:  c vísar á hlut sem nota má til að
+		//         bera kennsl á strengi í málinu.
 		public LexCase( String p, char t )
 		{
 			pat = Pattern.compile(p,Pattern.MULTILINE);
@@ -53,10 +53,10 @@ public class NanoLisp
 		}
 
 		// Notkun: boolean b = c.match(s,pos);
-		// Fyrir:  s er strengur og pos er staï¿½setning
+		// Fyrir:  s er strengur og pos er staðsetning
 		//         innan s.
-		// Eftir:  b er satt ï¿½ï¿½aa staï¿½setningin pos vï¿½si
-		//         ï¿½ byrjun hlutstrengs sem er ï¿½ mï¿½linu
+		// Eftir:  b er satt þþaa staðsetningin pos vísi
+		//         á byrjun hlutstrengs sem er í málinu
 		//         sem c skilgreinir.
 		public boolean match( String s, int pos )
 		{
@@ -67,21 +67,21 @@ public class NanoLisp
 		}
 
 		// Notkun: int i = c.end();
-		// Fyrir:  Bï¿½iï¿½ er aï¿½ kalla c.match(s,pos) og fï¿½
-		//         sanna niï¿½urstï¿½ï¿½u.
-		// Eftir:  i inniheldur staï¿½setningu innan s sem
-		//         vï¿½sar ï¿½ nï¿½sta staf ï¿½ eftir ï¿½eim streng
-		//         sem boriï¿½ var kennsl ï¿½ ï¿½ match kallinu.
+		// Fyrir:  Búið er að kalla c.match(s,pos) og fá
+		//         sanna niðurstöðu.
+		// Eftir:  i inniheldur staðsetningu innan s sem
+		//         vísar á næsta staf á eftir þeim streng
+		//         sem borið var kennsl á í match kallinu.
 		public int end()
 		{
 			return end;
 		}
 	}
 
-	// Hlutur af tagi Lexer er lesgreinirinn ï¿½ ï¿½essum ï¿½ï¿½ï¿½anda.
-	// ï¿½etta er ï¿½kaflega frumstï¿½ï¿½ur lesgreinir sem getur
-	// lesgreint allt aï¿½ 100000 stafa inntaksskrï¿½r og notar
-	// frekar lï¿½lega aï¿½ferï¿½ til ï¿½ess.
+	// Hlutur af tagi Lexer er lesgreinirinn í þessum þýðanda.
+	// Þetta er ákaflega frumstæður lesgreinir sem getur
+	// lesgreint allt að 100000 stafa inntaksskrár og notar
+	// frekar lélega aðferð til þess.
 	static class Lexer
 	{
 		final LexCase[]
@@ -99,44 +99,44 @@ public class NanoLisp
 		int i;
 		char token;
 		String lexeme;
-		// Fastayrï¿½ing gagna:
-		//   input inniheldur forritstextann sem veriï¿½ er aï¿½ ï¿½ï¿½ï¿½a.
-		//   i er staï¿½setning nï¿½sta ï¿½lesna stafs ï¿½ forritstextanum.
-		//   token er stafur sem stendur fyrir nï¿½sta tï¿½k sem ekki
-		//   er bï¿½iï¿½ aï¿½ vinna ï¿½r.  ï¿½aï¿½ samsvarar stafarunu rï¿½tt fyrir
-		//   framan staï¿½setninguna i.  lexeme er strengur sem
-		//   inniheldur ï¿½ï¿½ stafi ï¿½r input sem samsvara token.
-		//   cases inniheldur skilgreiningar ï¿½ ï¿½eim mï¿½lum sem
-		//   lesgreinirinn gerir greinarmun ï¿½.  Hvert stak ï¿½
-		//   cases skilgreinir annars vegar eitthvert mï¿½l (mengi
-		//   strengja) sem boriï¿½ er kennsl ï¿½ og hins vegar staf
-		//   sem er samsvarandi tï¿½k.  Merking tï¿½kanna er:
+		// Fastayrðing gagna:
+		//   input inniheldur forritstextann sem verið er að þýða.
+		//   i er staðsetning næsta ólesna stafs í forritstextanum.
+		//   token er stafur sem stendur fyrir næsta tók sem ekki
+		//   er búið að vinna úr.  Það samsvarar stafarunu rétt fyrir
+		//   framan staðsetninguna i.  lexeme er strengur sem
+		//   inniheldur þá stafi úr input sem samsvara token.
+		//   cases inniheldur skilgreiningar á þeim málum sem
+		//   lesgreinirinn gerir greinarmun á.  Hvert stak í
+		//   cases skilgreinir annars vegar eitthvert mál (mengi
+		//   strengja) sem borið er kennsl á og hins vegar staf
+		//   sem er samsvarandi tók.  Merking tókanna er:
 		//     '(':  Strengurinn "("
 		//     ')':  Strengurinn ")"
-		//     'C':  Strengur sem er athugasemd eï¿½a bilstafur,
-		//           sem skal ï¿½vï¿½ ekki skila ï¿½fram til ï¿½ï¿½ttarans
-		//     'L':  Strengur sem stendur fyrir lesfasta, ï¿½.e.
-		//           tï¿½lufasti, strengfasti, staffasti eï¿½a einn
-		//           af lesfï¿½stunum true, false eï¿½a null.
-		//     'N':  Strengur sem er lï¿½glegt breytunafn eï¿½a nafn
-		//           ï¿½ falli.
-		//     'I':  Lykilorï¿½iï¿½ if.
-		//     'D':  Lykilorï¿½iï¿½ define.
-		//     '$':  Skrï¿½rlok, ï¿½.e. endir inntaksins.
-		//   Athugiï¿½ aï¿½ nokkur breytunï¿½fn eru ï¿½ess eï¿½lis aï¿½ ï¿½egar
-		//   lesgreinirinn skilar tï¿½ki fyrir ï¿½au ï¿½ï¿½ ï¿½ hann aï¿½
-		//   segja aï¿½ ï¿½au sï¿½u lesfastar.  ï¿½etta eru breytunï¿½fnin
-		//   true, false og null.  Lesgreinirinn ï¿½arf ï¿½vï¿½ aï¿½
-		//   athuga hvort um ï¿½essi sï¿½rstï¿½ku breytunï¿½fn er aï¿½ rï¿½ï¿½a
-		//   eftir aï¿½ ï¿½ ljï¿½s hefur komiï¿½ aï¿½ lesgreindi strengurinn
-		//   er breytunafn.  Sama gildir um lykilorï¿½in if og define.
+		//     'C':  Strengur sem er athugasemd eða bilstafur,
+		//           sem skal því ekki skila áfram til þáttarans
+		//     'L':  Strengur sem stendur fyrir lesfasta, þ.e.
+		//           tölufasti, strengfasti, staffasti eða einn
+		//           af lesföstunum true, false eða null.
+		//     'N':  Strengur sem er löglegt breytunafn eða nafn
+		//           á falli.
+		//     'I':  Lykilorðið if.
+		//     'D':  Lykilorðið define.
+		//     '$':  Skrárlok, þ.e. endir inntaksins.
+		//   Athugið að nokkur breytunöfn eru þess eðlis að þegar
+		//   lesgreinirinn skilar tóki fyrir þau þá á hann að
+		//   segja að þau séu lesfastar.  Þetta eru breytunöfnin
+		//   true, false og null.  Lesgreinirinn þarf því að
+		//   athuga hvort um þessi sérstöku breytunöfn er að ræða
+		//   eftir að í ljós hefur komið að lesgreindi strengurinn
+		//   er breytunafn.  Sama gildir um lykilorðin if og define.
 
 		// Notkun: Lexer l = new Lexer(r);
-		// Fyrir:  r er Reader sem inniheldur allt aï¿½ 100000
+		// Fyrir:  r er Reader sem inniheldur allt að 100000
 		//         stafi.
-		// Eftir:  l vï¿½sar ï¿½ nï¿½jan lesgreini sem lesgreinir
-		//         innihaldiï¿½ ï¿½ r.  Lesgreinirinn er ï¿½ upphafi
-		//         staï¿½settur ï¿½ fremsta lesi (lexeme) ï¿½ r.
+		// Eftir:  l vísar á nýjan lesgreini sem lesgreinir
+		//         innihaldið í r.  Lesgreinirinn er í upphafi
+		//         staðsettur á fremsta lesi (lexeme) í r.
 		public Lexer( Reader r ) throws IOException
 		{
 			StringBuffer b = new StringBuffer();
@@ -153,22 +153,22 @@ public class NanoLisp
 		}
 
 		// Notkun: char c = l.getToken();
-		// Eftir:  c er tï¿½kiï¿½ (token) sem stendur fyrir
-		//         ï¿½aï¿½ mï¿½l sem nï¿½sta les ï¿½ l flokkast ï¿½.
+		// Eftir:  c er tókið (token) sem stendur fyrir
+		//         það mál sem næsta les í l flokkast í.
 		char getToken()
 		{
 			return token;
 		}
 
 		// Notkun: String s = l.getLexeme();
-		// Eftir:  s er nï¿½sta les ï¿½ l.
+		// Eftir:  s er næsta les í l.
 		String getLexeme()
 		{
 			return lexeme;
 		}
 
 		// Notkun: l.advance();
-		// Eftir:  l hefur fï¿½rst ï¿½fram ï¿½ nï¿½sta les ï¿½
+		// Eftir:  l hefur færst áfram á næsta les í
 		//         inntakinu (sem ekki er athugasemd).
 		void advance()
 		{
@@ -214,10 +214,10 @@ public class NanoLisp
 		}
 
 		// Notkun: String n = Lexer.tokenName(c);
-		// Fyrir:  c er stafur sem er einn ï¿½eirra sem
-		//         lexgreinirinn getur skilaï¿½ sem tï¿½k.
-		// Eftir:  n er nafniï¿½ ï¿½ ï¿½essu tï¿½ki ï¿½ mannlega
-		//         lï¿½silegu sniï¿½i.
+		// Fyrir:  c er stafur sem er einn þeirra sem
+		//         lexgreinirinn getur skilað sem tók.
+		// Eftir:  n er nafnið á þessu tóki á mannlega
+		//         læsilegu sniði.
 		static String tokenName( char t )
 		{
 			switch( t )
@@ -234,12 +234,12 @@ public class NanoLisp
 		}
 
 		// Notkun: l.over(c);
-		// Fyrir:  c er stafur sem stendur fyrir mï¿½gulegt tï¿½k.
-		//         Nï¿½sta tï¿½k ï¿½ l er c.
-		// Eftir:  Bï¿½iï¿½ er aï¿½ fï¿½ra lesgreininn eitt skref ï¿½fram
-		//         eins og ï¿½ advance().
-		// Afbrigï¿½i:  Ef svo vill til aï¿½ nï¿½sta tï¿½k ï¿½ l er ekki
-		//            c ï¿½ï¿½ eru skrifuï¿½ villuboï¿½ og keyrslan stï¿½ï¿½vast.
+		// Fyrir:  c er stafur sem stendur fyrir mögulegt tók.
+		//         Næsta tók í l er c.
+		// Eftir:  Búið er að færa lesgreininn eitt skref áfram
+		//         eins og í advance().
+		// Afbrigði:  Ef svo vill til að næsta tók í l er ekki
+		//            c þá eru skrifuð villuboð og keyrslan stöðvast.
 		String over( char tok )
 		{
 			if( token!=tok ) throw new Error("Expected "+tokenName(tok)+", found "+lexeme);
@@ -251,15 +251,15 @@ public class NanoLisp
 
 	// lex er lesgreinirinn.
 	Lexer lex;
-	// Inni ï¿½ hverri fallsskilgreiningu inniheldur vars nï¿½fnin
-	// ï¿½ viï¿½fï¿½ngunum ï¿½ falliï¿½ (ï¿½.e. leppunum eï¿½a breytunï¿½fnunum
-	// sem standa fyrir viï¿½fï¿½ngin), ï¿½ sï¿½tum 1 og aftar.  Sï¿½ti
-	// 0 inniheldur nafn fallsins sem veriï¿½ er aï¿½ skilgreina.
+	// Inni í hverri fallsskilgreiningu inniheldur vars nöfnin
+	// á viðföngunum í fallið (þ.e. leppunum eða breytunöfnunum
+	// sem standa fyrir viðföngin), í sætum 1 og aftar.  Sæti
+	// 0 inniheldur nafn fallsins sem verið er að skilgreina.
 	String[] vars;
 
 	// Notkun: NanoLisp n = new NanoLisp(l);
 	// Fyrir:  l er lesgreinir.
-	// Eftir:  n vï¿½sar ï¿½ nï¿½jan NanoLisp ï¿½ï¿½ï¿½anda sem ï¿½ï¿½ï¿½ir inntakiï¿½
+	// Eftir:  n vísar á nýjan NanoLisp þýðanda sem þýðir inntakið
 	//         sem l hefur.
 	public NanoLisp( Lexer lexer )
 	{
@@ -267,10 +267,10 @@ public class NanoLisp
 	}
 
 	// Notkun: int i = n.varPos(name);
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi og er aï¿½ ï¿½ï¿½ï¿½a stofn einhvers
-	//         falls.  name er nafniï¿½ ï¿½ einhverju viï¿½fangi ï¿½ falliï¿½.
-	// Eftir:  i er staï¿½setning viï¿½fangsins ï¿½ viï¿½fangarunu fallsins
-	//         ï¿½ar sem fyrsta viï¿½fang er taliï¿½ vera ï¿½ sï¿½ti 0.
+	// Fyrir:  n er NanoLisp þýðandi og er að þýða stofn einhvers
+	//         falls.  name er nafnið á einhverju viðfangi í fallið.
+	// Eftir:  i er staðsetning viðfangsins í viðfangarunu fallsins
+	//         þar sem fyrsta viðfang er talið vera í sæti 0.
 	int varPos( String name )
 	{
 		for( int i=1 ; i!=vars.length ; i++ )
@@ -279,13 +279,13 @@ public class NanoLisp
 	}
 
 	// Notkun: Object[] code = n.program();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi og inntakiï¿½ er lï¿½glegt
+	// Fyrir:  n er NanoLisp þýðandi og inntakið er löglegt
 	//         NanoLisp forrit.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ ï¿½ï¿½ï¿½a forritiï¿½ og code vï¿½sar ï¿½ nï¿½tt
-	//         fylki sem inniheldur milliï¿½ulurnar fyrir ï¿½ll
-	//         fï¿½llin ï¿½ forritinu.
-	// Afbrigï¿½i: Ef forritiï¿½ er ekki lï¿½glegt ï¿½ï¿½ eru skrifuï¿½
-	//           villuboï¿½ og keyrslan stï¿½ï¿½vuï¿½.
+	// Eftir:  Búið er að þýða forritið og code vísar á nýtt
+	//         fylki sem inniheldur milliþulurnar fyrir öll
+	//         föllin í forritinu.
+	// Afbrigði: Ef forritið er ekki löglegt þá eru skrifuð
+	//           villuboð og keyrslan stöðvuð.
 	Object[] program()
 	{
 		Vector<Object> res = new Vector<Object>();
@@ -294,11 +294,11 @@ public class NanoLisp
 	}
 
 	// Notkun: Object[] fun = n.fundecl();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi sem er staï¿½settur ï¿½
+	// Fyrir:  n er NanoLisp þýðandi sem er staðsettur í
 	//         byrjun fallsskilgreiningar.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ lesa fallsskilgreininguna og fun vï¿½sar
-	//         ï¿½ nï¿½tt fylki sem er milliï¿½ulan fyrir falliï¿½.
-	//         ï¿½ï¿½ï¿½andinn er nï¿½ aï¿½ horfa ï¿½ nï¿½sta tï¿½kn ï¿½ inntakinu
+	// Eftir:  Búið er að lesa fallsskilgreininguna og fun vísar
+	//         á nýtt fylki sem er milliþulan fyrir fallið.
+	//         Þýðandinn er nú að horfa á næsta tákn í inntakinu
 	//         fyrir aftan fallsskilgreininguna.
 	Object[] fundecl()
 	{
@@ -318,12 +318,12 @@ public class NanoLisp
 	}
 
 	// Notkun: Object[] e = n.expr();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi sem er staï¿½settur ï¿½
-	//         byrjun segï¿½ar innan fallsskilgreiningar.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ lesa segï¿½ina og ï¿½ï¿½ï¿½a hana.
-	//         e vï¿½sar ï¿½ milliï¿½uluna fyrir segï¿½ina.
-	//         ï¿½ï¿½ï¿½andinn er nï¿½ aï¿½ horfa ï¿½ nï¿½sta tï¿½kn ï¿½ inntakinu
-	//         fyrir aftan segï¿½ina.
+	// Fyrir:  n er NanoLisp þýðandi sem er staðsettur í
+	//         byrjun segðar innan fallsskilgreiningar.
+	// Eftir:  Búið er að lesa segðina og þýða hana.
+	//         e vísar á milliþuluna fyrir segðina.
+	//         Þýðandinn er nú að horfa á næsta tákn í inntakinu
+	//         fyrir aftan segðina.
 	Object[] expr()
 	{
 		Object[] res;
@@ -363,8 +363,8 @@ public class NanoLisp
 	}
 
 	// Notkun: emit(line);
-	// Fyrir:  line er lï¿½na ï¿½ lokaï¿½ulu.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lï¿½nuna ï¿½ aï¿½alï¿½ttak.
+	// Fyrir:  line er lína í lokaþulu.
+	// Eftir:  Búið er að skrifa línuna á aðalúttak.
 	static void emit( String line )
 	{
 		System.out.println(line);
@@ -372,9 +372,9 @@ public class NanoLisp
 
 	// Notkun: generateProgram(name,p);
 	// Fyrir:  name er strengur, p er fylki fallsskilgreininga,
-	//         ï¿½.e. fylki af milliï¿½ulum fyrir fï¿½ll.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir forrit sem
-	//         samanstendur af fï¿½llunum ï¿½.a. name er nafn
+	//         þ.e. fylki af milliþulum fyrir föll.
+	// Eftir:  Búið er að skrifa lokaþulu fyrir forrit sem
+	//         samanstendur af föllunum þ.a. name er nafn
 	//         forritsins.
 	static void generateProgram( String name, Object[] p )
 	{
@@ -385,9 +385,9 @@ public class NanoLisp
 	}
 
 	// Notkun: generateFunction(f);
-	// Fyrir:  f er milliï¿½ula fyrir fall.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir falliï¿½ ï¿½
-	//         aï¿½alï¿½ttak.
+	// Fyrir:  f er milliþula fyrir fall.
+	// Eftir:  Búið er að skrifa lokaþulu fyrir fallið á
+	//         aðalúttak.
 	static void generateFunction( Object[] f )
 	{
 		// f = {fname,argcount,expr}
@@ -402,20 +402,20 @@ public class NanoLisp
 	static int nextLab = 1;
 
 	// Notkun: int i = newLab();
-	// Eftir:  i er jï¿½kvï¿½ï¿½ heiltala sem ekki hefur ï¿½ï¿½ur
-	//         veriï¿½ skilaï¿½ ï¿½r ï¿½essu falli.  Tilgangurinn
-	//         er aï¿½ bï¿½a til nï¿½tt merki (label), sem er
-	//         ekki ï¿½aï¿½ sama og neitt annaï¿½ merki.
+	// Eftir:  i er jákvæð heiltala sem ekki hefur áður
+	//         verið skilað úr þessu falli.  Tilgangurinn
+	//         er að búa til nýtt merki (label), sem er
+	//         ekki það sama og neitt annað merki.
 	static int newLab()
 	{
 		return nextLab++;
 	}
 
 	// Notkun: generateExpr(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir segï¿½ina
-	//         ï¿½ aï¿½alï¿½ttak.  Lokaï¿½ulan reiknar gildi
-	//         segï¿½arinnar og skilur gildiï¿½ eftir ï¿½
+	// Fyrir:  e er milliþula fyrir segð.
+	// Eftir:  Búið er að skrifa lokaþulu fyrir segðina
+	//         á aðalúttak.  Lokaþulan reiknar gildi
+	//         segðarinnar og skilur gildið eftir í
 	//         gildinu ac.
 	static void generateExpr( Object[] e )
 	{
@@ -455,15 +455,15 @@ public class NanoLisp
 	}
 
 	// Notkun: generateJump(e,labTrue,labTrue);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½, labTrue og
-	//         labFalse eru heiltï¿½lur sem standa fyrir
-	//         merki eï¿½a eru nï¿½ll.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir segï¿½ina
-	//         ï¿½ aï¿½alï¿½ttak.  Lokaï¿½ulan veldur stï¿½kki til
-	//         merkisins labTrue ef segï¿½ina skilar sï¿½nnu,
-	//         annars stï¿½kki til labFalse.  Ef annaï¿½ merkiï¿½
-	//         er nï¿½ll ï¿½ï¿½ er ï¿½aï¿½ jafngilt merki sem er rï¿½tt
-	//         fyrir aftan ï¿½ulu segï¿½arinnar.
+	// Fyrir:  e er milliþula fyrir segð, labTrue og
+	//         labFalse eru heiltölur sem standa fyrir
+	//         merki eða eru núll.
+	// Eftir:  Búið er að skrifa lokaþulu fyrir segðina
+	//         á aðalúttak.  Lokaþulan veldur stökki til
+	//         merkisins labTrue ef segðina skilar sönnu,
+	//         annars stökki til labFalse.  Ef annað merkið
+	//         er núll þá er það jafngilt merki sem er rétt
+	//         fyrir aftan þulu segðarinnar.
 	static void generateJump( Object[] e, int labTrue, int labFalse )
 	{
 		switch( (CodeType)e[0] )
@@ -485,16 +485,16 @@ public class NanoLisp
 	}
 
 	// Notkun: generateJumpP(e,labTrue,labFalse);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½, labTrue og
-	//         labFalse eru heiltï¿½lur sem standa fyrir
-	//         merki eï¿½a eru nï¿½ll.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
+	// Fyrir:  e er milliþula fyrir segð, labTrue og
+	//         labFalse eru heiltölur sem standa fyrir
+	//         merki eða eru núll.
+	// Eftir:  Þetta kall býr til lokaþulu sem er jafngild
+	//         þulunni sem köllin
 	//            emit("(Push)");
 	//            generateJump(e,labTrue,labFalse);
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
+	//         framleiða.  Þulan er samt ekki endilega sú
+	//         sama og þessi köll framleiða því tilgangurinn
+	//         er að geta framleitt betri þulu.
 	static void generateJumpP( Object[] e, int labTrue, int labFalse )
 	{
 		switch( (CodeType)e[0] )
@@ -517,14 +517,14 @@ public class NanoLisp
 	}
 
 	// Notkun: generateExpr(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
+	// Fyrir:  e er milliþula fyrir segð.
+	// Eftir:  Þetta kall býr til lokaþulu sem er jafngild
+	//         þulunni sem köllin
 	//            generateExpr(e);
 	//            emit("(Return)");
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
+	//         framleiða.  Þulan er samt ekki endilega sú
+	//         sama og þessi köll framleiða því tilgangurinn
+	//         er að geta framleitt betri þulu.
 	static void generateExprR( Object[] e )
 	{
 		switch( (CodeType)e[0] )
@@ -560,14 +560,14 @@ public class NanoLisp
 	}
 
 	// Notkun: generateExprP(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
+	// Fyrir:  e er milliþula fyrir segð.
+	// Eftir:  Þetta kall býr til lokaþulu sem er jafngild
+	//         þulunni sem köllin
 	//            emit("(Push)");
 	//            generateExpr(e);
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
+	//         framleiða.  Þulan er samt ekki endilega sú
+	//         sama og þessi köll framleiða því tilgangurinn
+	//         er að geta framleitt betri þulu.
 	static void generateExprP( Object[] e )
 	{
 		switch( (CodeType)e[0] )
@@ -602,638 +602,15 @@ public class NanoLisp
 		}
 	}
 
-	// Notkun (af skipanalï¿½nu):
+	// Notkun (af skipanalínu):
 	//        java NanoLisp forrit.s > forrit.masm
-	// Fyrir: Skrï¿½in forrit.s inniheldur lï¿½glegt NanoLisp
+	// Fyrir: Skráin forrit.s inniheldur löglegt NanoLisp
 	//        forit.
-	// Eftir: Bï¿½iï¿½ er aï¿½ ï¿½ï¿½ï¿½a forritiï¿½ og skrifa lokaï¿½uluna
-	//        ï¿½ skrï¿½na forrit.masm.  Sï¿½ sï¿½ lokaï¿½ula ï¿½ï¿½dd meï¿½
+	// Eftir: Búið er að þýða forritið og skrifa lokaþuluna
+	//        í skrána forrit.masm.  Sé sú lokaþula þýdd með
 	//        skipuninni
 	//           morpho -c forrit.masm
-	//        ï¿½ï¿½ verï¿½ur til keyrsluhï¿½fa Morpho skrï¿½in forrit.mexe.
-	public static void main( String[] args )
-		throws IOException
-	{
-		Lexer lexer = new Lexer(new FileReader(args[0]));
-		String name = args[0].substring(0,args[0].lastIndexOf('.'));
-		NanoLisp parser = new NanoLisp(lexer);
-		Object[] intermediate = parser.program();
-		if( lexer.getToken()!='$' ) throw new Error("Expected EOF, found "+lexer.getLexeme());
-		generateProgram(name,intermediate);
-	}
-}// ï¿½ï¿½ï¿½andi fyrir ofureinfalt NanoLisp forritunarmï¿½l.
-// Hï¿½fundur: Snorri Agnarsson, 2014-2017.
-
-import java.io.Reader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.Vector;
-
-public class NanoLisp
-{
-	// Eftirfarandi fastar standa fyrir allar ï¿½ï¿½r
-	// mï¿½gulegu gerï¿½ir af segï¿½um sem milliï¿½ula
-	// (intermediate code) getur innihaldiï¿½.
-	// ï¿½essar fjï¿½rar gerï¿½ir segï¿½a (ï¿½samt ï¿½eim
-	// mï¿½guleika aï¿½ skrifa fï¿½ll sem nota slï¿½kar
-	// segï¿½ir) duga reyndar til aï¿½ hï¿½gt sï¿½ aï¿½
-	// reikna hvaï¿½ sem er reiknanlegt.
-	enum CodeType
-	{
-		IF, LITERAL, NAME, CALL
-	};
-
-	// Tilvik af klasanum LexCase er skilgreining
-	// ï¿½ einhverju lesgreinanlegu fyrirbï¿½ri, sem
-	// mï¿½ ï¿½ï¿½ koma fyrir ï¿½ lï¿½glegum forritstexta.
-	// Lesgreinirinn ï¿½ ï¿½essum ï¿½ï¿½ï¿½anda er skrifaï¿½ur
-	// ï¿½ mjï¿½g frumstï¿½ï¿½an hï¿½tt og aï¿½ferï¿½in er ekki
-	// til eftirbreytni ï¿½ neinum ï¿½ï¿½ï¿½anda sem ï¿½tlaï¿½ur
-	// er til raunverulegrar notkunar.
-	static class LexCase
-	{
-		final Pattern pat;
-		final char token;
-		int end;
-		
-		// Notkun: LexCase c = new LexCase(p,t);
-		// Fyrir:  p er strengur sem inniheldur reglulega
-		//         segï¿½ sem skilgreinir mï¿½l sem inniheldur
-		//         ï¿½ï¿½ strengi sem sem eiga aï¿½ flokkast sem
-		//         eitthvert tiltekiï¿½ lesgreinanlegt
-		//         fyrirbï¿½ri (les, lexeme). t er stafur
-		//         sem er ï¿½aï¿½ tï¿½k (token) sem stendur
-		//         fyrir ï¿½etta mengi strengja (ï¿½etta mï¿½l).
-		// Eftir:  c vï¿½sar ï¿½ hlut sem nota mï¿½ til aï¿½
-		//         bera kennsl ï¿½ strengi ï¿½ mï¿½linu.
-		public LexCase( String p, char t )
-		{
-			pat = Pattern.compile(p,Pattern.MULTILINE);
-			token = t;
-		}
-
-		// Notkun: boolean b = c.match(s,pos);
-		// Fyrir:  s er strengur og pos er staï¿½setning
-		//         innan s.
-		// Eftir:  b er satt ï¿½ï¿½aa staï¿½setningin pos vï¿½si
-		//         ï¿½ byrjun hlutstrengs sem er ï¿½ mï¿½linu
-		//         sem c skilgreinir.
-		public boolean match( String s, int pos )
-		{
-			Matcher m = pat.matcher(s).region(pos,s.length());
-			boolean res = m.lookingAt();
-			if( res ) end = m.end();
-			return res;
-		}
-
-		// Notkun: int i = c.end();
-		// Fyrir:  Bï¿½iï¿½ er aï¿½ kalla c.match(s,pos) og fï¿½
-		//         sanna niï¿½urstï¿½ï¿½u.
-		// Eftir:  i inniheldur staï¿½setningu innan s sem
-		//         vï¿½sar ï¿½ nï¿½sta staf ï¿½ eftir ï¿½eim streng
-		//         sem boriï¿½ var kennsl ï¿½ ï¿½ match kallinu.
-		public int end()
-		{
-			return end;
-		}
-	}
-
-	// Hlutur af tagi Lexer er lesgreinirinn ï¿½ ï¿½essum ï¿½ï¿½ï¿½anda.
-	// ï¿½etta er ï¿½kaflega frumstï¿½ï¿½ur lesgreinir sem getur
-	// lesgreint allt aï¿½ 100000 stafa inntaksskrï¿½r og notar
-	// frekar lï¿½lega aï¿½ferï¿½ til ï¿½ess.
-	static class Lexer
-	{
-		final LexCase[]
-			cases =
-				{ new LexCase("\\G\\(",'(')
-				, new LexCase("\\G\\)",')')
-				, new LexCase("\\G(\\s|(;.*$)|\\r|\\n)",'C')
-				, new LexCase("\\G\\d+(\\.(\\d)+([eE][+\\-]?\\d+)?)?",'L')
-				, new LexCase("\\G\\\"([^\\\\\"]|\\t|\\n|\\r|\\f)*\\\"",'L')
-				, new LexCase("\\G\\\'([^\\\\\']|\\t|\\n|\\r|\\f)\\\'",'L')
-				, new LexCase("\\G(\\p{Alpha}|[+\\-\\.*/<=>!\\?:$%_&~^0-9])+",'N')
-				, new LexCase(".",'?')
-				};
-		final String input;
-		int i;
-		char token;
-		String lexeme;
-		// Fastayrï¿½ing gagna:
-		//   input inniheldur forritstextann sem veriï¿½ er aï¿½ ï¿½ï¿½ï¿½a.
-		//   i er staï¿½setning nï¿½sta ï¿½lesna stafs ï¿½ forritstextanum.
-		//   token er stafur sem stendur fyrir nï¿½sta tï¿½k sem ekki
-		//   er bï¿½iï¿½ aï¿½ vinna ï¿½r.  ï¿½aï¿½ samsvarar stafarunu rï¿½tt fyrir
-		//   framan staï¿½setninguna i.  lexeme er strengur sem
-		//   inniheldur ï¿½ï¿½ stafi ï¿½r input sem samsvara token.
-		//   cases inniheldur skilgreiningar ï¿½ ï¿½eim mï¿½lum sem
-		//   lesgreinirinn gerir greinarmun ï¿½.  Hvert stak ï¿½
-		//   cases skilgreinir annars vegar eitthvert mï¿½l (mengi
-		//   strengja) sem boriï¿½ er kennsl ï¿½ og hins vegar staf
-		//   sem er samsvarandi tï¿½k.  Merking tï¿½kanna er:
-		//     '(':  Strengurinn "("
-		//     ')':  Strengurinn ")"
-		//     'C':  Strengur sem er athugasemd eï¿½a bilstafur,
-		//           sem skal ï¿½vï¿½ ekki skila ï¿½fram til ï¿½ï¿½ttarans
-		//     'L':  Strengur sem stendur fyrir lesfasta, ï¿½.e.
-		//           tï¿½lufasti, strengfasti, staffasti eï¿½a einn
-		//           af lesfï¿½stunum true, false eï¿½a null.
-		//     'N':  Strengur sem er lï¿½glegt breytunafn eï¿½a nafn
-		//           ï¿½ falli.
-		//     'I':  Lykilorï¿½iï¿½ if.
-		//     'D':  Lykilorï¿½iï¿½ define.
-		//     '$':  Skrï¿½rlok, ï¿½.e. endir inntaksins.
-		//   Athugiï¿½ aï¿½ nokkur breytunï¿½fn eru ï¿½ess eï¿½lis aï¿½ ï¿½egar
-		//   lesgreinirinn skilar tï¿½ki fyrir ï¿½au ï¿½ï¿½ ï¿½ hann aï¿½
-		//   segja aï¿½ ï¿½au sï¿½u lesfastar.  ï¿½etta eru breytunï¿½fnin
-		//   true, false og null.  Lesgreinirinn ï¿½arf ï¿½vï¿½ aï¿½
-		//   athuga hvort um ï¿½essi sï¿½rstï¿½ku breytunï¿½fn er aï¿½ rï¿½ï¿½a
-		//   eftir aï¿½ ï¿½ ljï¿½s hefur komiï¿½ aï¿½ lesgreindi strengurinn
-		//   er breytunafn.  Sama gildir um lykilorï¿½in if og define.
-
-		// Notkun: Lexer l = new Lexer(r);
-		// Fyrir:  r er Reader sem inniheldur allt aï¿½ 100000
-		//         stafi.
-		// Eftir:  l vï¿½sar ï¿½ nï¿½jan lesgreini sem lesgreinir
-		//         innihaldiï¿½ ï¿½ r.  Lesgreinirinn er ï¿½ upphafi
-		//         staï¿½settur ï¿½ fremsta lesi (lexeme) ï¿½ r.
-		public Lexer( Reader r ) throws IOException
-		{
-			StringBuffer b = new StringBuffer();
-			char[] buf = new char[100000];
-			for(;;)
-			{
-				int n = r.read(buf);
-				if( n == -1 ) break;
-				b.append(buf,0,n);
-			}
-			input = b.toString();
-			i = 0;
-			advance();
-		}
-
-		// Notkun: char c = l.getToken();
-		// Eftir:  c er tï¿½kiï¿½ (token) sem stendur fyrir
-		//         ï¿½aï¿½ mï¿½l sem nï¿½sta les ï¿½ l flokkast ï¿½.
-		char getToken()
-		{
-			return token;
-		}
-
-		// Notkun: String s = l.getLexeme();
-		// Eftir:  s er nï¿½sta les ï¿½ l.
-		String getLexeme()
-		{
-			return lexeme;
-		}
-
-		// Notkun: l.advance();
-		// Eftir:  l hefur fï¿½rst ï¿½fram ï¿½ nï¿½sta les ï¿½
-		//         inntakinu (sem ekki er athugasemd).
-		void advance()
-		{
-			for(;;)
-			{
-				if( i>=input.length() )
-				{
-					token = '$';
-					lexeme = "EOF";
-					return;
-				}
-				for( int k=0 ; k!=cases.length ; k++ )
-				{
-					Matcher m = cases[k].pat.matcher(input);
-					if( m.find(i) )
-					{
-						int j = m.end();
-						token = cases[k].token;
-						if( token=='C' )
-						{
-							i = j;
-							break;
-						}
-						lexeme = input.substring(i,j);
-						i = j;
-						if( token=='N' )
-						{
-							if( lexeme.equals("if") )
-								token = 'I';
-							else if( lexeme.equals("define") )
-								token = 'D';
-							else if( lexeme.equals("null") )
-								token = 'L';
-							else if( lexeme.equals("true") )
-								token = 'L';
-							else if( lexeme.equals("false") )
-								token = 'L';
-						}
-						return;
-					}
-				}
-			}
-		}
-
-		// Notkun: String n = Lexer.tokenName(c);
-		// Fyrir:  c er stafur sem er einn ï¿½eirra sem
-		//         lexgreinirinn getur skilaï¿½ sem tï¿½k.
-		// Eftir:  n er nafniï¿½ ï¿½ ï¿½essu tï¿½ki ï¿½ mannlega
-		//         lï¿½silegu sniï¿½i.
-		static String tokenName( char t )
-		{
-			switch( t )
-			{
-			case '(': return "(";
-			case ')': return ")";
-			case 'N': return "name";
-			case 'L': return "literal";
-			case 'D': return "define";
-			case 'I': return "if";
-			case '$': return "EOF";
-			}
-			return "?";
-		}
-
-		// Notkun: l.over(c);
-		// Fyrir:  c er stafur sem stendur fyrir mï¿½gulegt tï¿½k.
-		//         Nï¿½sta tï¿½k ï¿½ l er c.
-		// Eftir:  Bï¿½iï¿½ er aï¿½ fï¿½ra lesgreininn eitt skref ï¿½fram
-		//         eins og ï¿½ advance().
-		// Afbrigï¿½i:  Ef svo vill til aï¿½ nï¿½sta tï¿½k ï¿½ l er ekki
-		//            c ï¿½ï¿½ eru skrifuï¿½ villuboï¿½ og keyrslan stï¿½ï¿½vast.
-		String over( char tok )
-		{
-			if( token!=tok ) throw new Error("Expected "+tokenName(tok)+", found "+lexeme);
-			String res = lexeme;
-			advance();
-			return res;
-		}
-	}
-
-	// lex er lesgreinirinn.
-	Lexer lex;
-	// Inni ï¿½ hverri fallsskilgreiningu inniheldur vars nï¿½fnin
-	// ï¿½ viï¿½fï¿½ngunum ï¿½ falliï¿½ (ï¿½.e. leppunum eï¿½a breytunï¿½fnunum
-	// sem standa fyrir viï¿½fï¿½ngin), ï¿½ sï¿½tum 1 og aftar.  Sï¿½ti
-	// 0 inniheldur nafn fallsins sem veriï¿½ er aï¿½ skilgreina.
-	String[] vars;
-
-	// Notkun: NanoLisp n = new NanoLisp(l);
-	// Fyrir:  l er lesgreinir.
-	// Eftir:  n vï¿½sar ï¿½ nï¿½jan NanoLisp ï¿½ï¿½ï¿½anda sem ï¿½ï¿½ï¿½ir inntakiï¿½
-	//         sem l hefur.
-	public NanoLisp( Lexer lexer )
-	{
-		lex = lexer;
-	}
-
-	// Notkun: int i = n.varPos(name);
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi og er aï¿½ ï¿½ï¿½ï¿½a stofn einhvers
-	//         falls.  name er nafniï¿½ ï¿½ einhverju viï¿½fangi ï¿½ falliï¿½.
-	// Eftir:  i er staï¿½setning viï¿½fangsins ï¿½ viï¿½fangarunu fallsins
-	//         ï¿½ar sem fyrsta viï¿½fang er taliï¿½ vera ï¿½ sï¿½ti 0.
-	int varPos( String name )
-	{
-		for( int i=1 ; i!=vars.length ; i++ )
-			if( vars[i].equals(name) ) return i-1;
-		throw new Error("Variable "+name+" is not defined");
-	}
-
-	// Notkun: Object[] code = n.program();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi og inntakiï¿½ er lï¿½glegt
-	//         NanoLisp forrit.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ ï¿½ï¿½ï¿½a forritiï¿½ og code vï¿½sar ï¿½ nï¿½tt
-	//         fylki sem inniheldur milliï¿½ulurnar fyrir ï¿½ll
-	//         fï¿½llin ï¿½ forritinu.
-	// Afbrigï¿½i: Ef forritiï¿½ er ekki lï¿½glegt ï¿½ï¿½ eru skrifuï¿½
-	//           villuboï¿½ og keyrslan stï¿½ï¿½vuï¿½.
-	Object[] program()
-	{
-		Vector<Object> res = new Vector<Object>();
-		while( lex.getToken() == '(' ) res.add(fundecl());
-		return res.toArray();
-	}
-
-	// Notkun: Object[] fun = n.fundecl();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi sem er staï¿½settur ï¿½
-	//         byrjun fallsskilgreiningar.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ lesa fallsskilgreininguna og fun vï¿½sar
-	//         ï¿½ nï¿½tt fylki sem er milliï¿½ulan fyrir falliï¿½.
-	//         ï¿½ï¿½ï¿½andinn er nï¿½ aï¿½ horfa ï¿½ nï¿½sta tï¿½kn ï¿½ inntakinu
-	//         fyrir aftan fallsskilgreininguna.
-	Object[] fundecl()
-	{
-		lex.over('(');
-		lex.over('D');
-		lex.over('(');
-		Vector<String> args = new Vector<String>();
-		args.add(lex.over('N'));
-		while( lex.getToken()!=')' ) args.add(lex.over('N'));
-		lex.over(')');
-		vars = new String[args.size()];
-		args.toArray(vars);
-		Object[] res = new Object[]{vars[0],vars.length-1,expr()};
-		vars = null;
-		lex.over(')');
-		return res;
-	}
-
-	// Notkun: Object[] e = n.expr();
-	// Fyrir:  n er NanoLisp ï¿½ï¿½ï¿½andi sem er staï¿½settur ï¿½
-	//         byrjun segï¿½ar innan fallsskilgreiningar.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ lesa segï¿½ina og ï¿½ï¿½ï¿½a hana.
-	//         e vï¿½sar ï¿½ milliï¿½uluna fyrir segï¿½ina.
-	//         ï¿½ï¿½ï¿½andinn er nï¿½ aï¿½ horfa ï¿½ nï¿½sta tï¿½kn ï¿½ inntakinu
-	//         fyrir aftan segï¿½ina.
-	Object[] expr()
-	{
-		Object[] res;
-		switch( lex.getToken() )
-		{
-		case 'L':
-			res = new Object[]{CodeType.LITERAL,lex.getLexeme()};
-			lex.advance();
-			return res;
-		case 'N':
-			res = new Object[]{CodeType.NAME,varPos(lex.getLexeme())};
-			lex.advance();
-			return res;
-		case '(':
-			lex.advance();
-			switch( lex.getToken() )
-			{
-			case 'N':
-				String name = lex.over('N');
-				Vector<Object> args = new Vector<Object>();
-				while( lex.getToken()!=')' ) args.add(expr());
-				lex.advance();
-				return new Object[]{CodeType.CALL,name,args.toArray()};
-			case 'I':
-				Object cond,thenexpr,elseexpr;
-				lex.advance();
-				cond = expr();
-				thenexpr = expr();
-				elseexpr = expr();
-				lex.over(')');
-				return new Object[]{CodeType.IF,cond,thenexpr,elseexpr};
-			}
-			throw new Error("Expected a name or the keyword 'if', found "+lex.getLexeme());
-		default:
-			throw new Error("Expected an expression, found "+lex.getLexeme());
-		}
-	}
-
-	// Notkun: emit(line);
-	// Fyrir:  line er lï¿½na ï¿½ lokaï¿½ulu.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lï¿½nuna ï¿½ aï¿½alï¿½ttak.
-	static void emit( String line )
-	{
-		System.out.println(line);
-	}
-
-	// Notkun: generateProgram(name,p);
-	// Fyrir:  name er strengur, p er fylki fallsskilgreininga,
-	//         ï¿½.e. fylki af milliï¿½ulum fyrir fï¿½ll.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir forrit sem
-	//         samanstendur af fï¿½llunum ï¿½.a. name er nafn
-	//         forritsins.
-	static void generateProgram( String name, Object[] p )
-	{
-		emit("\""+name+".mexe\" = main in");
-		emit("!{{");
-		for( int i=0 ; i!=p.length ; i++ ) generateFunction((Object[])p[i]);
-		emit("}}*BASIS;");
-	}
-
-	// Notkun: generateFunction(f);
-	// Fyrir:  f er milliï¿½ula fyrir fall.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir falliï¿½ ï¿½
-	//         aï¿½alï¿½ttak.
-	static void generateFunction( Object[] f )
-	{
-		// f = {fname,argcount,expr}
-		String fname = (String)f[0];
-		int count = (Integer)f[1];
-		emit("#\""+fname+"[f"+count+"]\" =");
-		emit("[");
-		generateExprR((Object[])f[2]);
-		emit("];");
-	}
-
-	static int nextLab = 1;
-
-	// Notkun: int i = newLab();
-	// Eftir:  i er jï¿½kvï¿½ï¿½ heiltala sem ekki hefur ï¿½ï¿½ur
-	//         veriï¿½ skilaï¿½ ï¿½r ï¿½essu falli.  Tilgangurinn
-	//         er aï¿½ bï¿½a til nï¿½tt merki (label), sem er
-	//         ekki ï¿½aï¿½ sama og neitt annaï¿½ merki.
-	static int newLab()
-	{
-		return nextLab++;
-	}
-
-	// Notkun: generateExpr(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir segï¿½ina
-	//         ï¿½ aï¿½alï¿½ttak.  Lokaï¿½ulan reiknar gildi
-	//         segï¿½arinnar og skilur gildiï¿½ eftir ï¿½
-	//         gildinu ac.
-	static void generateExpr( Object[] e )
-	{
-		switch( (CodeType)e[0] )
-		{
-		case NAME:
-			// e = {NAME,name}
-			emit("(Fetch "+e[1]+")");
-			return;
-		case LITERAL:
-			// e = {LITERAL,literal}
-			emit("(MakeVal "+(String)e[1]+")");
-			return;
-		case IF:
-			// e = {IF,cond,then,else}
-			int labElse = newLab();
-			int labEnd = newLab();
-			generateJump((Object[])e[1],0,labElse);
-			generateExpr((Object[])e[2]);
-			emit("(Go _"+labEnd+")");
-			emit("_"+labElse+":");
-			generateExpr((Object[])e[3]);
-			emit("_"+labEnd+":");
-			return;
-		case CALL:
-			// e = {CALL,name,args}
-			Object[] args = (Object[])e[2];
-			int i;
-			for( i=0 ; i!=args.length ; i++ )
-				if( i==0 )
-					generateExpr((Object[])args[i]);
-				else
-					generateExprP((Object[])args[i]);
-			emit("(Call #\""+e[1]+"[f"+i+"]\" "+i+")");
-			return;
-		}
-	}
-
-	// Notkun: generateJump(e,labTrue,labTrue);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½, labTrue og
-	//         labFalse eru heiltï¿½lur sem standa fyrir
-	//         merki eï¿½a eru nï¿½ll.
-	// Eftir:  Bï¿½iï¿½ er aï¿½ skrifa lokaï¿½ulu fyrir segï¿½ina
-	//         ï¿½ aï¿½alï¿½ttak.  Lokaï¿½ulan veldur stï¿½kki til
-	//         merkisins labTrue ef segï¿½ina skilar sï¿½nnu,
-	//         annars stï¿½kki til labFalse.  Ef annaï¿½ merkiï¿½
-	//         er nï¿½ll ï¿½ï¿½ er ï¿½aï¿½ jafngilt merki sem er rï¿½tt
-	//         fyrir aftan ï¿½ulu segï¿½arinnar.
-	static void generateJump( Object[] e, int labTrue, int labFalse )
-	{
-		switch( (CodeType)e[0] )
-		{
-		case LITERAL:
-			String literal = (String)e[1];
-			if( literal.equals("false") || literal.equals("null") )
-			{
-				if( labFalse!=0 ) emit("(Go _"+labFalse+")");
-				return;
-			}
-			if( labTrue!=0 ) emit("(Go _"+labTrue+")");
-			return;
-		default:
-			generateExpr(e);
-			if( labTrue!=0 ) emit("(GoTrue _"+labTrue+")");
-			if( labFalse!=0 ) emit("(GoFalse _"+labFalse+")");
-		}
-	}
-
-	// Notkun: generateJumpP(e,labTrue,labFalse);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½, labTrue og
-	//         labFalse eru heiltï¿½lur sem standa fyrir
-	//         merki eï¿½a eru nï¿½ll.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
-	//            emit("(Push)");
-	//            generateJump(e,labTrue,labFalse);
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
-	static void generateJumpP( Object[] e, int labTrue, int labFalse )
-	{
-		switch( (CodeType)e[0] )
-		{
-		case LITERAL:
-			String literal = (String)e[1];
-			emit("(Push)");
-			if( literal.equals("false") || literal.equals("null") )
-			{
-				if( labFalse!=0 ) emit("(Go _"+labFalse+")");
-				return;
-			}
-			if( labTrue!=0 ) emit("(Go _"+labTrue+")");
-			return;
-		default:
-			generateExprP(e);
-			if( labTrue!=0 ) emit("(GoTrue _"+labTrue+")");
-			if( labFalse!=0 ) emit("(GoFalse _"+labFalse+")");
-		}
-	}
-
-	// Notkun: generateExpr(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
-	//            generateExpr(e);
-	//            emit("(Return)");
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
-	static void generateExprR( Object[] e )
-	{
-		switch( (CodeType)e[0] )
-		{
-		case NAME:
-			// e = {NAME,name}
-			emit("(FetchR "+e[1]+")");
-			return;
-		case LITERAL:
-			// e = {LITERAL,literal}
-			emit("(MakeValR "+(String)e[1]+")");
-			return;
-		case IF:
-			// e = {IF,cond,then,else}
-			int labElse = newLab();
-			generateJump((Object[])e[1],0,labElse);
-			generateExprR((Object[])e[2]);
-			emit("_"+labElse+":");
-			generateExprR((Object[])e[3]);
-			return;
-		case CALL:
-			// e = {CALL,name,args}
-			Object[] args = (Object[])e[2];
-			int i;
-			for( i=0 ; i!=args.length ; i++ )
-				if( i==0 )
-					generateExpr((Object[])args[i]);
-				else
-					generateExprP((Object[])args[i]);
-			emit("(CallR #\""+e[1]+"[f"+i+"]\" "+i+")");
-			return;
-		}
-	}
-
-	// Notkun: generateExprP(e);
-	// Fyrir:  e er milliï¿½ula fyrir segï¿½.
-	// Eftir:  ï¿½etta kall bï¿½r til lokaï¿½ulu sem er jafngild
-	//         ï¿½ulunni sem kï¿½llin
-	//            emit("(Push)");
-	//            generateExpr(e);
-	//         framleiï¿½a.  ï¿½ulan er samt ekki endilega sï¿½
-	//         sama og ï¿½essi kï¿½ll framleiï¿½a ï¿½vï¿½ tilgangurinn
-	//         er aï¿½ geta framleitt betri ï¿½ulu.
-	static void generateExprP( Object[] e )
-	{
-		switch( (CodeType)e[0] )
-		{
-		case NAME:
-			// e = {NAME,name}
-			emit("(FetchP "+e[1]+")");
-			return;
-		case LITERAL:
-			// e = {LITERAL,literal}
-			emit("(MakeValP "+(String)e[1]+")");
-			return;
-		case IF:
-			// e = {IF,cond,then,else}
-			int labElse = newLab();
-			int labEnd = newLab();
-			generateJumpP((Object[])e[1],0,labElse);
-			generateExpr((Object[])e[2]);
-			emit("(Go _"+labEnd+")");
-			emit("_"+labElse+":");
-			generateExpr((Object[])e[3]);
-			emit("_"+labEnd+":");
-			return;
-		case CALL:
-			// e = {CALL,name,args}
-			Object[] args = (Object[])e[2];
-			int i;
-			for( i=0 ; i!=args.length ; i++ ) generateExprP((Object[])args[i]);
-			if( i==0 ) emit("(Push)");
-			emit("(Call #\""+e[1]+"[f"+i+"]\" "+i+")");
-			return;
-		}
-	}
-
-	// Notkun (af skipanalï¿½nu):
-	//        java NanoLisp forrit.s > forrit.masm
-	// Fyrir: Skrï¿½in forrit.s inniheldur lï¿½glegt NanoLisp
-	//        forit.
-	// Eftir: Bï¿½iï¿½ er aï¿½ ï¿½ï¿½ï¿½a forritiï¿½ og skrifa lokaï¿½uluna
-	//        ï¿½ skrï¿½na forrit.masm.  Sï¿½ sï¿½ lokaï¿½ula ï¿½ï¿½dd meï¿½
-	//        skipuninni
-	//           morpho -c forrit.masm
-	//        ï¿½ï¿½ verï¿½ur til keyrsluhï¿½fa Morpho skrï¿½in forrit.mexe.
+	//        þá verður til keyrsluhæfa Morpho skráin forrit.mexe.
 	public static void main( String[] args )
 		throws IOException
 	{

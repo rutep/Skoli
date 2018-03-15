@@ -1,0 +1,93 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{mathtools}
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color
+	basicstyle=\footnotesize,        % size of fonts used for the code
+	breaklines=true,                 % automatic line breaking only at whitespace
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},       % keyword style
+	stringstyle=\color{mymauve},     % string literal style
+}
+\begin{document}
+	\title{Stærfræði og reiknifræði\\
+		Verkefni 5\\
+		Pétur Daníel Ámundason\\
+	}
+	\maketitle
+	
+	\section*{1.}
+	
+	\subsection*{a)}
+	Svar: Útkoman er skilgreind $ A^{T}A + C = 10 * 10$
+	
+	\subsection*{b)}
+	
+	Svar: Útkoman er skilgreind $B*C^{3} = 20 * 10$
+	
+	\subsection*{c)}
+	
+	Svar: Útkoman er skilgreind aðeins ef I = $ B^{T}B $ þá er lausninn $I + BC^{T} = 20*10$
+	
+	\subsection*{d)}
+	
+	Svar: Útkoman er ekki skilgreind
+	
+	\subsection*{e)}
+	
+	Svar: Útkoman er ekki skilgreind
+	
+	\section*{2.}
+	
+	\subsection*{10.17}
+	
+	\subsection*{a)}
+	
+	Svar: Allir sjúklingar N eru sýktir með öllum sjúkdómum n, N*n.
+	% N sjúklingar geta haft n sjúkdóma. N*n fylki S
+	% Sij: ef 1 {Sjúklingur i er sýktur af sjúkdómi j}
+	% Sij: ef 0 {i er ekki sýktur}
+	
+	\subsection*{b)}
+	
+	Svar: i eru orðinn sjúkdómar og j sjúklingar þannig að núna gildir.\\
+	
+	\[ S_{ij} =
+	\begin{cases}
+	1       & \quad \text{Sjúkdómur i hefur sýkt sjúkling j}\\
+	0	    & \quad \text{Sjúkdómur i hefur ekki sýkt sjúkling j}
+	\end{cases}
+	\]
+	\\
+	
+	Þannig að S$ ^{T} * 1 $ er þá $ n * N $ fylki og eftir bylltingu þá eru allir sjúdómar búnir að sýkja alla sjúklinga. 
+	
+	\subsection*{10.31}
+	
+	\subsection*{a)}
+	
+	
+	
+\end{document}
