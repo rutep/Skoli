@@ -1,4 +1,5 @@
 /*
+* til þess að keyra byacc þá >$ byacc -v tests.y 
  * Byacc/J þáttari fyrir NanoLisp.
  * Höfundur: Snorri Agnarsson, 2014-2016.
  *
