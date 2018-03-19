@@ -1,0 +1,141 @@
+   0  $accept : start $end
+
+   1  start : program
+
+   2  program : program fundecl
+   3          | fundecl
+
+   4  $$1 :
+
+   5  fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' '}'
+
+   6  ids :
+   7      | ids NAME
+
+state 0
+	$accept : . start $end  (0)
+	$$1 : .  (4)
+
+	.  reduce 4
+
+	start  goto 1
+	program  goto 2
+	fundecl  goto 3
+	$$1  goto 4
+
+
+state 1
+	$accept : start . $end  (0)
+
+	$end  accept
+
+
+state 2
+	start : program .  (1)
+	program : program . fundecl  (2)
+	$$1 : .  (4)
+
+	$end  reduce 1
+	NAME  reduce 4
+
+	fundecl  goto 5
+	$$1  goto 4
+
+
+state 3
+	program : fundecl .  (3)
+
+	.  reduce 3
+
+
+state 4
+	fundecl : $$1 . NAME '(' ids ')' '{' VAR ids ';' '}'  (5)
+
+	NAME  shift 6
+	.  error
+
+
+state 5
+	program : program fundecl .  (2)
+
+	.  reduce 2
+
+
+state 6
+	fundecl : $$1 NAME . '(' ids ')' '{' VAR ids ';' '}'  (5)
+
+	'('  shift 7
+	.  error
+
+
+state 7
+	fundecl : $$1 NAME '(' . ids ')' '{' VAR ids ';' '}'  (5)
+	ids : .  (6)
+
+	.  reduce 6
+
+	ids  goto 8
+
+
+state 8
+	fundecl : $$1 NAME '(' ids . ')' '{' VAR ids ';' '}'  (5)
+	ids : ids . NAME  (7)
+
+	NAME  shift 9
+	')'  shift 10
+	.  error
+
+
+state 9
+	ids : ids NAME .  (7)
+
+	.  reduce 7
+
+
+state 10
+	fundecl : $$1 NAME '(' ids ')' . '{' VAR ids ';' '}'  (5)
+
+	'{'  shift 11
+	.  error
+
+
+state 11
+	fundecl : $$1 NAME '(' ids ')' '{' . VAR ids ';' '}'  (5)
+
+	VAR  shift 12
+	.  error
+
+
+state 12
+	fundecl : $$1 NAME '(' ids ')' '{' VAR . ids ';' '}'  (5)
+	ids : .  (6)
+
+	.  reduce 6
+
+	ids  goto 13
+
+
+state 13
+	fundecl : $$1 NAME '(' ids ')' '{' VAR ids . ';' '}'  (5)
+	ids : ids . NAME  (7)
+
+	NAME  shift 9
+	';'  shift 14
+	.  error
+
+
+state 14
+	fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' . '}'  (5)
+
+	'}'  shift 15
+	.  error
+
+
+state 15
+	fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' '}' .  (5)
+
+	.  reduce 5
+
+
+21 terminals, 6 nonterminals
+8 grammar rules, 16 states

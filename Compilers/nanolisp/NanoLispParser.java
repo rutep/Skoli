@@ -16,15 +16,15 @@
 
 
 
-//#line 2 "NanoMorpho.byaccj"
+//#line 12 "nanolisp.byaccj"
 	import java.io.*;
 	import java.util.*;
-//#line 20 "NanoMorphoParser.java"
+//#line 20 "NanoLispParser.java"
 
 
 
 
-public class NanoMorphoParser
+public class NanoLispParser
 {
 
 boolean yydebug;        //do I want debug output?
@@ -101,34 +101,34 @@ int i;
 
 
 //########## SEMANTIC VALUES ##########
-//public class NanoMorphoParserVal is defined in NanoMorphoParserVal.java
+//public class NanoLispParserVal is defined in NanoLispParserVal.java
 
 
 String   yytext;//user variable to return contextual strings
-NanoMorphoParserVal yyval; //used to return semantic vals from action routines
-NanoMorphoParserVal yylval;//the 'lval' (result) I got from yylex()
-NanoMorphoParserVal valstk[];
+NanoLispParserVal yyval; //used to return semantic vals from action routines
+NanoLispParserVal yylval;//the 'lval' (result) I got from yylex()
+NanoLispParserVal valstk[];
 int valptr;
 //###############################################################
 // methods: value stack push,pop,drop,peek.
 //###############################################################
 void val_init()
 {
-  valstk=new NanoMorphoParserVal[YYSTACKSIZE];
-  yyval=new NanoMorphoParserVal();
-  yylval=new NanoMorphoParserVal();
+  valstk=new NanoLispParserVal[YYSTACKSIZE];
+  yyval=new NanoLispParserVal();
+  yylval=new NanoLispParserVal();
   valptr=-1;
 }
-void val_push(NanoMorphoParserVal val)
+void val_push(NanoLispParserVal val)
 {
   if (valptr>=YYSTACKSIZE)
     return;
   valstk[++valptr]=val;
 }
-NanoMorphoParserVal val_pop()
+NanoLispParserVal val_pop()
 {
   if (valptr<0)
-    return new NanoMorphoParserVal();
+    return new NanoLispParserVal();
   return valstk[valptr--];
 }
 void val_drop(int cnt)
@@ -139,17 +139,17 @@ int ptr;
     return;
   valptr = ptr;
 }
-NanoMorphoParserVal val_peek(int relative)
+NanoLispParserVal val_peek(int relative)
 {
 int ptr;
   ptr=valptr-relative;
   if (ptr<0)
-    return new NanoMorphoParserVal();
+    return new NanoLispParserVal();
   return valstk[ptr];
 }
-final NanoMorphoParserVal dup_yyval(NanoMorphoParserVal val)
+final NanoLispParserVal dup_yyval(NanoLispParserVal val)
 {
-  NanoMorphoParserVal dup = new NanoMorphoParserVal();
+  NanoLispParserVal dup = new NanoLispParserVal();
   dup.ival = val.ival;
   dup.dval = val.dval;
   dup.sval = val.sval;
@@ -159,52 +159,48 @@ final NanoMorphoParserVal dup_yyval(NanoMorphoParserVal val)
 //#### end semantic value section ####
 public final static short LITERAL=257;
 public final static short NAME=258;
-public final static short OPNAME=259;
-public final static short ERROR=260;
-public final static short DEFINE=261;
-public final static short OP1=262;
-public final static short OP2=263;
-public final static short OP3=264;
-public final static short OP4=265;
-public final static short OP5=266;
-public final static short IF=267;
-public final static short ELSE=268;
-public final static short ELSIF=269;
-public final static short WHILE=270;
-public final static short VAR=271;
-public final static short RETURN=272;
+public final static short IF=259;
+public final static short DEFINE=260;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
-    0,    1,    1,    5,    2,    3,    3,    3,    4,    4,
+    0,    1,    1,    6,    2,    5,    5,    3,    3,    3,
+    3,    4,    4,
 };
 final static short yylen[] = {                            2,
-    1,    2,    1,    0,   10,    0,    3,    1,    3,    1,
+    1,    2,    1,    0,    9,    0,    2,    1,    1,    6,
+    4,    0,    2,
 };
 final static short yydefred[] = {                         4,
-    0,    0,    3,    0,    2,    0,    0,    8,    0,    0,
-    0,    0,    7,    0,   10,    0,    0,    0,    5,    9,
+    0,    0,    3,    0,    2,    0,    0,    0,    6,    0,
+    7,    0,    9,    8,    0,    0,   12,    0,    5,    0,
+    0,   11,   13,    0,    0,   10,
 };
 final static short yydgoto[] = {                          1,
-    2,    3,    9,   16,    4,
+    2,    3,   16,   20,   10,    4,
 };
 final static short yysindex[] = {                         0,
-    0,    0,    0, -254,    0,  -33, -250,    0,  -39, -114,
- -248, -260,    0, -246,    0,  -44, -112, -244,    0,    0,
+    0,    0,    0,  -34,    0, -248,  -27, -244,    0,  -37,
+    0,  -38,    0,    0, -249,  -26,    0,  -38,    0,  -40,
+  -38,    0,    0,  -38,  -25,    0,
 };
 final static short yyrindex[] = {                         0,
-    0,    1,    0,    0,    0,    0,  -38,    0,    0,    0,
+    0,    3,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,
 };
 final static short yygindex[] = {                         0,
-    0,   14,    0,    0,    0,
+    0,   15,  -13,    0,    0,    0,
 };
-final static int YYTABLESIZE=259;
+final static int YYTABLESIZE=221;
 static short yytable[];
 static { yytable();}
 static void yytable(){
-yytable = new short[]{                         18,
-    1,   10,    6,    6,   11,    6,    7,    8,   12,   13,
-   14,   15,   19,   20,   17,    5,    0,    0,    0,    0,
+yytable = new short[]{                         15,
+   22,   15,    1,   12,   21,    6,   23,   24,   17,   18,
+   25,    7,    8,    9,   19,   26,    5,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    4,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -221,22 +217,19 @@ yytable = new short[]{                         18,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    4,
+    0,    0,    0,    0,    0,    0,   13,   14,   13,   14,
+   11,
 };
 }
 static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
-yycheck = new short[] {                         44,
-    0,   41,   41,  258,   44,   44,   40,  258,  123,  258,
-  271,  258,  125,  258,   59,    2,   -1,   -1,   -1,   -1,
+yycheck = new short[] {                         40,
+   41,   40,    0,   41,   18,   40,   20,   21,  258,  259,
+   24,  260,   40,  258,   41,   41,    2,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   40,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -253,28 +246,16 @@ yycheck = new short[] {                         44,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  258,
+   -1,   -1,   -1,   -1,   -1,   -1,  257,  258,  257,  258,
+  258,
 };
 }
 final static short YYFINAL=1;
-final static short YYMAXTOKEN=272;
+final static short YYMAXTOKEN=260;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,"'('","')'",null,null,"','",
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,"';'",
-null,"'='",null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-"'{'",null,"'}'",null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,"'('","')'",null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -282,8 +263,13 @@ null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,"LITERAL","NAME","OPNAME","ERROR","DEFINE",
-"OP1","OP2","OP3","OP4","OP5","IF","ELSE","ELSIF","WHILE","VAR","RETURN",
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,"LITERAL","NAME","IF","DEFINE",
 };
 final static String yyrule[] = {
 "$accept : start",
@@ -291,28 +277,37 @@ final static String yyrule[] = {
 "program : program fundecl",
 "program : fundecl",
 "$$1 :",
-"fundecl : $$1 NAME '(' ids ')' '{' VAR idlist ';' '}'",
+"fundecl : $$1 '(' DEFINE '(' NAME ids ')' expr ')'",
 "ids :",
-"ids : ids ',' NAME",
-"ids : NAME",
-"idlist : idlist ',' NAME",
-"idlist : NAME",
+"ids : ids NAME",
+"expr : NAME",
+"expr : LITERAL",
+"expr : '(' IF expr expr expr ')'",
+"expr : '(' NAME args ')'",
+"args :",
+"args : args expr",
 };
 
-//#line 55 "NanoMorpho.byaccj"
+//#line 61 "nanolisp.byaccj"
 
-static private String name;
-private NanoMorphoLexer lexer;
-private int varCount;
-private HashMap<String,Integer> varTable;
+	enum Code
+	{
+		IF, LITERAL, NAME, CALL
+	};
 
-private void addVar( String name )
-{
-  if( varTable.get(name) != null )
-  yyerror("Variable "+name+" already exists");
-  varTable.put(name,varCount++);
-}
-private int findVar( String name )
+	static private String name;
+	private NanoLispLexer lexer;
+	private int varCount;
+	private HashMap<String,Integer> varTable;
+
+	private void addVar( String name )
+	{
+		if( varTable.get(name) != null )
+			yyerror("Variable "+name+" already exists");
+		varTable.put(name,varCount++);
+	}
+
+	private int findVar( String name )
 	{
 		Integer res = varTable.get(name);
 		if( res == null )
@@ -330,7 +325,7 @@ private int findVar( String name )
 			yylval = null;
 			last_token_read = yyl_return = lexer.yylex();
 			if( yylval==null )
-				yylval = new NanoMorphoParserVal(NanoMorphoParser.yyname[yyl_return]);
+				yylval = new NanoLispParserVal(NanoLispParser.yyname[yyl_return]);
 		}
 		catch (IOException e)
 		{
@@ -342,48 +337,161 @@ private int findVar( String name )
 	public void yyerror( String error )
 	{
 		System.out.println("Error:  "+error);
-		System.out.println("Token:  "+NanoMorphoParser.yyname[last_token_read]);
+		System.out.println("Token:  "+NanoLispParser.yyname[last_token_read]);
 		System.exit(1);
 	}
-  
-  public NanoMorphoParser( Reader r )
+
+	public NanoLispParser( Reader r )
 	{
-		lexer = new NanoMorphoLexer(r,this);
+		lexer = new NanoLispLexer(r,this);
 	}
 
-public static void main( String args[] )
-throws IOException
-{
-  NanoMorphoParser yyparser = new NanoMorphoParser(new FileReader(args[0]));
-  name = args[0].substring(0,args[0].lastIndexOf('.'));
-  yyparser.yyparse();
-}
+	public static void main( String args[] )
+	  	throws IOException
+	{
+		NanoLispParser yyparser = new NanoLispParser(new FileReader(args[0]));
+		name = args[0].substring(0,args[0].lastIndexOf('.'));
+		yyparser.yyparse();
+	}
 
-public static void emit( String s )		/*@ \label{byaccgeneratorstart} @*/
-{
-  System.out.println(s);
-}
+	public static void emit( String s )		/*@ \label{byaccgeneratorstart} @*/
+	{
+		System.out.println(s);
+	}
 
-static void generateProgram( String name, Object[] p )
-{
-  emit("\""+name+".mexe\" = main in");
-  emit("!{{");
-  for( int i=0 ; i!=p.length ; i++ ) generateFunction((Object[])p[i]);
-  emit("}}*BASIS;");
-}
+	static void generateProgram( String name, Object[] p )
+	{
+		emit("\""+name+".mexe\" = main in");
+		emit("!{{");
+		for( int i=0 ; i!=p.length ; i++ ) generateFunction((Object[])p[i]);
+		emit("}}*BASIS;");
+	}
 
-static void generateFunction( Object[] f )
+	static void generateFunction( Object[] f )
 	{
 		String fname = (String)f[0];
 		int count = (Integer)f[1];
-    int test = (Integer)f[2];
-    emit(test+"");
 		emit("#\""+fname+"[f"+count+"]\" =");
 		emit("[");
-	  // generateExprR((Object[])f[2]);
+		generateExprR((Object[])f[2]);
 		emit("];");
 	}
-//#line 315 "NanoMorphoParser.java"
+
+	static int nextLab = 0;
+
+	static int newLab()
+	{
+		return nextLab++;
+	}
+
+	static void generateExpr( Object[] e )
+	{
+		switch( (Code)e[0] )
+		{
+		case NAME:
+			// e = {NAME,name}
+			emit("(Fetch "+e[1]+")");
+			return;
+		case LITERAL:
+			// e = {LITERAL,literal}
+			emit("(MakeVal "+(String)e[1]+")");
+			return;
+		case IF:
+			// e = {IF,cond,then,else}
+			generateExpr((Object[])e[1]);
+			int labElse = newLab();
+			int labEnd = newLab();
+			emit("(GoFalse _"+labElse+")");
+			generateExpr((Object[])e[2]);
+			emit("(Go _"+labEnd+")");
+			emit("_"+labElse+":");
+			generateExpr((Object[])e[3]);
+			emit("_"+labEnd+":");
+			return;
+		case CALL:
+			// e = {CALL,name,args}
+			Object[] args = (Object[])e[2];
+			int i;
+			for( i=0 ; i!=args.length ; i++ )
+				if( i==0 )
+					generateExpr((Object[])args[i]);
+				else
+					generateExprP((Object[])args[i]);
+			emit("(Call #\""+e[1]+"[f"+i+"]\" "+i+")");
+			return;
+		}
+	}
+
+	static void generateExprR( Object[] e )
+	{
+		switch( (Code)e[0] )
+		{
+		case NAME:
+			// e = {NAME,name}
+			emit("(FetchR "+e[1]+")");
+			return;
+		case LITERAL:
+			// e = {LITERAL,literal}
+			emit("(MakeValR "+(String)e[1]+")");
+			return;
+		case IF:
+			// e = {IF,cond,then,else}
+			generateExpr((Object[])e[1]);
+			int labElse = newLab();
+			emit("(GoFalse _"+labElse+")");
+			generateExprR((Object[])e[2]);
+			emit("_"+labElse+":");
+			generateExprR((Object[])e[3]);
+			return;
+		case CALL:
+			// e = {CALL,name,args}
+			Object[] args = (Object[])e[2];
+			int i;
+			for( i=0 ; i!=args.length ; i++ )
+				if( i==0 )
+					generateExpr((Object[])args[i]);
+				else
+					generateExprP((Object[])args[i]);
+			emit("(CallR #\""+e[1]+"[f"+i+"]\" "+i+")");
+			return;
+		}
+	}
+
+	static void generateExprP( Object[] e )
+	{
+		switch( (Code)e[0] )
+		{
+		case NAME:
+			// e = {NAME,name}
+			emit("(FetchP "+e[1]+")");
+			return;
+		case LITERAL:
+			// e = {LITERAL,literal}
+			emit("(MakeValP "+(String)e[1]+")");
+			return;
+		case IF:
+			// e = {IF,cond,then,else}
+			generateExprP((Object[])e[1]);
+			int labElse = newLab();
+			int labEnd = newLab();
+			emit("(GoFalse _"+labElse+")");
+			generateExpr((Object[])e[2]);
+			emit("(Go _"+labEnd+")");
+			emit("_"+labElse+":");
+			generateExpr((Object[])e[3]);
+			emit("_"+labEnd+":");
+			return;
+		case CALL:
+			// e = {CALL,name,args}
+			Object[] args = (Object[])e[2];
+			int i;
+			for( i=0 ; i!=args.length ; i++ ) generateExprP((Object[])args[i]);
+			if( i==0 ) emit("(Push)");
+			emit("(Call #\""+e[1]+"[f"+i+"]\" "+i+")");
+			return;
+		}
+	}			/*@ \label{byaccgeneratorend} @*/
+//#line 423 "NanoLispParser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -538,51 +646,63 @@ boolean doaction;
       {
 //########## USER-SUPPLIED ACTIONS ##########
 case 1:
-//#line 24 "NanoMorpho.byaccj"
+//#line 24 "nanolisp.byaccj"
 { generateProgram(name,((Vector<Object>)(val_peek(0).obj)).toArray()); }
 break;
 case 2:
-//#line 28 "NanoMorpho.byaccj"
+//#line 28 "nanolisp.byaccj"
 { ((Vector<Object>)(val_peek(1).obj)).add(val_peek(0).obj); yyval.obj=val_peek(1).obj; }
 break;
 case 3:
-//#line 29 "NanoMorpho.byaccj"
+//#line 29 "nanolisp.byaccj"
 { yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(val_peek(0).obj); }
 break;
 case 4:
-//#line 33 "NanoMorpho.byaccj"
+//#line 33 "nanolisp.byaccj"
 {
-      varCount = 0;
-      varTable = new HashMap<String,Integer>();
-    }
+				varCount = 0;
+				varTable = new HashMap<String,Integer>();
+			}
 break;
 case 5:
-//#line 40 "NanoMorpho.byaccj"
+//#line 38 "nanolisp.byaccj"
 {
-      yyval.obj = new Object[]{val_peek(8).sval,val_peek(6).ival,val_peek(2).ival};
-    }
+				yyval.obj=new Object[]{val_peek(4).sval,val_peek(3).ival,val_peek(1).obj};
+			}
 break;
 case 6:
-//#line 46 "NanoMorpho.byaccj"
+//#line 44 "nanolisp.byaccj"
 { yyval.ival=0; }
 break;
 case 7:
-//#line 47 "NanoMorpho.byaccj"
-{ addVar(val_peek(0).sval); yyval.ival=val_peek(2).ival+1; }
+//#line 45 "nanolisp.byaccj"
+{ addVar(val_peek(0).sval); yyval.ival=val_peek(1).ival+1; }
 break;
 case 8:
-//#line 48 "NanoMorpho.byaccj"
-{ addVar(val_peek(0).sval); yyval.ival+=1; }
+//#line 49 "nanolisp.byaccj"
+{ yyval.obj=new Object[]{Code.NAME,findVar(val_peek(0).sval)}; }
 break;
 case 9:
-//#line 52 "NanoMorpho.byaccj"
-{ addVar(val_peek(0).sval); yyval.ival=val_peek(2).ival+1; }
+//#line 50 "nanolisp.byaccj"
+{ yyval.obj=new Object[]{Code.LITERAL,val_peek(0).sval}; }
 break;
 case 10:
-//#line 53 "NanoMorpho.byaccj"
-{ addVar(val_peek(0).sval); yyval.ival+=1; }
+//#line 51 "nanolisp.byaccj"
+{ yyval.obj=new Object[]{Code.IF,val_peek(3).obj,val_peek(2).obj,val_peek(1).obj}; }
 break;
-//#line 509 "NanoMorphoParser.java"
+case 11:
+//#line 52 "nanolisp.byaccj"
+{ yyval.obj=new Object[]{Code.CALL,val_peek(2).sval,((Vector<Object>)(val_peek(1).obj)).toArray()}; }
+break;
+case 12:
+//#line 56 "nanolisp.byaccj"
+{ yyval.obj=new Vector<Object>(); }
+break;
+case 13:
+//#line 57 "nanolisp.byaccj"
+{ ((Vector<Object>)(val_peek(1).obj)).add(val_peek(0).obj); yyval.obj=val_peek(1).obj; }
+break;
+//#line 629 "NanoLispParser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
@@ -645,7 +765,7 @@ public void run()
  * Default constructor.  Turn off with -Jnoconstruct .
 
  */
-public NanoMorphoParser()
+public NanoLispParser()
 {
   //nothing to do
 }
@@ -655,7 +775,7 @@ public NanoMorphoParser()
  * Create a parser, setting the debug to true or false.
  * @param debugMe true for debugging, false for no debug.
  */
-public NanoMorphoParser(boolean debugMe)
+public NanoLispParser(boolean debugMe)
 {
   yydebug=debugMe;
 }

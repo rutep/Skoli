@@ -1,6 +1,6 @@
 ; Notkun: (main)
 ; Fyrir:  Ekkert
-; Eftir:  Búið er að skrifa 100!
+; Eftir:  Bï¿½iï¿½ er aï¿½ skrifa 100!
 (define (main)
   (writeln (++ "100!=" (fact 100)))
 )
