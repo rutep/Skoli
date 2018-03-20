@@ -7,10 +7,14 @@
 
    4  $$1 :
 
-   5  fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' '}'
+   5  fundecl : $$1 NAME '(' ids ')' '{' VAR idlist ';' '}'
 
    6  ids :
-   7      | ids NAME
+   7      | ids ',' NAME
+   8      | NAME
+
+   9  idlist : idlist ',' NAME
+  10         | NAME
 
 state 0
 	$accept : . start $end  (0)
@@ -49,7 +53,7 @@ state 3
 
 
 state 4
-	fundecl : $$1 . NAME '(' ids ')' '{' VAR ids ';' '}'  (5)
+	fundecl : $$1 . NAME '(' ids ')' '{' VAR idlist ';' '}'  (5)
 
 	NAME  shift 6
 	.  error
@@ -62,80 +66,114 @@ state 5
 
 
 state 6
-	fundecl : $$1 NAME . '(' ids ')' '{' VAR ids ';' '}'  (5)
+	fundecl : $$1 NAME . '(' ids ')' '{' VAR idlist ';' '}'  (5)
 
 	'('  shift 7
 	.  error
 
 
 state 7
-	fundecl : $$1 NAME '(' . ids ')' '{' VAR ids ';' '}'  (5)
+	fundecl : $$1 NAME '(' . ids ')' '{' VAR idlist ';' '}'  (5)
 	ids : .  (6)
 
-	.  reduce 6
+	NAME  shift 8
+	')'  reduce 6
+	','  reduce 6
 
-	ids  goto 8
+	ids  goto 9
 
 
 state 8
-	fundecl : $$1 NAME '(' ids . ')' '{' VAR ids ';' '}'  (5)
-	ids : ids . NAME  (7)
+	ids : NAME .  (8)
 
-	NAME  shift 9
-	')'  shift 10
-	.  error
+	.  reduce 8
 
 
 state 9
-	ids : ids NAME .  (7)
+	fundecl : $$1 NAME '(' ids . ')' '{' VAR idlist ';' '}'  (5)
+	ids : ids . ',' NAME  (7)
 
-	.  reduce 7
+	')'  shift 10
+	','  shift 11
+	.  error
 
 
 state 10
-	fundecl : $$1 NAME '(' ids ')' . '{' VAR ids ';' '}'  (5)
+	fundecl : $$1 NAME '(' ids ')' . '{' VAR idlist ';' '}'  (5)
 
-	'{'  shift 11
+	'{'  shift 12
 	.  error
 
 
 state 11
-	fundecl : $$1 NAME '(' ids ')' '{' . VAR ids ';' '}'  (5)
+	ids : ids ',' . NAME  (7)
 
-	VAR  shift 12
+	NAME  shift 13
 	.  error
 
 
 state 12
-	fundecl : $$1 NAME '(' ids ')' '{' VAR . ids ';' '}'  (5)
-	ids : .  (6)
+	fundecl : $$1 NAME '(' ids ')' '{' . VAR idlist ';' '}'  (5)
 
-	.  reduce 6
-
-	ids  goto 13
+	VAR  shift 14
+	.  error
 
 
 state 13
-	fundecl : $$1 NAME '(' ids ')' '{' VAR ids . ';' '}'  (5)
-	ids : ids . NAME  (7)
+	ids : ids ',' NAME .  (7)
 
-	NAME  shift 9
-	';'  shift 14
-	.  error
+	.  reduce 7
 
 
 state 14
-	fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' . '}'  (5)
+	fundecl : $$1 NAME '(' ids ')' '{' VAR . idlist ';' '}'  (5)
 
-	'}'  shift 15
+	NAME  shift 15
 	.  error
+
+	idlist  goto 16
 
 
 state 15
-	fundecl : $$1 NAME '(' ids ')' '{' VAR ids ';' '}' .  (5)
+	idlist : NAME .  (10)
+
+	.  reduce 10
+
+
+state 16
+	fundecl : $$1 NAME '(' ids ')' '{' VAR idlist . ';' '}'  (5)
+	idlist : idlist . ',' NAME  (9)
+
+	';'  shift 17
+	','  shift 18
+	.  error
+
+
+state 17
+	fundecl : $$1 NAME '(' ids ')' '{' VAR idlist ';' . '}'  (5)
+
+	'}'  shift 19
+	.  error
+
+
+state 18
+	idlist : idlist ',' . NAME  (9)
+
+	NAME  shift 20
+	.  error
+
+
+state 19
+	fundecl : $$1 NAME '(' ids ')' '{' VAR idlist ';' '}' .  (5)
 
 	.  reduce 5
 
 
-21 terminals, 6 nonterminals
-8 grammar rules, 16 states
+state 20
+	idlist : idlist ',' NAME .  (9)
+
+	.  reduce 9
+
+
+25 terminals, 7 nonterminals
+11 grammar rules, 21 states

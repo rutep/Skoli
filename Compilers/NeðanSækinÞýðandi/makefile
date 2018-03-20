@@ -1,35 +1,21 @@
-nanolisp: NanoLisp.class NanoLispLexer.class NanoLispParser.class NanoLispParserVal.class test.masm
-NanoLisp.class: NanoLisp.java
-	javac -source 1.6 -target 1.6 NanoLisp.java
-NanoLispLexer.class NanoLispParser.class NanoLispParserVal.class: NanoLispLexer.java NanoLispParser.java NanoLispParserVal.java
-	javac -source 1.6 -target 1.6 NanoLispLexer.java NanoLispLexer.java NanoLispParser.java NanoLispParserVal.java
-NanoLispLexer.java: nanolisp.jflex
-	java -jar jflex-1.6.0.jar nanolisp.jflex
-NanoLispParser.java NanoLispParserVal.java: nanolisp.byaccj
-	./byacc -J -Jclass=NanoLispParser nanolisp.byaccj
-test.masm: NanoLisp.class test.s
-	java NanoLisp test.s > test.masm
-zip:
-	rm -Rf ../nanolisp.zip nanolisp.zip
-	cd .. ;\
-	zip nanolisp	nanolisp/NanoLisp.java nanolisp/makefile nanolisp/nanolisp.byaccj \
-			nanolisp/nanolisp.jflex nanolisp/test.s nanolisp/byacc.exe \
-			nanolisp/fact.s \
-			nanolisp/jflex-1.6.0.jar nanolisp/morpho.jar nanolisp/morpho \
-			nanolisp/morpho.bat;\
-	mv nanolisp.zip nanolisp
-clean:
-	rm -Rf *~ NanoLisp*.class NanoLispLexer.java NanoLispParser.java NanoLispParserVal.java test.masm fact.mexe
-test: nanolisp test.s fact.s
-	java NanoLisp test.s | java -jar morpho.jar -c
-	java -jar morpho.jar test
-	java NanoLispParser test.s | java -jar morpho.jar -c
-	java -jar morpho.jar test
-	java NanoLisp fact.s | java -jar morpho.jar -c
-	java -jar morpho.jar fact
-	java NanoLispParser fact.s | java -jar morpho.jar -c
-	java -jar morpho.jar fact
+# Makefil fyrir neðan sækin þýðanda
 
+# Keyrir byacc srká með J
 NanoMorpho.byaccj: NanoMorpho.byaccj
-byacc -J -Jclass=NanoMorphoParser NanoMorpho.byaccj
+	byacc -J -Jclass=NanoMorphoParser NanoMorpho.byaccj
 
+# ATH árekstra
+NanoMorphoV: NanoMorpho.byaccj
+	byacc -v NanoMorpho.byaccj
+
+# Þíða parser skrár
+parser: NanoMorphoParser.java NanoMorphoParserVal.java NanoMorphoLexer.java
+	javac NanoMorphoLexer.java NanoMorphoParser.java NanoMorphoParserVal.java
+
+# keyra jflex skrá
+lesgreinir: nanoMorpho.jflex
+	java -jar JFlex-1.6.1.jar nanomorpholexer.jflex
+
+# keyrir test.s skrá
+test: NanoMorphoParser.class NanoMorphoParserVal.class
+	java NanoMorphoParser test.s

@@ -17,10 +17,12 @@
 
 #define YYPURE 0
 
-#line 2 "NanoMorpho.byaccj"
-	import java.io.*;
-	import java.util.*;
-#line 24 "y.tab.c"
+
+#if ! defined(YYSTYPE) && ! defined(YYSTYPE_IS_DECLARED)
+/* Default: YYSTYPE is the semantic value type. */
+typedef int YYSTYPE;
+# define YYSTYPE_IS_DECLARED 1
+#endif
 
 /* compatibility with bison */
 #ifdef YYPARSE_PARAM
@@ -53,52 +55,89 @@
 
 extern int YYPARSE_DECL();
 
-#define LITERAL 257
-#define NAME 258
-#define OPNAME 259
-#define ERROR 260
-#define DEFINE 261
-#define OP1 262
-#define OP2 263
-#define OP3 264
-#define OP4 265
-#define OP5 266
-#define IF 267
-#define ELSE 268
-#define ELSIF 269
-#define WHILE 270
-#define VAR 271
-#define RETURN 272
+#define OPNAME 257
+#define LITERAL 258
+#define NAME 259
+#define IF 260
+#define ELSE 261
+#define ELSIF 262
+#define WHILE 263
+#define VAR 264
+#define RETURN 265
+#define AND 266
+#define OR 267
+#define NOT 268
+#define FUN 269
 #define YYERRCODE 256
 typedef short YYINT;
 static const YYINT yylhs[] = {                           -1,
-    0,    1,    1,    5,    2,    3,    3,    3,    4,    4,
+    0,    2,    2,    3,    3,    4,    5,    1,    1,    1,
+    1,    7,    7,    7,    7,    6,    6,    6,    8,    8,
+    9,    9,   10,   10,   11,   11,   12,   12,   12,   12,
+   12,   12,   12,   12,   12,   13,   13,   15,   15,   14,
+   14,   14,
 };
 static const YYINT yylen[] = {                            2,
-    1,    2,    1,    0,   10,    0,    3,    1,    3,    1,
+    1,    0,    1,    3,    1,    3,    6,    3,    3,    4,
+    0,    3,    1,    5,    3,    2,    3,    1,    3,    1,
+    3,    1,    2,    1,    3,    1,    2,    3,    1,    4,
+    3,    4,    1,    1,    5,    0,    1,    3,    1,    0,
+    2,    4,
 };
-static const YYINT yydefred[] = {                         4,
-    0,    0,    3,    0,    2,    0,    0,    8,    0,    0,
-    0,    0,    7,    0,   10,    0,    0,    0,    5,    9,
+static const YYINT yydefred[] = {                        11,
+    0,    0,    0,   33,    0,    0,    0,    0,    0,    0,
+   11,    0,    0,   34,    0,    0,    0,    0,   22,    0,
+   26,    0,    0,   27,    0,    0,    0,    0,    0,    0,
+   16,    0,    0,    0,    0,   23,    9,    8,    0,    0,
+    0,   39,    0,    0,   17,    0,   31,    0,    0,   10,
+    0,    5,    0,    0,    6,   28,    0,   21,   25,   30,
+    0,    0,    0,   32,   12,    0,    0,    0,    0,   38,
+   41,    0,    0,    0,   35,    4,    0,   14,    7,   42,
 };
 static const YYINT yydgoto[] = {                          1,
-    2,    3,    9,   16,    4,
+    2,   53,   54,   14,   15,   16,   30,   17,   18,   19,
+   20,   21,   43,   64,   44,
 };
 static const YYINT yysindex[] = {                         0,
-    0,    0,    0, -254,    0,  -33, -250,    0,  -39, -114,
- -248, -260,    0, -246,    0,  -44, -112, -244,    0,    0,
+    0,  -20,   13,    0,  -23,   -7,   -7, -257,   -7,  -39,
+    0,   -7,    6,    0,  -48,  -41, -243, -235,    0, -216,
+    0,    4,    5,    0,   -7,   -7,  -73,  -73,   -5,  -16,
+    0,   14, -202,  -33,   17,    0,    0,    0,    6,    6,
+   13,    0,   18,   19,    0, -247,    0,   -7, -195,    0,
+ -202,    0,   24,   22,    0,    0, -235,    0,    0,    0,
+   -7,  -73,   -7,    0,    0,    7,   26,  -73, -190,    0,
+    0,  -73,   -7,  -73,    0,    0, -247,    0,    0,    0,
 };
 static const YYINT yyrindex[] = {                         0,
-    0,    1,    0,    0,    0,    0,  -38,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,   72,    0,    0,  -38,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,  -36,  -25,    0,  -32,
+    0,  -38,    0,    0,   32,    0,    0,    0,   -8,    0,
+    0,    0,   34,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,   35,    0,   11,    0,    0,    0,    0,
+   34,    0,    0,   36,    0,    0,  -19,    0,    0,    0,
+    0,    0,    0,    0,    0,    3,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,   11,    0,    0,    0,
 };
 static const YYINT yygindex[] = {                         0,
-    0,   14,    0,    0,    0,
+   63,   27,    0,   33,    0,   23,    0,    0,   40,   -3,
+    0,    1,    0,   12,    0,
 };
-#define YYTABLESIZE 259
-static const YYINT yytable[] = {                         18,
-    1,   10,    6,    6,   11,    6,    7,    8,   12,   13,
-   14,   15,   19,   20,   17,    5,    0,    0,    0,    0,
+#define YYTABLESIZE 282
+static const YYINT yytable[] = {                         13,
+   33,   29,   29,   24,   18,   29,   12,   18,   24,   36,
+   37,   24,   13,   62,   63,   20,   25,   38,   20,   12,
+   29,   19,   18,   39,   19,   13,   24,   49,   27,   28,
+   40,   31,   12,   20,   35,   13,   58,   26,   13,   19,
+   41,   59,   50,   25,   33,   12,   15,   42,   45,   11,
+   13,   40,   12,   51,   40,   48,   52,   56,   60,   46,
+   47,   15,   61,   66,   68,   69,   74,   73,   76,   40,
+   65,    1,   36,   34,    2,   37,    3,   67,   57,    0,
+    0,    0,    0,   70,   29,   72,   18,    0,   80,   11,
+   24,   55,    0,    0,   71,   78,    0,   20,    0,    0,
+   75,    0,   11,   19,   77,    0,   79,    0,    0,    0,
+    0,    0,    0,    0,    0,   11,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,   11,    0,
+    0,    0,    0,   40,    0,   11,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -106,27 +145,30 @@ static const YYINT yytable[] = {                         18,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    4,
+    0,    0,    0,    0,    0,    0,    0,    0,   29,   32,
+    0,    0,    0,    3,    4,    5,    6,   29,   29,    7,
+    8,    9,    0,   24,   24,   10,    3,    4,    5,    6,
+    0,   20,    7,    8,    9,    0,    0,   19,   10,    3,
+    4,    5,    6,    0,    0,    7,    0,    9,    0,    0,
+    0,   23,    3,    4,   22,    6,    0,   40,    7,    3,
+    4,   22,    6,    0,   23,    7,   40,   40,    0,    0,
+    0,   23,
 };
-static const YYINT yycheck[] = {                         44,
-    0,   41,   41,  258,   44,   44,   40,  258,  123,  258,
-  271,  258,  125,  258,   59,    2,   -1,   -1,   -1,   -1,
+static const YYINT yycheck[] = {                         33,
+   40,  259,   41,    3,   41,   44,   40,   44,   41,   13,
+   59,   44,   33,  261,  262,   41,   40,   59,   44,   40,
+   59,   41,   59,  267,   44,   33,   59,   44,    6,    7,
+  266,    9,   40,   59,   12,   44,   40,   61,   33,   59,
+  257,   41,   59,   40,   40,   40,   44,   25,   26,  123,
+   59,   41,   40,   40,   44,   61,  259,   41,   41,   27,
+   28,   59,   44,  259,   41,   44,   41,   61,  259,   59,
+   48,    0,   41,   11,   41,   41,   41,   51,   39,   -1,
+   -1,   -1,   -1,   61,  123,   63,  123,   -1,   77,  123,
+  123,  125,   -1,   -1,   62,   73,   -1,  123,   -1,   -1,
+   68,   -1,  123,  123,   72,   -1,   74,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,  123,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  123,   -1,
+   -1,   -1,   -1,  123,   -1,  123,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -134,56 +176,79 @@ static const YYINT yycheck[] = {                         44,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  258,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,  259,
+   -1,   -1,   -1,  257,  258,  259,  260,  266,  267,  263,
+  264,  265,   -1,  266,  267,  269,  257,  258,  259,  260,
+   -1,  267,  263,  264,  265,   -1,   -1,  267,  269,  257,
+  258,  259,  260,   -1,   -1,  263,   -1,  265,   -1,   -1,
+   -1,  269,  257,  258,  259,  260,   -1,  257,  263,  257,
+  258,  259,  260,   -1,  269,  263,  266,  267,   -1,   -1,
+   -1,  269,
 };
 #define YYFINAL 1
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 272
-#define YYUNDFTOKEN 280
+#define YYMAXTOKEN 269
+#define YYUNDFTOKEN 287
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? YYUNDFTOKEN : (a))
 #if YYDEBUG
 static const char *const yyname[] = {
 
-"end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,"'('","')'",0,0,"','",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"';'",0,"'='",0,0,
+"end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+"'!'",0,0,0,0,0,0,"'('","')'",0,0,"','",0,0,0,0,0,0,0,0,0,0,0,0,0,0,"';'",0,
+"'='",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"'{'",0,"'}'",0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"'{'",0,"'}'",0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-"LITERAL","NAME","OPNAME","ERROR","DEFINE","OP1","OP2","OP3","OP4","OP5","IF",
-"ELSE","ELSIF","WHILE","VAR","RETURN",0,0,0,0,0,0,0,"illegal-symbol",
+0,0,"OPNAME","LITERAL","NAME","IF","ELSE","ELSIF","WHILE","VAR","RETURN","AND",
+"OR","NOT","FUN",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"illegal-symbol",
 };
 static const char *const yyrule[] = {
 "$accept : start",
-"start : program",
-"program : program fundecl",
-"program : fundecl",
-"$$1 :",
-"fundecl : $$1 NAME '(' ids ')' '{' VAR idlist ';' '}'",
-"ids :",
-"ids : ids ',' NAME",
-"ids : NAME",
+"start : bodyexprs",
+"opt_idlist :",
+"opt_idlist : idlist",
 "idlist : idlist ',' NAME",
 "idlist : NAME",
+"body : '{' bodyexprs '}'",
+"fundecl : FUN NAME '(' opt_idlist ')' body",
+"bodyexprs : bodyexprs expr ';'",
+"bodyexprs : bodyexprs fundecl ';'",
+"bodyexprs : bodyexprs VAR decl_vars ';'",
+"bodyexprs :",
+"decl_vars : NAME '=' expr",
+"decl_vars : NAME",
+"decl_vars : decl_vars ',' NAME '=' expr",
+"decl_vars : decl_vars ',' NAME",
+"expr : RETURN expr",
+"expr : NAME '=' expr",
+"expr : orexpr",
+"orexpr : orexpr OR andexpr",
+"orexpr : andexpr",
+"andexpr : andexpr AND notexpr",
+"andexpr : notexpr",
+"notexpr : '!' notexpr",
+"notexpr : binopexpr",
+"binopexpr : binopexpr OPNAME smallexpr",
+"binopexpr : smallexpr",
+"smallexpr : OPNAME smallexpr",
+"smallexpr : '(' expr ')'",
+"smallexpr : NAME",
+"smallexpr : NAME '(' args ')'",
+"smallexpr : WHILE expr body",
+"smallexpr : IF expr body ifrest",
+"smallexpr : LITERAL",
+"smallexpr : body",
+"smallexpr : FUN '(' opt_idlist ')' body",
+"args :",
+"args : arglist",
+"arglist : arglist ',' expr",
+"arglist : expr",
+"ifrest :",
+"ifrest : ELSE body",
+"ifrest : ELSIF expr body ifrest",
 
 };
 #endif
@@ -221,91 +286,9 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
-#line 56 "NanoMorpho.byaccj"
+#line 97 "test.y"
 
-static private String name;
-private NanoMorphoLexer lexer;
-private int varCount;
-private HashMap<String,Integer> varTable;
-
-private void addVar( String name )
-{
-  if( varTable.get(name) != null )
-  yyerror("Variable "+name+" already exists");
-  varTable.put(name,varCount++);
-}
-private int findVar( String name )
-	{
-		Integer res = varTable.get(name);
-		if( res == null )
-			yyerror("Variable "+name+" does not exist");
-		return res;
-	}
-
-	int last_token_read;
-
-	private int yylex()
-	{
-		int yyl_return = -1;
-		try
-		{
-			yylval = null;
-			last_token_read = yyl_return = lexer.yylex();
-			if( yylval==null )
-				yylval = new NanoMorphoParserVal(NanoMorphoParser.yyname[yyl_return]);
-		}
-		catch (IOException e)
-		{
-			System.err.println("IO error: "+e);
-		}
-		return yyl_return;
-	}
-
-	public void yyerror( String error )
-	{
-		System.out.println("Error:  "+error);
-		System.out.println("Token:  "+NanoMorphoParser.yyname[last_token_read]);
-		System.exit(1);
-	}
-  
-  public NanoMorphoParser( Reader r )
-	{
-		lexer = new NanoMorphoLexer(r,this);
-	}
-
-public static void main( String args[] )
-throws IOException
-{
-  NanoMorphoParser yyparser = new NanoMorphoParser(new FileReader(args[0]));
-  name = args[0].substring(0,args[0].lastIndexOf('.'));
-  yyparser.yyparse();
-}
-
-public static void emit( String s )		/*@ \label{byaccgeneratorstart} @*/
-{
-  System.out.println(s);
-}
-
-static void generateProgram( String name, Object[] p )
-{
-  emit("\""+name+".mexe\" = main in");
-  emit("!{{");
-  for( int i=0 ; i!=p.length ; i++ ) generateFunction((Object[])p[i]);
-  emit("}}*BASIS;");
-}
-
-static void generateFunction( Object[] f )
-	{
-		String fname = (String)f[0];
-		int count = (Integer)f[1];
-    int test = (Integer)f[2];
-    emit(test+"");
-		emit("#\""+fname+"[f"+count+"]\" =");
-		emit("[");
-	  // generateExprR((Object[])f[2]);
-		emit("];");
-	}
-#line 309 "y.tab.c"
+#line 292 "y.tab.c"
 
 #if YYDEBUG
 #include <stdio.h>		/* needed for printf */
@@ -507,52 +490,6 @@ yyreduce:
         memset(&yyval, 0, sizeof yyval);
     switch (yyn)
     {
-case 1:
-#line 25 "NanoMorpho.byaccj"
-	{ generateProgram(name,((Vector<Object>)(yystack.l_mark[0].obj)).toArray()); }
-break;
-case 2:
-#line 29 "NanoMorpho.byaccj"
-	{ ((Vector<Object>)(yystack.l_mark[-1].obj)).add(yystack.l_mark[0].obj); yyval.obj=yystack.l_mark[-1].obj; }
-break;
-case 3:
-#line 30 "NanoMorpho.byaccj"
-	{ yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(yystack.l_mark[0].obj); }
-break;
-case 4:
-#line 34 "NanoMorpho.byaccj"
-	{
-      varCount = 0;
-      varTable = new HashMap<String,Integer>();
-    }
-break;
-case 5:
-#line 41 "NanoMorpho.byaccj"
-	{
-      yyval.obj = new Object[]{yystack.l_mark[-8].sval,yystack.l_mark[-6].ival,yystack.l_mark[-2].ival};
-    }
-break;
-case 6:
-#line 47 "NanoMorpho.byaccj"
-	{ yyval.ival=0; }
-break;
-case 7:
-#line 48 "NanoMorpho.byaccj"
-	{ addVar(yystack.l_mark[0].sval); yyval.ival=yystack.l_mark[-2].ival+1; }
-break;
-case 8:
-#line 49 "NanoMorpho.byaccj"
-	{ addVar(yystack.l_mark[0].sval); yyval.ival+=1; }
-break;
-case 9:
-#line 53 "NanoMorpho.byaccj"
-	{ addVar(yystack.l_mark[0].sval); yyval.ival=yystack.l_mark[-2].ival+1; }
-break;
-case 10:
-#line 54 "NanoMorpho.byaccj"
-	{ addVar(yystack.l_mark[0].sval); yyval.ival+=1; }
-break;
-#line 556 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;
