@@ -813,7 +813,7 @@ public NanoMorphoLexer( java.io.Reader r, NanoMorphoParser yyparser )
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
             { yyparser.yylval = new NanoMorphoParserVal(yytext());
-return ERROR;
+return NanoMorphoParser.ERROR;
             }
           case 16: break;
           case 2: 

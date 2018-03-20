@@ -1,4 +1,6 @@
 # Makefil fyrir neðan sækin þýðanda
+SHELL=/usr/bin/env /bin/bash
+
 
 # Keyrir byacc srká með J
 NanoMorpho.byaccj: NanoMorpho.byaccj
@@ -14,7 +16,7 @@ parser: NanoMorphoParser.java NanoMorphoParserVal.java NanoMorphoLexer.java
 
 # keyra jflex skrá
 lesgreinir: nanoMorpho.jflex
-	java -jar JFlex-1.6.1.jar nanomorpholexer.jflex
+	java -jar JFlex-1.6.1.jar nanomorpho.jflex
 
 # keyrir test.s skrá
 test: NanoMorphoParser.class NanoMorphoParserVal.class

@@ -1,13 +1,8 @@
-fun(a,b,c,d){
+
+
+main(){
   var baz;
-}
-
-
-max(a,b,c,d){
-  var this, baz;
-}
-
-
-main(a,b,c,d){
-  var this, foo, bar;
+  baz = 1 - 1 + 3;
+  println(baz);
+  return 1+1;
 }

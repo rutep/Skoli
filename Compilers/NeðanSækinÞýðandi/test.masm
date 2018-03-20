@@ -1,0 +1,22 @@
+"test.mexe" = main in
+!{{
+#"main[f0]" =
+[
+(MakeVal null)
+(Push)
+(MakeVal 1)
+(Push)
+(MakeVal 1)
+(Call #"-[f2]" 2)
+(Push)
+(MakeVal 3)
+(Call #"+[f2]" 2)
+(Store 0)
+(MakeVal 1)
+(Push)
+(MakeVal 1)
+(Call #"+[f2]" 2)
+(CallR #"writeln[f1]" 1)
+(Return)
+];
+}}*BASIS;
