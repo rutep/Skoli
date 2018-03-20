@@ -176,47 +176,54 @@ public final static short VAR=272;
 public final static short RETURN=273;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
-    0,    1,    1,    7,    2,    5,    5,    5,    6,    6,
-    6,    4,    4,    3,    3,    3,    3,    3,    3,    3,
+    0,    1,    1,    9,    2,    7,    7,    7,    8,    8,
+    8,    4,    4,    5,    5,    6,    6,    3,    3,    3,
+    3,    3,    3,    3,    3,
 };
 final static short yylen[] = {                            2,
     1,    2,    1,    0,   11,    0,    3,    1,    0,    3,
-    1,    3,    2,    2,    3,    4,    3,    3,    1,    1,
+    1,    3,    2,    0,    1,    3,    1,    2,    3,    4,
+    3,    3,    1,    4,    1,
 };
 final static short yydefred[] = {                         4,
     0,    0,    3,    0,    2,    0,    0,    8,    0,    0,
-    0,    0,    7,    0,   11,    0,    0,    0,   20,    0,
+    0,    0,    7,    0,   11,    0,    0,    0,   25,    0,
     0,    0,    0,    0,   10,    0,    0,    0,    0,    0,
-   13,    5,    0,    0,    0,    0,    0,   12,   16,
+    0,   13,    5,    0,    0,    0,    0,    0,    0,    0,
+    0,   12,   24,    0,   20,    0,
 };
 final static short yydgoto[] = {                          1,
-    2,    3,   23,   24,    9,   16,    4,
+    2,    3,   23,   24,   37,   38,    9,   16,    4,
 };
 final static short yysindex[] = {                         0,
-    0,    0,    0, -247,    0,   -9, -243,    0,  -25, -103,
- -225, -236,    0, -217,    0,  -34, -245, -216,    0,  -18,
-    4, -245,  -56, -118,    0, -245, -245, -224, -245, -245,
-    0,    0,  -53, -224,  -39, -219, -219,    0,    0,
+    0,    0,    0, -246,    0,   -8, -222,    0,   -7,  -83,
+ -210, -219,    0, -204,    0,  -15, -231, -203,    0,  -26,
+   16, -231,  -53, -115,    0, -231, -231, -231, -212, -231,
+ -231,    0,    0,  -50, -212, -212,   17,   13,  -39, -205,
+ -205,    0,    0, -231,    0, -212,
 };
 final static short yyrindex[] = {                         0,
-    0,    1,    0,    0,    0,    0,  -20,    0,    0,    0,
-    0,    0,    0,  -30,    0,    0,    0,    0,    0,  -41,
-    0,    0,    0,    0,    0,    0,    0,  -33,    0,    0,
-    0,    0,    0,  -32,    0,  -37,  -36,    0,    0,
+    0,    1,    0,    0,    0,    0,   -3,    0,    0,    0,
+    0,    0,    0,  -14,    0,    0,    0,    0,    0,  -41,
+    0,    0,    0,    0,    0,    0,   19,    0,  -20,    0,
+    0,    0,    0,    0,  -16,    5,    0,   20,    0,  -37,
+  -36,    0,    0,    0,    0,    6,
 };
 final static short yygindex[] = {                         0,
-    0,   44,    8,    0,    0,    0,    0,
+    0,   60,  -11,    0,    0,    0,    0,    0,    0,
 };
 final static int YYTABLESIZE=259;
 static short yytable[];
 static { yytable();}
 static void yytable(){
-yytable = new short[]{                         19,
-    1,   39,   31,   17,   18,   38,   32,   14,   15,   18,
-    6,   19,   20,    9,    8,   10,   21,   19,   11,   12,
-    6,   17,   18,    6,   17,   14,   15,   22,    9,   28,
-    7,   33,   13,   34,   35,   14,   36,   37,   29,   30,
-   15,   25,   26,   27,   30,    5,    0,    0,    0,    0,
+yytable = new short[]{                         23,
+    1,   45,   23,   21,   22,   32,   21,   22,   42,   33,
+   29,    6,   34,   27,   35,   36,   39,   23,   40,   41,
+   18,   21,   22,   18,   19,   19,   20,   19,   18,    9,
+   21,    7,   46,   10,   26,    8,   11,    6,   18,   12,
+    6,   22,   19,   17,    9,   17,   16,   13,   17,   16,
+   30,   31,   14,   15,   25,   28,   44,   43,   31,   14,
+   15,    5,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -224,17 +231,15 @@ yytable = new short[]{                         19,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,   19,   20,
-    0,    0,    0,   21,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,   22,    0,    0,    0,    0,    0,
+    0,   19,   20,    0,    0,    0,   21,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,   22,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,   29,   30,    0,   29,
-   30,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,   19,   19,   29,   30,   17,   18,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,   30,
+   31,    0,   30,   31,    0,    0,    0,    0,    0,    0,
+    0,   23,   23,   30,   31,   21,   22,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    4,
@@ -244,11 +249,13 @@ static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
 yycheck = new short[] {                         41,
-    0,   41,   59,   41,   41,   59,  125,   41,   41,   44,
-  258,  257,  258,   44,  258,   41,  262,   59,   44,  123,
-   41,   59,   59,   44,   59,   59,   59,  273,   59,   22,
-   40,   24,  258,   26,   27,  272,   29,   30,  263,  264,
-  258,  258,   61,   40,  264,    2,   -1,   -1,   -1,   -1,
+    0,   41,   44,   41,   41,   59,   44,   44,   59,  125,
+   22,  258,   24,   40,   26,   27,   28,   59,   30,   31,
+   41,   59,   59,   44,   41,  257,  258,   44,   44,   44,
+  262,   40,   44,   41,   61,  258,   44,   41,   59,  123,
+   44,  273,   59,   59,   59,   41,   41,  258,   44,   44,
+  263,  264,  272,  258,  258,   40,   44,   41,  264,   41,
+   41,    2,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -256,16 +263,14 @@ yycheck = new short[] {                         41,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,  258,
-   -1,   -1,   -1,  262,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,  273,   -1,   -1,   -1,   -1,   -1,
+   -1,  257,  258,   -1,   -1,   -1,  262,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,  273,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,  263,  264,   -1,  263,
-  264,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  263,
+  264,   -1,  263,  264,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,  263,  264,  263,  264,  263,  263,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -310,16 +315,21 @@ final static String yyrule[] = {
 "idlist : NAME",
 "exprs : exprs expr ';'",
 "exprs : expr ';'",
+"args :",
+"args : arglist",
+"arglist : arglist ',' expr",
+"arglist : expr",
 "expr : RETURN expr",
 "expr : NAME '=' expr",
 "expr : PRINTLN '(' expr ')'",
 "expr : expr OP1 expr",
 "expr : expr OP2 expr",
 "expr : NAME",
+"expr : NAME '(' args ')'",
 "expr : LITERAL",
 };
 
-//#line 82 "NanoMorpho.byaccj"
+//#line 94 "NanoMorpho.byaccj"
 
 static private String name;
 private NanoMorphoLexer lexer;
@@ -431,7 +441,6 @@ static void generateExpr( Object[] e )
 				}
 		case "RETURN":
 				generateExpr((Object[])e[1]);
-				emit("(CallR #\""+"writeln"+"[f1]\" 1)");
 				System.out.println("(Return)");
 				return;
 		case "LITERAL":
@@ -449,7 +458,7 @@ static void generateExpr( Object[] e )
 
 
 
-//#line 381 "NanoMorphoParser.java"
+//#line 390 "NanoMorphoParser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -661,34 +670,50 @@ case 13:
 { yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(val_peek(1).obj); }
 break;
 case 14:
-//#line 66 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"RETURN",val_peek(0).obj}; }
-break;
-case 15:
-//#line 68 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"STORE",varPos(val_peek(2).sval),val_peek(0).obj}; }
+//#line 65 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); }
 break;
 case 16:
 //#line 70 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"PRINT", val_peek(1).obj}; }
+{ ((Vector<Object>)(val_peek(2).obj)).add(val_peek(0).obj); yyval.obj=val_peek(2).obj; }
 break;
 case 17:
-//#line 72 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"CALL",val_peek(1).sval,new Object[]{val_peek(2).obj,val_peek(0).obj}}; }
+//#line 71 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(val_peek(0).obj); }
 break;
 case 18:
-//#line 74 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"CALL",val_peek(1).sval,new Object[]{val_peek(2).obj,val_peek(0).obj}}; }
+//#line 76 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"RETURN",val_peek(0).obj}; }
 break;
 case 19:
-//#line 76 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"FETCH",varPos(val_peek(0).sval)}; }
+//#line 78 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"STORE",varPos(val_peek(2).sval),val_peek(0).obj}; }
 break;
 case 20:
-//#line 78 "NanoMorpho.byaccj"
+//#line 80 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"PRINT", val_peek(1).obj}; }
+break;
+case 21:
+//#line 82 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",val_peek(1).sval,new Object[]{val_peek(2).obj,val_peek(0).obj}}; }
+break;
+case 22:
+//#line 84 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",val_peek(1).sval,new Object[]{val_peek(2).obj,val_peek(0).obj}}; }
+break;
+case 23:
+//#line 86 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"FETCH",varPos(val_peek(0).sval)}; }
+break;
+case 24:
+//#line 88 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",val_peek(3).sval, ((Vector<Object>)(val_peek(1).obj)).toArray() }; }
+break;
+case 25:
+//#line 90 "NanoMorpho.byaccj"
 { yyval.obj = new Object[]{"LITERAL",val_peek(0).sval}; }
 break;
-//#line 615 "NanoMorphoParser.java"
+//#line 640 "NanoMorphoParser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

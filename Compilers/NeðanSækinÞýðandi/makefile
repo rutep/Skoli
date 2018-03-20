@@ -3,7 +3,7 @@ SHELL=/usr/bin/env /bin/bash
 
 
 # Keyrir byacc srká með J
-NanoMorpho.byaccj: NanoMorpho.byaccj
+NanoMorpho: NanoMorpho.byaccj
 	byacc -J -Jclass=NanoMorphoParser NanoMorpho.byaccj
 
 # ATH árekstra
@@ -20,4 +20,12 @@ lesgreinir: nanoMorpho.jflex
 
 # keyrir test.s skrá
 test: NanoMorphoParser.class NanoMorphoParserVal.class
-	java NanoMorphoParser test.s
+	java NanoMorphoParser test.s > test.masm 
+	
+# Þýðir lokaÞuluna
+compile: test.masm
+	morpho -c test.masm
+
+# keyrir lokaÞuluna
+run: test.mexe
+	morpho test 
