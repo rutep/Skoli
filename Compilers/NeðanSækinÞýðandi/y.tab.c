@@ -17,112 +17,139 @@ static char yysccsid[] = "@(#)yaccpar	1.8 (Berkeley) 01/20/90";
 #define OP3 265
 #define OP4 266
 #define OP5 267
-#define IF 268
-#define ELSE 269
-#define ELSIF 270
-#define WHILE 271
-#define VAR 272
-#define RETURN 273
+#define OP6 268
+#define OP7 269
+#define IF 270
+#define ELSE 271
+#define ELSIF 272
+#define WHILE 273
+#define VAR 274
+#define RETURN 275
 #define YYERRCODE 256
 short yylhs[] = {                                        -1,
-    0,    1,    1,    7,    2,    5,    5,    5,    6,    6,
-    6,    4,    4,    3,    3,    3,    3,    3,    3,    3,
-    3,
+    0,    1,    1,   11,    2,    9,    9,    9,   10,   10,
+   10,    4,    4,    5,    5,    6,    6,    7,    7,    8,
+    8,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+    3,    3,    3,    3,    3,    3,
 };
 short yylen[] = {                                         2,
     1,    2,    1,    0,   11,    0,    3,    1,    0,    3,
-    1,    3,    2,    2,    3,    4,    3,    3,    1,    4,
-    1,
+    1,    3,    2,    0,    1,    3,    1,    0,    3,    3,
+    2,    2,    3,    4,    3,    3,    3,    3,    3,    3,
+    3,    3,    1,    4,    5,    1,
 };
 short yydefred[] = {                                      4,
     0,    0,    3,    0,    2,    0,    0,    8,    0,    0,
-    0,    0,    7,    0,   11,    0,    0,    0,   21,    0,
-    0,    0,    0,    0,   10,    0,    0,    0,    0,    0,
-    0,   13,    5,    0,    0,    0,    0,    0,    0,   12,
-   20,   16,
+    0,    0,    7,    0,   11,    0,    0,    0,   36,    0,
+    0,    0,    0,    0,    0,    0,   10,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+   13,    5,    0,    0,    0,    0,    0,    0,    0,   32,
+    0,    0,    0,    0,    0,    0,   31,   12,   34,    0,
+   24,    0,    0,    0,   35,    0,    0,   21,   19,    0,
+   20,
 };
 short yydgoto[] = {                                       1,
-    2,    3,   23,   24,    9,   16,    4,
+    2,    3,   25,   26,   46,   47,   65,   67,    9,   16,
+    4,
 };
 short yysindex[] = {                                      0,
-    0,    0,    0, -248,    0,  -12, -223,    0,  -22,  -86,
- -219, -231,    0, -214,    0,  -32, -241, -213,    0,  -31,
-    6, -241,  -56, -117,    0, -241, -241, -241, -249, -241,
- -241,    0,    0,  -54, -249,  -41,  -37, -217, -217,    0,
-    0,    0,
+    0,    0,    0, -253,    0,  -19, -251,    0,  -22, -111,
+ -229, -225,    0, -208,    0,  -35,  -34, -196,    0,  -36,
+   27,   28,  -34,  -34,  -57,  -40,    0,  -34,  -34,  -34,
+  -34, -147,   -2,  -34,  -34,  -34,  -34,  -34,  -34,  -34,
+    0,    0,   34, -147, -147,   24,   26,    5,   12,    0,
+ -210, -210, -226, -192, -233, -197,    0,    0,    0,  -34,
+    0,  -50, -147,  -34,    0,   41,  -37,    0,    0,   48,
+    0,
 };
 short yyrindex[] = {                                      0,
-    0,    1,    0,    0,    0,    0,  -18,    0,    0,    0,
-    0,    0,    0,  -26,    0,    0,    0,    0,    0,  -39,
-    0,    0,    0,    0,    0,    0,    0,    0,  -30,    0,
-    0,    0,    0,    0,  -28,    0,    0,  -35,  -34,    0,
-    0,    0,
+    0,    1,    0,    0,    0,    0,    3,    0,    0,    0,
+    0,    0,    0,  -28,    0,    0,    0,    0,    0,  -21,
+    0,    0,    0,    0,    0,    0,    0,    0,   38,    0,
+    0,  -31,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,  -27,    7,    0,   39,    0,    0,    0,
+  -26,   -7,  -33,   30,   25,   19,    0,    0,    0,    0,
+    0,  -14,   20,    0,    0,    0,    0,    0,    0,    0,
+    0,
 };
 short yygindex[] = {                                      0,
-    0,   47,   12,   23,    0,    0,    0,
+    0,   79,   75,    0,    0,    0,    0,    0,    0,    0,
+    0,
 };
-#define YYTABLESIZE 259
-short yytable[] = {                                      41,
-    1,   19,   32,   42,   40,   17,   18,   33,   27,    6,
-   14,   18,   15,   30,   31,   19,   20,    9,   10,   19,
-   21,   11,    6,   17,   18,    6,   17,    7,   14,   26,
-   15,   22,    9,   29,    8,   34,   12,   35,   13,   37,
-   14,   38,   39,   15,   25,   28,   31,   34,    5,   36,
+#define YYTABLESIZE 317
+short yytable[] = {                                      24,
+    1,   41,   24,   29,    6,   24,    8,   27,   18,   22,
+   27,   12,   22,   23,   25,    9,   23,   25,   10,   33,
+    7,   11,   33,   17,   28,   27,   18,   22,   13,   18,
+    9,   23,   25,   26,   39,   40,   26,   33,   50,   37,
+   38,   39,   40,    6,   18,   61,    6,   17,   14,   15,
+   17,   26,   62,   35,   36,   37,   38,   39,   40,   30,
+   16,   27,   30,   16,   59,   29,   30,   31,   29,   60,
+   28,   40,   64,   28,   38,   39,   40,   30,   14,   15,
+    5,    0,    0,   29,   42,    0,    0,   69,   28,    0,
+    0,    0,   58,    0,    0,    0,    0,   32,   33,   68,
+   43,    0,   44,   45,   48,   49,   71,    0,   51,   52,
+   53,   54,   55,   56,   57,   34,   35,   36,   37,   38,
+   39,   40,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,   63,    0,    0,    0,   66,    0,
+    0,   70,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,   19,
-   20,    0,    0,    0,   21,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,   22,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,   30,   31,   30,   31,
-    0,    0,    0,    0,    0,   19,   20,    0,    0,    0,
-   21,    0,    0,   19,   19,   30,   31,   17,   18,    0,
-    0,   22,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    4,
+    0,    0,    0,    0,    0,   34,   35,   36,   37,   38,
+   39,   40,    0,    0,    0,    0,   19,   20,    0,   19,
+   20,   21,   19,   20,   21,    0,    0,   21,    0,   27,
+   27,   27,   22,    0,   23,   22,   25,   23,   22,    0,
+   23,   33,   33,   33,   33,   33,   33,   33,   18,   18,
+   18,   18,   18,   18,   18,   26,    0,    0,    4,    0,
+   34,   35,   36,   37,   38,   39,   40,   34,   35,   36,
+   37,   38,   39,   40,   34,   35,   36,   37,   38,   39,
+   40,   30,   30,   30,   30,   30,   30,   29,   29,   29,
+   29,   29,   28,   28,   28,   28,   34,   35,   36,   37,
+   38,   39,   40,   34,   35,   36,   37,   38,   39,   40,
+   34,   35,   36,   37,   38,   39,   40,
 };
-short yycheck[] = {                                      41,
-    0,   41,   59,   41,   59,   41,   41,  125,   40,  258,
-   41,   44,   41,  263,  264,  257,  258,   44,   41,   59,
-  262,   44,   41,   59,   59,   44,   59,   40,   59,   61,
-   59,  273,   59,   22,  258,   24,  123,   26,  258,   28,
-  272,   30,   31,  258,  258,   40,  264,   36,    2,   27,
+short yycheck[] = {                                      40,
+    0,   59,   40,   40,  258,   40,  258,   41,   44,   41,
+   44,  123,   44,   41,   41,   44,   44,   44,   41,   41,
+   40,   44,   44,   59,   61,   59,   41,   59,  258,   44,
+   59,   59,   59,   41,  268,  269,   44,   59,   41,  266,
+  267,  268,  269,   41,   59,   41,   44,   41,  274,  258,
+   44,   59,   41,  264,  265,  266,  267,  268,  269,   41,
+   41,  258,   44,   44,   41,   41,   40,   40,   44,   44,
+   41,  269,  123,   44,  267,  268,  269,   59,   41,   41,
+    2,   -1,   -1,   59,  125,   -1,   -1,  125,   59,   -1,
+   -1,   -1,   59,   -1,   -1,   -1,   -1,   23,   24,   59,
+   26,   -1,   28,   29,   30,   31,   59,   -1,   34,   35,
+   36,   37,   38,   39,   40,  263,  264,  265,  266,  267,
+  268,  269,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   60,   -1,   -1,   -1,   64,   -1,
+   -1,   67,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,
-  258,   -1,   -1,   -1,  262,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,  273,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,  263,  264,  263,  264,
-   -1,   -1,   -1,   -1,   -1,  257,  258,   -1,   -1,   -1,
-  262,   -1,   -1,  263,  264,  263,  264,  263,  263,   -1,
-   -1,  273,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  258,
+   -1,   -1,   -1,   -1,   -1,  263,  264,  265,  266,  267,
+  268,  269,   -1,   -1,   -1,   -1,  257,  258,   -1,  257,
+  258,  262,  257,  258,  262,   -1,   -1,  262,   -1,  263,
+  264,  265,  273,   -1,  275,  273,  263,  275,  273,   -1,
+  275,  263,  264,  265,  266,  267,  268,  269,  263,  264,
+  265,  266,  267,  268,  269,  263,   -1,   -1,  258,   -1,
+  263,  264,  265,  266,  267,  268,  269,  263,  264,  265,
+  266,  267,  268,  269,  263,  264,  265,  266,  267,  268,
+  269,  263,  264,  265,  266,  267,  268,  263,  264,  265,
+  266,  267,  263,  264,  265,  266,  263,  264,  265,  266,
+  267,  268,  269,  263,  264,  265,  266,  267,  268,  269,
+  263,  264,  265,  266,  267,  268,  269,
 };
 #define YYFINAL 1
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 273
+#define YYMAXTOKEN 275
 #if YYDEBUG
 char *yyname[] = {
 "end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -133,7 +160,7 @@ char *yyname[] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 "LITERAL","NAME","OPNAME","ERROR","DEFINE","PRINTLN","OP1","OP2","OP3","OP4",
-"OP5","IF","ELSE","ELSIF","WHILE","VAR","RETURN",
+"OP5","OP6","OP7","IF","ELSE","ELSIF","WHILE","VAR","RETURN",
 };
 char *yyrule[] = {
 "$accept : start",
@@ -150,13 +177,28 @@ char *yyrule[] = {
 "idlist : NAME",
 "exprs : exprs expr ';'",
 "exprs : expr ';'",
+"args :",
+"args : arglist",
+"arglist : arglist ',' expr",
+"arglist : expr",
+"body :",
+"body : '{' bodyexpr '}'",
+"bodyexpr : bodyexpr expr ';'",
+"bodyexpr : expr ';'",
 "expr : RETURN expr",
 "expr : NAME '=' expr",
 "expr : PRINTLN '(' expr ')'",
 "expr : expr OP1 expr",
 "expr : expr OP2 expr",
+"expr : expr OP3 expr",
+"expr : expr OP4 expr",
+"expr : expr OP5 expr",
+"expr : expr OP6 expr",
+"expr : expr OP7 expr",
+"expr : '(' expr ')'",
 "expr : NAME",
-"expr : NAME '(' exprs ')'",
+"expr : NAME '(' args ')'",
+"expr : WHILE '(' expr ')' body",
 "expr : LITERAL",
 };
 #endif
@@ -185,7 +227,7 @@ YYSTYPE yylval;
 short yyss[YYSTACKSIZE];
 YYSTYPE yyvs[YYSTACKSIZE];
 #define yystacksize YYSTACKSIZE
-#line 84 "NanoMorpho.byaccj"
+#line 120 "NanoMorpho.byaccj"
 
 static private String name;
 private NanoMorphoLexer lexer;
@@ -314,7 +356,7 @@ static void generateExpr( Object[] e )
 
 
 
-#line 318 "y.tab.c"
+#line 360 "y.tab.c"
 #define YYABORT goto yyabort
 #define YYACCEPT goto yyaccept
 #define YYERROR goto yyerrlab
@@ -455,95 +497,151 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 25 "NanoMorpho.byaccj"
+#line 27 "NanoMorpho.byaccj"
 { generateProgram(name,((Vector<Object>)(yyvsp[0].obj)).toArray()); }
 break;
 case 2:
-#line 29 "NanoMorpho.byaccj"
+#line 31 "NanoMorpho.byaccj"
 { ((Vector<Object>)(yyvsp[-1].obj)).add(yyvsp[0].obj); yyval.obj=yyvsp[-1].obj; }
 break;
 case 3:
-#line 30 "NanoMorpho.byaccj"
+#line 32 "NanoMorpho.byaccj"
 { yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(yyvsp[0].obj); }
 break;
 case 4:
-#line 34 "NanoMorpho.byaccj"
+#line 36 "NanoMorpho.byaccj"
 {
       varCount = 0;
       varTable = new HashMap<String,Integer>();
     }
 break;
 case 5:
-#line 42 "NanoMorpho.byaccj"
+#line 44 "NanoMorpho.byaccj"
 {
       yyval.obj = new Object[]{yyvsp[-9].sval,yyvsp[-7].ival,yyvsp[-3].ival+yyvsp[-7].ival,((Vector<Object>)(yyvsp[-1].obj)).toArray()};
     }
 break;
 case 6:
-#line 48 "NanoMorpho.byaccj"
+#line 50 "NanoMorpho.byaccj"
 { yyval.ival=0; }
 break;
 case 7:
-#line 49 "NanoMorpho.byaccj"
+#line 51 "NanoMorpho.byaccj"
 { addVar(yyvsp[0].sval); yyval.ival=yyvsp[-2].ival+1; }
 break;
 case 8:
-#line 50 "NanoMorpho.byaccj"
+#line 52 "NanoMorpho.byaccj"
 { addVar(yyvsp[0].sval); yyval.ival+=1; }
 break;
 case 9:
-#line 54 "NanoMorpho.byaccj"
+#line 56 "NanoMorpho.byaccj"
 { yyval.ival=0; }
 break;
 case 10:
-#line 55 "NanoMorpho.byaccj"
+#line 57 "NanoMorpho.byaccj"
 { addVar(yyvsp[0].sval); yyval.ival=yyvsp[-2].ival+1; }
 break;
 case 11:
-#line 56 "NanoMorpho.byaccj"
+#line 58 "NanoMorpho.byaccj"
 { addVar(yyvsp[0].sval); yyval.ival+=1; }
 break;
 case 12:
-#line 60 "NanoMorpho.byaccj"
+#line 62 "NanoMorpho.byaccj"
 { ((Vector<Object>)(yyvsp[-2].obj)).add(yyvsp[-1].obj); yyval.obj=yyvsp[-2].obj; }
 break;
 case 13:
-#line 61 "NanoMorpho.byaccj"
+#line 63 "NanoMorpho.byaccj"
 { yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(yyvsp[-1].obj); }
 break;
 case 14:
-#line 66 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"RETURN",yyvsp[0].obj}; }
-break;
-case 15:
-#line 68 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"STORE",varPos(yyvsp[-2].sval),yyvsp[0].obj}; }
+#line 67 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); }
 break;
 case 16:
-#line 70 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"PRINT", yyvsp[-1].obj}; }
+#line 72 "NanoMorpho.byaccj"
+{ ((Vector<Object>)(yyvsp[-2].obj)).add(yyvsp[0].obj); yyval.obj=yyvsp[-2].obj; }
 break;
 case 17:
-#line 72 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+#line 73 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(yyvsp[0].obj); }
 break;
 case 18:
-#line 74 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+#line 77 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); }
 break;
 case 19:
-#line 76 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"FETCH",varPos(yyvsp[0].sval)}; }
+#line 78 "NanoMorpho.byaccj"
+{ yyval.obj=((Vector<Object>)(yyvsp[-1].obj)).toArray(); }
 break;
 case 20:
-#line 78 "NanoMorpho.byaccj"
-{ yyval.obj = new Object[]{"CALL",yyvsp[-3].sval,yyvsp[-1].obj}; }
+#line 82 "NanoMorpho.byaccj"
+{ ((Vector<Object>)(yyvsp[-2].obj)).add(yyvsp[-1].obj); yyval.obj=yyvsp[-2].obj; }
 break;
 case 21:
-#line 80 "NanoMorpho.byaccj"
+#line 83 "NanoMorpho.byaccj"
+{ yyval.obj=new Vector<Object>(); ((Vector<Object>)(yyval.obj)).add(yyvsp[-1].obj); }
+break;
+case 22:
+#line 88 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"RETURN",yyvsp[0].obj}; }
+break;
+case 23:
+#line 90 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"STORE",varPos(yyvsp[-2].sval),yyvsp[0].obj}; }
+break;
+case 24:
+#line 92 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"PRINT", yyvsp[-1].obj}; }
+break;
+case 25:
+#line 94 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 26:
+#line 96 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 27:
+#line 98 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 28:
+#line 100 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 29:
+#line 102 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 30:
+#line 104 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 31:
+#line 106 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-1].sval,new Object[]{yyvsp[-2].obj,yyvsp[0].obj}}; }
+break;
+case 32:
+#line 108 "NanoMorpho.byaccj"
+{ yyval.obj = yyvsp[-1].obj; }
+break;
+case 33:
+#line 110 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"FETCH",varPos(yyvsp[0].sval)}; }
+break;
+case 34:
+#line 112 "NanoMorpho.byaccj"
+{ yyval.obj = new Object[]{"CALL",yyvsp[-3].sval, ((Vector<Object>)(yyvsp[-1].obj)).toArray() }; }
+break;
+case 35:
+#line 114 "NanoMorpho.byaccj"
+{ yyval.obj=new Object[]{"WHILE",yyvsp[-2].obj,yyvsp[0].obj}; }
+break;
+case 36:
+#line 116 "NanoMorpho.byaccj"
 { yyval.obj = new Object[]{"LITERAL",yyvsp[0].sval}; }
 break;
-#line 547 "y.tab.c"
+#line 645 "y.tab.c"
     }
     yyssp -= yym;
     yystate = *yyssp;

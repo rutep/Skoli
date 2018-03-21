@@ -5,24 +5,26 @@
 
 
 %token<sval> LITERAL,NAME,OPNAME,ERROR,DEFINE,PRINTLN
-%token<sval> OP1,OP2,OP3,OP4,OP5
+%token<sval> OP1,OP2,OP3,OP4,OP5,OP6,OP7
 %token IF,ELSE,ELSIF,WHILE,VAR
 %token RETURN
 
 %left RETURN, '='
-%left OP1
-%right OP2
-%left OP3
-%left OP4
-%left OP5
+%left OP1			// +
+%right OP2		// -
+%left OP3     // /
+%left OP4			// *
+%left OP5			// <
+%left OP6			// >
+%left OP7 		// ==
 
-%type <obj> program ,fundecl, expr, exprs, args, arglist
+%type <obj> program ,fundecl, expr, exprs, args, arglist, body, bodyexpr, ifrest
 %type <ival> ids, idlist
 
 %%
 
 start										/*@ \label{grammarstart} @*/
-  : program { generateProgram(name,((Vector<Object>)($1)).toArray()); }
+  : program 				{ generateProgram(name,((Vector<Object>)($1)).toArray()); }
 	;
 
 program
@@ -71,6 +73,22 @@ arglist
 	|	expr							{ $$=new Vector<Object>(); ((Vector<Object>)($$)).add($1); }
 	;
 
+body
+	: /* empty */ 			{ $$=new Vector<Object>(); }
+	| '{' bodyexpr '}'	{ $$=((Vector<Object>)($2)).toArray(); }
+	;
+
+bodyexpr
+	:	bodyexpr expr	';'		{ ((Vector<Object>)($1)).add($2); $$=$1; }
+	| expr	';'						{ $$=new Vector<Object>(); ((Vector<Object>)($$)).add($1); }
+	;
+
+ifrest
+	:	ELSE body														{ $$ = new Object[]{"IF3",$2}; }
+	| ELSIF '(' expr ')' body							{ $$ = new Object[]{"IF1",$3,$5}; }
+	|	ELSIF '(' expr ')' body ifrest			{ $$ = new Object[]{"IF2",$3,$5,$6}; }
+	;
+
 expr
 	: RETURN expr
 		{ $$ = new Object[]{"RETURN",$2}; }
@@ -82,10 +100,28 @@ expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
 	| expr OP2 expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP3 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP4 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP5 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP6 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP7 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	|	'(' expr ')'
+		{ $$ = $2; }
 	| NAME
 		{ $$ = new Object[]{"FETCH",varPos($1)}; }
 	| NAME '(' args ')'
 		{ $$ = new Object[]{"CALL",$1, ((Vector<Object>)($3)).toArray() }; }
+	| WHILE '(' expr ')' body
+		{ $$=new Object[]{"WHILE",$3,$5}; }
+	| IF '(' expr ')' body
+		{ $$ = new Object[]{"IF1",$3,$5}; }
+	| IF '(' expr ')' body ifrest
+		{ $$ = new Object[]{"IF2",$3,$5,$6}; }
 	| LITERAL
 		{ $$ = new Object[]{"LITERAL",$1}; }
 	;
@@ -178,44 +214,96 @@ static void generateFunction( Object[] f )
 		emit("];");
 	}
 
+static int nextLab = 0;
+
 static void generateExpr( Object[] e )
 {
-		switch( (String)e[0] )
-		{
-		case "FETCH":
-				System.out.println("(Fetch "+e[1]+")");
-				return;
-		case "STORE":
-				generateExpr((Object[])e[2]); System.out.println("(Store "+e[1]+")");
-				return;
-		case "CALL":
-				{
-						Object[] args = (Object[])e[2];
-						if( args.length!=0 ) generateExpr((Object[])args[0]);
-						for( int i=1 ; i<args.length ; i++ )
-						{
-								System.out.println("(Push)");
-								generateExpr((Object[])args[i]);
-						}
-						System.out.println("(Call #\""+e[1]+"[f"+args.length+"]\" "+args.length+")");
-						return;
-				}
-		case "RETURN":
-				generateExpr((Object[])e[1]);
-				System.out.println("(Return)");
-				return;
-		case "LITERAL":
-				System.out.println("(MakeVal "+e[1]+")");
-				return;
-		case "PRINT":
-				generateExpr((Object[])e[1]);
-				emit("(Call #\""+"writeln"+"[f1]\" 1)");
-				return;
-		default:
-				throw new Error("Invalid expression type: "+e[0]);
-		}
+	switch( (String)e[0] )
+	{
+	case "FETCH":
+			System.out.println("(Fetch "+e[1]+")");
+			return;
+	case "STORE":
+			generateExpr((Object[])e[2]); System.out.println("(Store "+e[1]+")");
+			return;
+	case "IF1":
+			{
+					// ["IF1",cond,thenpart]
+					int endlab = nextLab++;
+					generateExpr((Object[])e[1]);
+					emit("(GoFalse _"+endlab+")");
+					generateBody((Object[])e[2]);
+					emit("_"+endlab+":");
+					return;
+			}
+	case "IF2":
+			{
+					// ["IF2",cond,thenpart,elsepart]
+					int elslab = nextLab++;
+					int endlab = nextLab++;
+					generateExpr((Object[])e[1]);
+					emit("(GoFalse _"+elslab+")");
+					generateBody((Object[])e[2]);
+					emit("(Go _"+endlab+")");
+					emit("_"+elslab+":");
+					generateExpr((Object[])e[3]);
+					emit("_"+endlab+":");
+					return;
+			}
+		case "IF3":
+			{
+					// ["IF3",elsepart]
+					int elslab = nextLab++;
+					int endlab = nextLab++;
+					emit("_"+elslab+":");
+					generateBody((Object[])e[1]);
+					emit("_"+endlab+":");
+					return;
+			}
+	case "WHILE":
+			{
+					int startlab = nextLab++;
+					int endlab = nextLab++;
+					System.out.println("_"+startlab+":");
+					generateExpr((Object[])e[1]);
+					System.out.println("(GoFalse _"+endlab+")");
+					generateBody((Object[])e[2]);
+					System.out.println("(Go _"+startlab+")");
+					System.out.println("_"+endlab+":");
+					return;
+			}
+	case "CALL":
+			{
+					Object[] args = (Object[])e[2];
+					if( args.length!=0 ) generateExpr((Object[])args[0]);
+					for( int i=1 ; i<args.length ; i++ )
+					{
+							System.out.println("(Push)");
+							generateExpr((Object[])args[i]);
+					}
+					System.out.println("(Call #\""+e[1]+"[f"+args.length+"]\" "+args.length+")");
+					return;
+			}
+	case "RETURN":
+			generateExpr((Object[])e[1]);
+			System.out.println("(Return)");
+			return;
+	case "LITERAL":
+			System.out.println("(MakeVal "+e[1]+")");
+			return;
+	case "PRINT":
+			generateExpr((Object[])e[1]);
+			emit("(Call #\""+"writeln"+"[f1]\" 1)");
+			return;
+	default:
+			throw new Error("Invalid expression type: "+e[0]);
+	}
 }
 
-
-
-
+static void generateBody( Object[] bod )
+{
+		for( Object e: bod )
+		{
+				generateExpr((Object[])e);
+		}
+}

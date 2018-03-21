@@ -21,7 +21,7 @@ lesgreinir: nanoMorpho.jflex
 # keyrir test.s skrá
 test: NanoMorphoParser.class NanoMorphoParserVal.class
 	java NanoMorphoParser test.s > test.masm 
-	
+
 # Þýðir lokaÞuluna
 compile: test.masm
 	morpho -c test.masm

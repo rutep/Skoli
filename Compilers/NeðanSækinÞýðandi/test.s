@@ -1,15 +1,23 @@
-
-x(s,d){
-  var a;
-
-  a = 1;
-  return 100000000;
+sum(x,b){
+  var heidi;
+  return x+b;
 }
 
 main(){
-  var baz;
-  baz = 1 - 1 + 3 - 1;
-  baz = x(baz,1);
-  println(x(1,1));
-  return 1+1;
+  var a,b;
+  b = 0;
+
+  if ( a = 1 + 2){
+    println("ja");
+  } else {
+    println("nei");
+  };
+  
+  println(a);
+  
+  while(b < 10){
+    b = sum(b,1);
+    println(b);
+  };
+  return 0;
 }

@@ -1,45 +1,57 @@
 "test.mexe" = main in
 !{{
-#"x[f2]" =
+#"sum[f2]" =
 [
 (MakeVal null)
 (Push)
 (Push)
 (Push)
-(MakeVal 1)
-(Store 2)
-(MakeVal 100000000)
+(Fetch 0)
+(Push)
+(Fetch 1)
+(Call #"+[f2]" 2)
 (Return)
 ];
 #"main[f0]" =
 [
 (MakeVal null)
 (Push)
+(Push)
+(MakeVal 0)
+(Store 1)
 (MakeVal 1)
 (Push)
-(MakeVal 1)
-(Call #"-[f2]" 2)
-(Push)
-(MakeVal 3)
-(Push)
-(MakeVal 1)
-(Call #"-[f2]" 2)
+(MakeVal 2)
 (Call #"+[f2]" 2)
 (Store 0)
-(Fetch 0)
-(Push)
-(MakeVal 1)
-(Call #"x[f2]" 2)
-(Store 0)
-(MakeVal 1)
-(Push)
-(MakeVal 1)
-(Call #"x[f2]" 2)
+(GoFalse _0)
+(MakeVal "ja")
 (Call #"writeln[f1]" 1)
-(MakeVal 1)
+(Go _1)
+_0:
+_2:
+(MakeVal "nei")
+(Call #"writeln[f1]" 1)
+_3:
+_1:
+(Fetch 0)
+(Call #"writeln[f1]" 1)
+_4:
+(Fetch 1)
+(Push)
+(MakeVal 10)
+(Call #"<[f2]" 2)
+(GoFalse _5)
+(Fetch 1)
 (Push)
 (MakeVal 1)
-(Call #"+[f2]" 2)
+(Call #"sum[f2]" 2)
+(Store 1)
+(Fetch 1)
+(Call #"writeln[f1]" 1)
+(Go _4)
+_5:
+(MakeVal 0)
 (Return)
 ];
 }}*BASIS;
