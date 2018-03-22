@@ -55,6 +55,7 @@ ids
   | NAME          { addVar($1); $$+=1; }
   ;
 
+
 idlist
   :	/* empty */				{ $$=0; }
 	| idlist ',' NAME 	{ addVar($3); $$=$1+1; }
@@ -117,6 +118,8 @@ expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
 	| expr OP9 expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP10 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
 	|	'(' expr ')'
 		{ $$ = $2; }
 	| NAME
@@ -148,43 +151,43 @@ private void addVar( String name )
 }
 
 private int varPos( String name )
-	{
-		Integer res = varTable.get(name);
-		if( res == null )
-			yyerror("Variable "+name+" does not exist");
-		return res;
-	}
+{
+	Integer res = varTable.get(name);
+	if( res == null )
+		yyerror("Variable "+name+" does not exist");
+	return res;
+}
 
-	int last_token_read;
+int last_token_read;
 
-	private int yylex()
+private int yylex()
+{
+	int yyl_return = -1;
+	try
 	{
-		int yyl_return = -1;
-		try
-		{
-			yylval = null;
-			last_token_read = yyl_return = lexer.yylex();
-			if( yylval==null )
-				yylval = new NanoMorphoParserVal(NanoMorphoParser.yyname[yyl_return]);
-		}
-		catch (IOException e)
-		{
-			System.err.println("IO error: "+e);
-		}
-		return yyl_return;
+		yylval = null;
+		last_token_read = yyl_return = lexer.yylex();
+		if( yylval==null )
+			yylval = new NanoMorphoParserVal(NanoMorphoParser.yyname[yyl_return]);
 	}
+	catch (IOException e)
+	{
+		emit("IO error: "+e);
+	}
+	return yyl_return;
+}
 
-	public void yyerror( String error )
-	{
-		System.out.println("Error:  "+error);
-		System.out.println("Token:  "+NanoMorphoParser.yyname[last_token_read]);
-		System.exit(1);
-	}
-  
-  public NanoMorphoParser( Reader r )
-	{
-		lexer = new NanoMorphoLexer(r,this);
-	}
+public void yyerror( String error )
+{
+	emit("Error:  "+error);
+	emit("Token:  "+NanoMorphoParser.yyname[last_token_read]);
+	System.exit(1);
+}
+
+public NanoMorphoParser( Reader r )
+{
+	lexer = new NanoMorphoLexer(r,this);
+}
 
 public static void main( String args[] )
 throws IOException
@@ -214,7 +217,7 @@ static void generateFunction( Object[] f )
     int varcount = (Integer)f[2];
 		emit("#\""+fname+"[f"+count+"]\" =");
 		emit("[");
-    if( varcount!=0 ) System.out.println("(MakeVal null)");
+    if( varcount!=0 ) emit("(MakeVal null)");
 		for( int i=0 ; i!=varcount ; i++ ) System.out.println("(Push)");    
 		Object[] exprs = (Object[])f[3];
 		for( Object e: exprs ) generateExpr((Object[])e);
@@ -228,10 +231,10 @@ static void generateExpr( Object[] e )
 	switch( (String)e[0] )
 	{
 	case "FETCH":
-			System.out.println("(Fetch "+e[1]+")");
+			emit("(Fetch "+e[1]+")");
 			return;
 	case "STORE":
-			generateExpr((Object[])e[2]); System.out.println("(Store "+e[1]+")");
+			generateExpr((Object[])e[2]); emit("(Store "+e[1]+")");
 			return;
 	case "IF1":
 			{
@@ -271,12 +274,12 @@ static void generateExpr( Object[] e )
 			{
 					int startlab = nextLab++;
 					int endlab = nextLab++;
-					System.out.println("_"+startlab+":");
+					emit("_"+startlab+":");
 					generateExpr((Object[])e[1]);
-					System.out.println("(GoFalse _"+endlab+")");
+					emit("(GoFalse _"+endlab+")");
 					generateBody((Object[])e[2]);
-					System.out.println("(Go _"+startlab+")");
-					System.out.println("_"+endlab+":");
+					emit("(Go _"+startlab+")");
+					emit("_"+endlab+":");
 					return;
 			}
 	case "CALL":
@@ -285,18 +288,18 @@ static void generateExpr( Object[] e )
 					if( args.length!=0 ) generateExpr((Object[])args[0]);
 					for( int i=1 ; i<args.length ; i++ )
 					{
-							System.out.println("(Push)");
+							emit("(Push)");
 							generateExpr((Object[])args[i]);
 					}
-					System.out.println("(Call #\""+e[1]+"[f"+args.length+"]\" "+args.length+")");
+					emit("(Call #\""+e[1]+"[f"+args.length+"]\" "+args.length+")");
 					return;
 			}
 	case "RETURN":
 			generateExpr((Object[])e[1]);
-			System.out.println("(Return)");
+			emit("(Return)");
 			return;
 	case "LITERAL":
-			System.out.println("(MakeVal "+e[1]+")");
+			emit("(MakeVal "+e[1]+")");
 			return;
 	case "PRINT":
 			generateExpr((Object[])e[1]);

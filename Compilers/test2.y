@@ -7,13 +7,13 @@
 %left OR
 %left AND
 %left '!'
-%left OP1
-%right OP2
-%left OP3
-%left OP4
-%left OP5
-%left OP6
-%left OP7
+%left OP1			// +
+%right OP2		// -
+%left OP3     // /
+%left OP4			// *
+%left OP5			// <
+%left OP6			// >
+%left OP7 		// ==
 %left UNOP
 
 %type<obj> expr

@@ -1,25 +1,20 @@
-sum(x,b){
-  var heidi;
-  return x+b;
+;;; Fibonacci
+fibo(n){
+  var x;
+  if(n < 0) {
+    return n * ( 1 - 2); 
+  } elsif( n == 0) { 
+    return n * ( 1 - 2);
+  } else {
+    return fibo(n-1) + fibo(n-2);
+  };
 }
 
 main(){
-  var a,b;
-  b = 0;
-
-  if ( a = 1 + 2){
-    println("ja");
-  } else {
-    println("nei");
+  var n;
+  n = 0;
+  while(n < 12){
+    n = n+1;
+    println(fibo(n));
   };
-  
-  while(b < 10){
-    b = sum(b,1);
-    println(b);
-  };
-
-  println( (1==1) || (1==2)); 
-  println( (1==1) && (1==2)); 
-  println( "true" || "false" );
-  return 0;
 }

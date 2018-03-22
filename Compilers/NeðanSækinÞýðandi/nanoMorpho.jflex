@@ -100,6 +100,11 @@ return NanoMorphoParser.OP9;
 yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.OP8;
 }
+
+"!=" {
+yyparser.yylval = new NanoMorphoParserVal(yytext());
+return NanoMorphoParser.OP10;
+}
 	
 	
 
