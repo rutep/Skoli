@@ -5,7 +5,7 @@
 
 
 %token<sval> LITERAL,NAME,OPNAME,ERROR,DEFINE,PRINTLN
-%token<sval> OP1,OP2,OP3,OP4,OP5,OP6,OP7
+%token<sval> OP1,OP2,OP3,OP4,OP5,OP6,OP7,OP8,OP9,OP10
 %token IF,ELSE,ELSIF,WHILE,VAR
 %token RETURN
 
@@ -17,6 +17,9 @@
 %left OP5			// <
 %left OP6			// >
 %left OP7 		// ==
+%left OP8			// &&
+%left OP9			// ||
+%left OP10 		// !=
 
 %type <obj> program ,fundecl, expr, exprs, args, arglist, body, bodyexpr, ifrest
 %type <ival> ids, idlist
@@ -109,6 +112,10 @@ expr
 	| expr OP6 expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
 	| expr OP7 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP8 expr
+		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
+	| expr OP9 expr
 		{ $$ = new Object[]{"CALL",$2,new Object[]{$1,$3}}; }
 	|	'(' expr ')'
 		{ $$ = $2; }

@@ -13,11 +13,13 @@ main(){
     println("nei");
   };
   
-  println(a);
-  
   while(b < 10){
     b = sum(b,1);
     println(b);
   };
+
+  println( (1==1) || (1==2)); 
+  println( (1==1) && (1==2)); 
+  println( "true" || "false" );
   return 0;
 }

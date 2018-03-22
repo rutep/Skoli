@@ -35,7 +35,7 @@ _STRING=\"([^\"\\]|\\b|\\t|\\n|\\f|\\r|\\\"|\\\'|\\\\|(\\[0-3][0-7][0-7])|\\[0-7
 _CHAR=\'([^\'\\]|\\b|\\t|\\n|\\f|\\r|\\\"|\\\'|\\\\|(\\[0-3][0-7][0-7])|(\\[0-7][0-7])|(\\[0-7]))\'
 _DELIM=[={},()\[\];]
 _NAME=([:letter:]|{_DIGIT})+
-_OPNAME=[!%&\^\|\|]+
+_OPNAME=[!%\^]+
 
 %%
 
@@ -90,6 +90,18 @@ return NanoMorphoParser.OP6;
 yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.OP7;
 }
+
+"||" {
+yyparser.yylval = new NanoMorphoParserVal(yytext());
+return NanoMorphoParser.OP9;
+}
+
+"&&" {
+yyparser.yylval = new NanoMorphoParserVal(yytext());
+return NanoMorphoParser.OP8;
+}
+	
+	
 
 "println" {
 yyparser.yylval = new NanoMorphoParserVal(yytext());
