@@ -1,0 +1,8 @@
+ampl: model daemi5.run;
+CPLEX 12.8.0.0: optimal solution; objective 28750
+0 dual simplex iterations (0 in phase I)
+nrCarsProduced [*] :=
+C  32.5
+L  15
+T  10
+;
