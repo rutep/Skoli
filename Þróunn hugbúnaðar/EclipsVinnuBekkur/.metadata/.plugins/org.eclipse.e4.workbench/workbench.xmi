@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_AL9B4Qq2EeiPObJYYKF6wg" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_APSCsAq2EeiPObJYYKF6wg" bindingContexts="_AL9B5Aq2EeiPObJYYKF6wg">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wb.core.guiEditor&quot; name=&quot;hotelFrame.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotelFrame.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/hotelFrame.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotel.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotel.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/hotel.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;dbHandler.java&quot; tooltip=&quot;hotelApp/src/hotelApp/dbHandler.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/dbHandler.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wb.core.guiEditor&quot; name=&quot;hotelFrame.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotelFrame.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/hotelFrame.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;dbHandler.java&quot; tooltip=&quot;hotelApp/src/hotelApp/dbHandler.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/dbHandler.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotel.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotel.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/hotelApp/src/hotelApp/hotel.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotelFrame.java&quot; tooltip=&quot;Hotel/hotelApp/src/hotelApp/hotelFrame.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Hotel/hotelApp/src/hotelApp/hotelFrame.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_APSCsAq2EeiPObJYYKF6wg" selectedElement="_APSpwAq2EeiPObJYYKF6wg" x="342" y="-26" width="1018" height="722">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_APSCsAq2EeiPObJYYKF6wg" selectedElement="_APSpwAq2EeiPObJYYKF6wg" x="0" y="0" width="1018" height="722">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -47,11 +47,10 @@
           <tags>persp.actionSet:org.eclipse.mylyn.doc.actionSet</tags>
           <tags>persp.actionSet:org.eclipse.mylyn.tasks.ui.navigation</tags>
           <tags>persp.actionSet:org.eclipse.wb.core.ui.actionset</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_APSpxAq2EeiPObJYYKF6wg" selectedElement="_APSpxQq2EeiPObJYYKF6wg" horizontal="true">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_APSpxAq2EeiPObJYYKF6wg" selectedElement="_APSpzgq2EeiPObJYYKF6wg" horizontal="true">
             <children xsi:type="basic:PartSashContainer" xmi:id="_APSpxQq2EeiPObJYYKF6wg" containerData="2594" selectedElement="_APSpxgq2EeiPObJYYKF6wg">
               <children xsi:type="basic:PartStack" xmi:id="_APSpxgq2EeiPObJYYKF6wg" elementId="topLeft" containerData="6258" selectedElement="_APSpxwq2EeiPObJYYKF6wg">
                 <tags>org.eclipse.e4.primaryNavigationStack</tags>
-                <tags>active</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_APSpxwq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_APSp3Aq2EeiPObJYYKF6wg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_APSpyAq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.views.BookmarkView" toBeRendered="false" ref="_ArhSwAq2EeiPObJYYKF6wg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_APSpyQq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.views.ResourceNavigator" toBeRendered="false" ref="_ArhSwQq2EeiPObJYYKF6wg"/>
@@ -69,7 +68,7 @@
                 <children xsi:type="advanced:Placeholder" xmi:id="_APSpzQq2EeiPObJYYKF6wg" elementId="org.eclipse.ant.ui.views.AntView" toBeRendered="false" ref="_Arh50Aq2EeiPObJYYKF6wg"/>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_APSpzgq2EeiPObJYYKF6wg" containerData="7406" selectedElement="_APSp0Aq2EeiPObJYYKF6wg">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_APSpzgq2EeiPObJYYKF6wg" containerData="7406" selectedElement="_APSpzwq2EeiPObJYYKF6wg">
               <children xsi:type="advanced:Placeholder" xmi:id="_APSpzwq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.editorss" containerData="6598" ref="_APSp2Aq2EeiPObJYYKF6wg"/>
               <children xsi:type="basic:PartStack" xmi:id="_APSp0Aq2EeiPObJYYKF6wg" elementId="bottomRight" containerData="3402" selectedElement="_RsMTkAq4EeiacuYgV06cfA">
                 <tags>org.eclipse.e4.secondaryDataStack</tags>
@@ -94,21 +93,24 @@
       </children>
     </children>
     <sharedElements xsi:type="advanced:Area" xmi:id="_APSp2Aq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.editorss" selectedElement="_APSp2Qq2EeiPObJYYKF6wg">
-      <children xsi:type="basic:PartStack" xmi:id="_APSp2Qq2EeiPObJYYKF6wg" elementId="DefaultEditorWorkbook" selectedElement="_6oqGgAq3EeiacuYgV06cfA">
-        <children xsi:type="basic:Part" xmi:id="_6oqGgAq3EeiacuYgV06cfA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="dbHandler.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;dbHandler.java&quot; partName=&quot;dbHandler.java&quot; title=&quot;dbHandler.java&quot; tooltip=&quot;hotelApp/src/hotelApp/dbHandler.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/dbHandler.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+      <children xsi:type="basic:PartStack" xmi:id="_APSp2Qq2EeiPObJYYKF6wg" elementId="DefaultEditorWorkbook" selectedElement="_Rj7dUDtpEeiT0s8zqgRwGQ">
+        <tags>active</tags>
+        <children xsi:type="basic:Part" xmi:id="_Rj7dUDtpEeiT0s8zqgRwGQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="hotelFrame.java" iconURI="platform:/plugin/org.eclipse.wb.core.ui/icons/gui_editor.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.wb.core.guiEditor&quot; name=&quot;hotelFrame.java&quot; partName=&quot;hotelFrame.java&quot; title=&quot;hotelFrame.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotelFrame.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/hotelFrame.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;335&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.wb.core.guiEditor</tags>
+          <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_eQ44IDtpEeiT0s8zqgRwGQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="hotel.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotel.java&quot; partName=&quot;hotel.java&quot; title=&quot;hotel.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotel.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/hotel.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
         </children>
-        <children xsi:type="basic:Part" xmi:id="_-3QN4Aq3EeiacuYgV06cfA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="hotelFrame.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotelFrame.java&quot; partName=&quot;hotelFrame.java&quot; title=&quot;hotelFrame.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotelFrame.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/hotelFrame.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;370&quot; selectionTopPixel=&quot;81&quot;/>&#xD;&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_mP5ZcAq-Eei3F-9iEBZBNA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="hotel.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;hotel.java&quot; partName=&quot;hotel.java&quot; title=&quot;hotel.java&quot; tooltip=&quot;hotelApp/src/hotelApp/hotel.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/hotel.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;43&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+        <children xsi:type="basic:Part" xmi:id="_enL4QDtpEeiT0s8zqgRwGQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="dbHandler.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;dbHandler.java&quot; partName=&quot;dbHandler.java&quot; title=&quot;dbHandler.java&quot; tooltip=&quot;hotelApp/src/hotelApp/dbHandler.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/hotelApp/src/hotelApp/dbHandler.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;115&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -136,8 +138,6 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_APSp3Aq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.png" tooltip="">
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;1&quot; currentWorkingSetName=&quot;Aggregate for window 1517863748976&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
-      <tags>active</tags>
-      <tags>activeOnClose</tags>
       <menus xmi:id="_AtnkgAq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.navigator.ProjectExplorer">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -241,13 +241,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_AkFOAAq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_7voUwC3ZEeiwCalGSthM5A" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_AMi3xgq2EeiPObJYYKF6wg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HeoBQDtpEeiT0s8zqgRwGQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_AMi3xgq2EeiPObJYYKF6wg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_AkFOAQq2EeiPObJYYKF6wg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_AkFOAgq2EeiPObJYYKF6wg" elementId="additions" toBeRendered="false"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_6t-rYAq3EeiacuYgV06cfA" elementId="org.eclipse.ui.edit.text.actionSet.presentation">
+      <children xsi:type="menu:ToolBar" xmi:id="_6t-rYAq3EeiacuYgV06cfA" elementId="org.eclipse.ui.edit.text.actionSet.presentation" visible="false">
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_AsEFUAq2EeiPObJYYKF6wg" elementId="org.eclipse.debug.ui.launchActionSet">
@@ -262,7 +262,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_AkF1Egq2EeiPObJYYKF6wg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_7vr_IC3ZEeiwCalGSthM5A" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_AMiQtQq2EeiPObJYYKF6wg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HerEkDtpEeiT0s8zqgRwGQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_AMiQtQq2EeiPObJYYKF6wg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_AkF1Ewq2EeiPObJYYKF6wg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
