@@ -13,9 +13,7 @@
 (Fetch 0)
 (Push)
 (MakeVal 1)
-(Push)
-(MakeVal 2)
-(Call #"-[f2]" 2)
+(Call #"-[f1]" 1)
 (Call #"*[f2]" 2)
 (Return)
 (Go _1)
@@ -35,7 +33,6 @@ _0:
 (Return)
 (Go _3)
 _2:
-_4:
 (Fetch 0)
 (Push)
 (MakeVal 1)
@@ -49,7 +46,6 @@ _4:
 (Call #"fibo[f1]" 1)
 (Call #"+[f2]" 2)
 (Return)
-_5:
 _3:
 _1:
 ];
@@ -57,14 +53,17 @@ _1:
 [
 (MakeVal null)
 (Push)
+(Push)
 (MakeVal 0)
 (Store 0)
-_6:
+(MakeVal 1)
+(Store 1)
+_4:
 (Fetch 0)
 (Push)
 (MakeVal 12)
 (Call #"<[f2]" 2)
-(GoFalse _7)
+(GoFalse _5)
 (Fetch 0)
 (Push)
 (MakeVal 1)
@@ -73,7 +72,35 @@ _6:
 (Fetch 0)
 (Call #"fibo[f1]" 1)
 (Call #"writeln[f1]" 1)
-(Go _6)
-_7:
+(Go _4)
+_5:
+(Fetch 1)
+(Call #"-[f1]" 1)
+(Call #"writeln[f1]" 1)
+(MakeVal 1)
+(Push)
+(MakeVal 1)
+(Call #"==[f2]" 2)
+(Call #"writeln[f1]" 1)
+(MakeVal 1)
+(Push)
+(MakeVal 1)
+(Call #"<[f2]" 2)
+(Call #"writeln[f1]" 1)
+(MakeVal 2)
+(Push)
+(MakeVal 1)
+(Call #">[f2]" 2)
+(Call #"writeln[f1]" 1)
+(MakeVal 1)
+(Push)
+(MakeVal 2)
+(Call #"!=[f2]" 2)
+(Call #"writeln[f1]" 1)
+(MakeVal 1)
+(Push)
+(MakeVal 2)
+(Call #"!>[f2]" 2)
+(Call #"writeln[f1]" 1)
 ];
 }}*BASIS;

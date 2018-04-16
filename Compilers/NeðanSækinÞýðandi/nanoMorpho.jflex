@@ -22,6 +22,31 @@ public NanoMorphoLexer( java.io.Reader r, NanoMorphoParser yyparser )
 	this.yyparser = yyparser;
 }
 
+static int priority( String opname )
+{
+	switch( opname.charAt(0) )
+	{
+	case '|':
+		return 1;
+	case '&':
+		return 2;
+	case '!':
+	case '=':
+	case '<':
+	case '>':
+		return 3;
+	case '+':
+	case '-':
+		return 4;
+	case '*':
+	case '/':
+	case '%':
+		return 5;
+	default:
+		throw new Error("Invalid opname");
+	}
+}
+
 %}
 
 /* Reglulegar skilgreiningar */
@@ -35,7 +60,7 @@ _STRING=\"([^\"\\]|\\b|\\t|\\n|\\f|\\r|\\\"|\\\'|\\\\|(\\[0-3][0-7][0-7])|\\[0-7
 _CHAR=\'([^\'\\]|\\b|\\t|\\n|\\f|\\r|\\\"|\\\'|\\\\|(\\[0-3][0-7][0-7])|(\\[0-7][0-7])|(\\[0-7]))\'
 _DELIM=[={},()\[\];]
 _NAME=([:letter:]|{_DIGIT})+
-_OPNAME=[!%\^]+
+_OPNAME=[\+\-*/!%&=><&|]+
 
 %%
 
@@ -46,67 +71,11 @@ yyparser.yylval = new NanoMorphoParserVal(yytext());
 return yycharat(0);
 }
 
-{_OPNAME} {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OPNAME;
-}
 
 {_STRING} | {_FLOAT} | {_CHAR} | {_INT} | null | true | false {
 yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.LITERAL;
 }
-
-"+" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP1;
-}
-
-"-" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP2;
-}
-
-"/" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP3;
-}
-
-"*" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP4;
-}
-
-"<" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP5;
-}
-
-">" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP6;
-}
-
-"==" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP7;
-}
-
-"||" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP9;
-}
-
-"&&" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP8;
-}
-
-"!=" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.OP10;
-}
-	
-	
 
 "println" {
 yyparser.yylval = new NanoMorphoParserVal(yytext());
@@ -138,11 +107,6 @@ yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.IF;
 }
 
-"define" {
-yyparser.yylval = new NanoMorphoParserVal(yytext());
-return NanoMorphoParser.DEFINE;
-}
-
 "var" {
 yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.VAR;
@@ -152,6 +116,44 @@ return NanoMorphoParser.VAR;
 yyparser.yylval = new NanoMorphoParserVal(yytext());
 return NanoMorphoParser.NAME;
 }
+
+"&&" {
+	return NanoMorphoParser.AND;
+}
+
+"||" {
+	return NanoMorphoParser.OR;
+}
+
+"!" {
+	return NanoMorphoParser.NOT;
+}
+
+{_OPNAME} {
+	yyparser.yylval = new NanoMorphoParserVal(yytext());
+	switch( yytext().charAt(0) )
+	{
+	case '|':
+		return NanoMorphoParser.OP1;
+	case '&':
+		return NanoMorphoParser.OP2;
+	case '!':
+	case '=':
+	case '<':
+	case '>':
+		return NanoMorphoParser.OP3;
+	case '+':
+	case '-':
+		return NanoMorphoParser.OP4;
+	case '*':
+	case '/':
+	case '%':
+		return NanoMorphoParser.OP5;
+	default:
+		throw new Error("Invalid operation name");
+	}
+}
+
 
 ";;;".*$ {
 }

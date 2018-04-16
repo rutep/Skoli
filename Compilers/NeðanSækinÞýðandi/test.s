@@ -2,7 +2,7 @@
 fibo(n){
   var x;
   if(n < 0) {
-    return n * ( 1 - 2); 
+    return n * -1; 
   } elsif( n == 0) { 
     return n * ( 1 - 2);
   } else {
@@ -11,10 +11,18 @@ fibo(n){
 }
 
 main(){
-  var n;
+  var n,y;
   n = 0;
+  y = 1;
   while(n < 12){
     n = n+1;
     println(fibo(n));
   };
+  println(-y);
+  println( 1 == 1);
+  println( 1 < 1);
+  println( 2 > 1);
+  println( 1 != 2);
+  println( 1 !> 2);
+  
 }
