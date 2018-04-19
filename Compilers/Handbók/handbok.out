@@ -1,0 +1,36 @@
+\BOOKMARK [1][-]{section.1}{Inngangur}{}% 1
+\BOOKMARK [1][-]{section.2}{Notkun og uppsetning}{}% 2
+\BOOKMARK [1][-]{section.3}{Málfræði}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Frumeiningar málsins}{section.3}% 4
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Athugasemdir}{subsection.3.1}% 5
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Lykilorð}{subsection.3.1}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Mállýsing}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Merking málsins}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Gildi}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Breytur}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Merking segða}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.3.1}{null-segð}{subsection.4.3}% 12
+\BOOKMARK [3][-]{subsubsection.4.3.2}{true-segð}{subsection.4.3}% 13
+\BOOKMARK [3][-]{subsubsection.4.3.3}{false-segð}{subsection.4.3}% 14
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Heiltölusegð}{subsection.4.3}% 15
+\BOOKMARK [3][-]{subsubsection.4.3.5}{Fleytitölusegð}{subsection.4.3}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.6}{Stafsegð}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.7}{Strengsegð}{subsection.4.3}% 18
+\BOOKMARK [3][-]{subsubsection.4.3.8}{Listasegð}{subsection.4.3}% 19
+\BOOKMARK [3][-]{subsubsection.4.3.9}{return-segð}{subsection.4.3}% 20
+\BOOKMARK [3][-]{subsubsection.4.3.10}{Röksegðir}{subsection.4.3}% 21
+\BOOKMARK [3][-]{subsubsection.4.3.11}{Kallsegð}{subsection.4.3}% 22
+\BOOKMARK [3][-]{subsubsection.4.3.12}{Tvíundaraðgerðir}{subsection.4.3}% 23
+\BOOKMARK [3][-]{subsubsection.4.3.13}{Einundaraðgerðir}{subsection.4.3}% 24
+\BOOKMARK [3][-]{subsubsection.4.3.14}{if-segð}{subsection.4.3}% 25
+\BOOKMARK [3][-]{subsubsection.4.3.15}{while-segð}{subsection.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.4}{Föll og forrit}{section.4}% 27
+\BOOKMARK [1][-]{section.5}{Til hliðsjónar ... hendið þessu eftir notkun}{}% 28
+\BOOKMARK [2][-]{subsection.5.1}{Mállýsing með syntax pakkanum í LaTeX}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.2}{Ýmis málrit með hjálp syntax pakkans í LaTeX}{section.5}% 30
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Forrit}{subsection.5.2}% 31
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Föll}{subsection.5.2}% 32
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Stofnar}{subsection.5.2}% 33
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Skilgreiningar}{subsection.5.2}% 34
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Segðir}{subsection.5.2}% 35
+\BOOKMARK [3][-]{subsubsection.5.2.6}{Annar möguleiki}{subsection.5.2}% 36

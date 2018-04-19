@@ -1,0 +1,25 @@
+\select@language {icelandic}
+\contentsline {section}{\numberline {1}Inngangur}{2}{section.1}
+\contentsline {paragraph}{}{2}{section*.2}
+\contentsline {section}{\numberline {2}Notkun og uppsetning}{2}{section.2}
+\contentsline {paragraph}{Git}{2}{section*.3}
+\contentsline {paragraph}{morpho}{2}{section*.4}
+\contentsline {paragraph}{makefile}{2}{section*.5}
+\contentsline {section}{\numberline {3}Málfræði}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Frumeiningarmálsins}{2}{subsection.3.1}
+\contentsline {paragraph}{NAME}{2}{section*.6}
+\contentsline {paragraph}{LITERAL}{2}{section*.7}
+\contentsline {paragraph}{OPNAME}{2}{section*.8}
+\contentsline {subsubsection}{\numberline {3.1.1}Athugasemdir}{2}{subsubsection.3.1.1}
+\contentsline {paragraph}{Dæmi um athugasemd}{2}{section*.9}
+\contentsline {subsection}{\numberline {3.2}Mállýsing}{2}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Forrit}{3}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Föll}{3}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Stofnar}{3}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Segðir}{3}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}Merking málsins}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Gildi}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Breytur}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Merking segða}{4}{subsection.4.3}
+\contentsline {paragraph}{Boolean segðir}{4}{section*.10}
+\contentsline {paragraph}{Stafsegð}{4}{section*.11}

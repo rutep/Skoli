@@ -1,0 +1,183 @@
+%%
+%%  Beinagrind fyrir Morpho handbók í LaTeX.
+%%  Til að keyra þetta gegnum LaTeX forritið
+%%  má t.d. nota pdflatex í cygwin með eftir-
+%%  farandi skipun í bash:
+%%
+%%       pdflatex handbok
+%%   eða (virkar líka í cmd):
+%%       bash -c 'pdflatex handbok'
+%%
+\documentclass[12pt,a4paper]{article}
+\usepackage[icelandic]{babel}
+\usepackage[pdftex]{hyperref}
+%\usepackage{makeidx,smplindx,fancyhdr,graphicx,times,multicol,comment}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[rounded]{syntax}
+\newenvironment{repnull}[0]{%
+	\begin{stack}
+	\\
+	\begin{rep}
+}{%
+	\end{rep}
+	\end{stack}
+}
+\newenvironment{málrit}[1]{%
+	\par\noindent\begin{minipage}{\linewidth}\vspace{0.5em}\begin{quote}\noindent%
+	\hspace*{-2em}\synt{#1}:\hfill\par%
+	\noindent%
+	\begin{minipage}{\linewidth}\begin{syntdiag}%
+}{%
+	\end{syntdiag}\end{minipage}\end{quote}\end{minipage}%
+}
+
+\begin{document}
+\sloppy
+\title{Handbók fyrir NanoMorpho}
+\author{Pétur Daníel Ámundason}
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\section{Inngangur}
+
+\paragraph{} NanoMorpho er neðansækin þýðandi.
+
+\section{Notkun og uppsetning}
+
+\paragraph{Git}
+
+\paragraph{morpho}
+
+\paragraph{makefile}
+
+\section{Málfræði}
+
+\subsection{Frumeiningarmálsins}
+
+\paragraph{NAME} Er orð sem lítursvona út í reg expr ([a-z]|[0-1])+
+
+\paragraph{LITERAL} Boolean, string, char, int
+
+\paragraph{OPNAME} [+-*/!\%\&=><|]+ 
+
+\subsubsection{Athugasemdir}
+
+\paragraph{Dæmi um athugasemd} ;;; Þetta er athugarsemd
+
+\subsection{Mállýsing}
+
+\begin{málrit}{idlist}
+	\begin{stack}
+		\\
+		\begin{rep} <NAME> \\ `,' \end{rep}
+	\end{stack}
+\end{málrit}%
+
+\begin{málrit}{exprs}
+	\begin{rep}
+		<expr> ';'
+	\end{rep}
+\end{málrit}%
+
+\subsubsection{Forrit}
+
+\begin{málrit}{program}
+	\begin{rep}
+		<function>
+	\end{rep}
+\end{málrit}
+
+\subsubsection{Föll}
+
+\begin{málrit}{function}
+	<NAME> `(' <idlist> `)' '\{' <VAR>  <idlist> ';' <exprs> '\}'
+\end{málrit}
+
+\subsubsection{Stofnar}
+\begin{málrit}{body}
+	`{' 
+		\begin{rep}
+		<expr> ';'	
+		\end{rep}
+	`}' 
+\end{málrit}
+
+\subsubsection{Segðir}
+
+\begin{málrit}{expr}
+	\begin{stack}
+		<RETURN> <expr>	
+		\\
+		<NAME> '=' <expr>
+		\\
+		<NOT> <expr>
+		\\
+		<expr> <AND> <expr>
+		\\
+		`while' '(' <expr> ')' <body>
+		\\
+		'println' '(' <expr> ')'
+		\\
+		`if' '(' <expr> ')' <body> <ifrest>
+		\\
+		`if' '(' <expr> ')' <body>
+		\\
+		<expr> <OP> <expr>
+		\\
+		'(' <expr> ')'
+		\\
+		<NAME> '(' arg ')'
+		\\
+		<OP> <expr>
+		\\
+		<NAME>
+		\\
+		<int>
+		\\
+		<float>
+		\\
+		<string>
+		\\
+		<char>
+		\\
+		`true'
+		\\
+		`false'
+		\\
+		`null'
+	\end{stack}
+\end{málrit}
+
+\begin{málrit}{arg}
+	\begin{rep}
+		expr \\ ','
+	\end{rep}
+\end{málrit}{arg}
+
+\begin{málrit}{ifrest}
+	\begin{stack}
+		'else' <body>
+		\\
+		'elseif' '(' <expr> ')' <body>
+		\\
+		'elseif' '(' <expr> ')' <body> <ifrest>
+	\end{stack}
+\end{málrit}
+		
+\section{Merking málsins}
+
+\subsection{Gildi}
+
+\subsection{Breytur}
+
+\subsection{Merking segða}
+
+\paragraph{Boolean segðir} true false
+
+\paragraph{Stafsegð} 's' 
+
+\end{document}
