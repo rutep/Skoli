@@ -24,5 +24,6 @@ main(){
   println( 2 > 1);
   println( 1 != 2);
   println( 1 !> 2);
+  if(true);
   
 }
