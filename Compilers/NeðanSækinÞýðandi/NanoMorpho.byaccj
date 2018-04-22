@@ -78,8 +78,7 @@ arglist
 	;
 
 body
-	: /* empty */ 			{ $$=new Vector<Object>(); }
-	| '{' bodyexpr '}'	{ $$=((Vector<Object>)($2)).toArray(); }
+	: '{' bodyexpr '}'	{ $$=((Vector<Object>)($2)).toArray(); }
 	;
 
 bodyexpr
