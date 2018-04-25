@@ -15,6 +15,8 @@
 \usepackage{times}
 \usepackage[T1]{fontenc}
 \usepackage[rounded]{syntax}
+\usepackage{listings}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
 \newenvironment{repnull}[0]{%
 	\begin{stack}
 	\\
@@ -44,15 +46,46 @@
 
 \section{Inngangur}
 
-\paragraph{} NanoMorpho er neðansækin þýðandi.
+\paragraph{En einn þýðandi NanoMorpho} Einföld útgáfa af neðan sækjum þýðanda með infix reikniaðgerðum.
 
 \section{Notkun og uppsetning}
 
-\paragraph{Git}
+\paragraph{Uppsetning} Notast skal við git til þess að sækja Þýðanda, þáttar og lesgreinis skrár.
 
-\paragraph{morpho}
+\paragraph{Git} \$ git clone https://github.com/rutep/NanoMorpho.git
+\\
+Þegar náð hefur verið í skrár þá eru þær þrjár skrár. \textbf{NanoMorphoLexer.java} sem er lesgreinir, \textbf{NanoMorphoParser.java} og \textbf{NanoMorphoParserVal.java} sem eru þátari og milli þulusmiður.
 
-\paragraph{makefile}
+\paragraph{morpho} Morpho skrárnar eru til þess að geta þýtt  \textbf{NanoMorpho} skrár yfir á morpho smalarmál, smalarmál yfir í keirlsu hæfa morpho skrá og svo keirt forritið í gegnum morpho.
+
+\paragraph{makefile} Hér fyrir neðan sést makefile skrá sem hægt er að nota til þess að auðvelda sér þýðingu og keirslu \textbf{NanoMorpho} forrits. Ef búnaður er ekki til staðar til þess að nota makefile skrá þá er hægt að keyra beynt skipanir á skipunarlínu ef java þýðandi og morpho er upp sett.
+
+\begin{itemize}
+	\item \$ javac NanoMorphoLexer.java NanoMorphoParser.java NanoMorphoParserVal.java 
+	\item Skipuninn að ofan þýðir java skrár
+	\item \$ java NanoMorphoParser test.s > test.masm
+	\item Býr til morpho smalarmáls skrá test.masm
+	\item \$ morpho -c test.masm
+	\item \$ morpho test
+	\item Býr til test.mexem skrá og svo keyrir forrit
+\end{itemize}
+
+\begin{lstlisting}
+SHELL=/usr/bin/env /bin/bash
+
+parser: NanoMorphoParser.java NanoMorphoParserVal.java NanoMorphoLexer.java
+javac NanoMorphoLexer.java NanoMorphoParser.java NanoMorphoParserVal.java
+
+test: NanoMorphoParser.class NanoMorphoParserVal.class
+java NanoMorphoParser test.s > test.masm 
+
+compile: test.masm
+morpho -c test.masm
+
+run: test.mexe
+morpho test 
+	
+\end{lstlisting}
 
 \section{Málfræði}
 
