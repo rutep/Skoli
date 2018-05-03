@@ -52,11 +52,8 @@ _1:
 [
 (MakeVal null)
 (Push)
-(Push)
 (MakeVal 0)
 (Store 0)
-(MakeVal 1)
-(Store 1)
 _4:
 (Fetch 0)
 (Push)
@@ -73,5 +70,33 @@ _4:
 (Call #"writeln[f1]" 1)
 (Go _4)
 _5:
+_6:
+(Fetch 0)
+(Push)
+(MakeVal 0)
+(Call #"!=[f2]" 2)
+(GoFalse _7)
+(Fetch 0)
+(Push)
+(MakeVal 1)
+(Call #"-[f2]" 2)
+(Store 0)
+(Go _6)
+_7:
+(Fetch 0)
+(Push)
+(MakeVal 2)
+(Push)
+(MakeVal 1)
+(Call #"-[f1]" 1)
+(Call #"*[f2]" 2)
+(Push)
+(MakeVal 2)
+(Call #"-[f1]" 1)
+(Call #"/[f2]" 2)
+(Call #"+[f2]" 2)
+(Call #"writeln[f1]" 1)
+(MakeVal true)
+(Call #"writeln[f1]" 1)
 ];
 }}*BASIS;

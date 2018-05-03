@@ -40,33 +40,35 @@
 \author{Pétur Daníel Ámundason}
 \maketitle
 
+\pagebreak
+
 \tableofcontents
 
 \pagebreak
 
 \section{Inngangur}
 
-\paragraph{En einn şığandi NanoMorpho} Einföld útgáfa af neğan sækjum şığanda meğ infix reikniağgerğum.
+\paragraph{Enn einn şığandi NanoMorpho} Einföld útgáfa af Morpho. NanoMorpho er bálkmótağ mál.
 
 \section{Notkun og uppsetning}
 
-\paragraph{Uppsetning} Notast skal viğ git til şess ağ sækja Şığanda, şáttar og lesgreinis skrár.
+\paragraph{Uppsetning} Notast skal viğ Git til şess ağ sækja şığandan.
 
-\paragraph{Git} \$ git clone https://github.com/rutep/NanoMorpho.git
+\paragraph{Git} \$ Git clone https://Github.com/rutep/NanoMorpho.Git
 \\
-Şegar náğ hefur veriğ í skrár şá eru şær şrjár skrár. \textbf{NanoMorphoLexer.java} sem er lesgreinir, \textbf{NanoMorphoParser.java} og \textbf{NanoMorphoParserVal.java} sem eru şátari og milli şulusmiğur.
+Şegar náğ hefur veriğ í skrár şá eru şær şrjár skrár. \textbf{NanoMorphoLexer.java} sem er lesgreinir, \textbf{NanoMorphoParser.java} og \textbf{NanoMorphoParserVal.java} sem sjá um şáttun og milli şulusmíği.
 
-\paragraph{morpho} Morpho skrárnar eru til şess ağ geta şıtt  \textbf{NanoMorpho} skrár yfir á morpho smalarmál, smalarmál yfir í keirlsu hæfa morpho skrá og svo keirt forritiğ í gegnum morpho.
+\paragraph{Morpho} Morphoskrárnar eru til şess ağ geta şıtt  \textbf{NanoMorpho} skrár  yfir á Morpho smalarmál og smalarmáliğ yfir í keyrslu hæfa Morphoskrá. Şegar fyrrnefnda er búiğ şá er hægt ağ keyra forritiğ í gegnum Morpho.
 
-\paragraph{makefile} Hér fyrir neğan sést makefile skrá sem hægt er ağ nota til şess ağ auğvelda sér şığingu og keirslu \textbf{NanoMorpho} forrits. Ef búnağur er ekki til stağar til şess ağ nota makefile skrá şá er hægt ağ keyra beynt skipanir á skipunarlínu ef java şığandi og morpho er upp sett.
+\paragraph{makefile} Hér fyrir neğan sést makefile skrá sem hægt er ağ nota til şess ağ auğvelda sér şığingu og keyrslu \textbf{NanoMorpho} forrits. Ef búnağur er ekki til stağar til şess ağ nota makefile skrá şá er hægt ağ keyra beint skipanir á skipunarlínu ef java şığandi og Morpho er upp sett.
 
 \begin{itemize}
 	\item \$ javac NanoMorphoLexer.java NanoMorphoParser.java NanoMorphoParserVal.java 
 	\item Skipuninn ağ ofan şığir java skrár
 	\item \$ java NanoMorphoParser test.s > test.masm
-	\item Bır til morpho smalarmáls skrá test.masm
-	\item \$ morpho -c test.masm
-	\item \$ morpho test
+	\item Bır til Morpho smalarmáls skrá test.masm
+	\item \$ Morpho -c test.masm
+	\item \$ Morpho test
 	\item Bır til test.mexem skrá og svo keyrir forrit
 \end{itemize}
 
@@ -80,27 +82,24 @@ test: NanoMorphoParser.class NanoMorphoParserVal.class
 java NanoMorphoParser test.s > test.masm 
 
 compile: test.masm
-morpho -c test.masm
+Morpho -c test.masm
 
 run: test.mexe
-morpho test 
+Morpho test 
 	
 \end{lstlisting}
 
 \section{Málfræği}
+\subsection{Frumeiningar málsins}
 
-\subsection{Frumeiningarmálsins}
+\paragraph{Samhengislaust mál} Línubil og línu endingar hafa enga merkingu fyrir şíğandan og væri hægt ağ skrifa heilu forritin í einni línu meğ engum línubilum.
+\subsubsection{Athugasemd}
+\paragraph{Dæmi um athugasemd} ;;; Hunsağ af şığanda
+Şığandinn mun hunsa allt sem kemur á eftir athugarsemdar í şeirri línu sem hún er.
 
-\paragraph{NAME} Er orğ sem lítursvona út í reg expr ([a-z]|[0-1])+
-
-\paragraph{LITERAL} Boolean, string, char, int
-
-\paragraph{OPNAME} [+-*/!\%\&=><|]+ 
-
-\subsubsection{Athugasemdir}
-
-\paragraph{Dæmi um athugasemd} ;;; Şetta er athugarsemd
-
+\subsubsection{Lykilorğ}
+Lykilorğin í şığandanum eru:\\
+else, elsif, false, if, null, return, true, var, while, println
 \subsection{Mállısing}
 
 \begin{málrit}{idlist}
@@ -189,7 +188,7 @@ morpho test
 	\begin{rep}
 		expr \\ ','
 	\end{rep}
-\end{málrit}{arg}
+\end{málrit}
 
 \begin{málrit}{ifrest}
 	\begin{stack}
@@ -202,15 +201,137 @@ morpho test
 \end{málrit}
 		
 \section{Merking málsins}
+NanoMorpho skiptis upp í ağ şağ er eitt main fall sem keyrt er og úr şví er hægt ağ kalla á önnur skilgreind föll.
 
-\subsection{Gildi}
+\begin{lstlisting}
+	foo(){
+		var a;
+		a = 1;
+		return a;	
+	}
+	
+	main(){
+		var a;
+		a = foo();
+	}
+\end{lstlisting}
+
 
 \subsection{Breytur}
 
+Fyrsta gildisveitinginn sem á sér stağ er şegar breyta er búinn til , şá mun hún innihalda null gildiğ. Seinna meir í stofni falls er hægt ağ gefa henni nıtt gildi. Notkunardæmi er hér fyir neğan. Breytunöfn verğa hafa a.m.k. einn bókstaf í sér og geta innihaldiğ tölur.
+
+\begin{lstlisting}
+	main(){
+		var a;	;;; a = null
+		a = 0;  ;;; a = 0
+	}
+\end{lstlisting}
+
+
 \subsection{Merking segğa}
+\subsubsection{null-segğ}
+Şjónar şeim tilgangi ağ sına fram á ağ breyta hafi ekki veriğ gefiğ neitt gildi.
+\subsubsection{true-false segğ}
+Boolean gildi true notağ í boolean reikningi.
+\subsubsection{false-segğ}
+Boolean gidli false notağ í boolean reikningi.
+\subsubsection{Heiltölusegğ}
+Heiltölu gildi.
+\subsubsection{Fleytitölusegğ}
+Fleititölu gildi.
+\subsubsection{Stafsegğ}
+Stafsegğar gildi 's'.
+\subsubsection{Strengsegğ}
+Strengsegğar gildi "Strengsegğ".
+\pagebreak
+\subsubsection{return-segğ}
+Return skilar gildi úr falli. Notkunardæmi:
+\begin{lstlisting}
+	foo(){
+		return 1;	;;; Skilar 1 ef kallağ er á
+	}	
+	
+\end{lstlisting}
+\subsubsection{Röksegğir}
+Röksegğir eru  or ||, and \&\&, !=, >=, <= og == .\\
+Şær eru ağ mestu leiti reiknağar frá vinstri til hægri. Notkunardæmi:
 
-\paragraph{Boolean segğir} true false
+\begin{lstlisting}
+				;;; gefur 
+	1 != 2 			;;; true
+	true || false 		;;; true
+	true && true 		;;; true
+	1 >= 1			;;; true
+	1 <= 1			;;; true
+	1 == 1			;;; true
+\end{lstlisting}
+\subsubsection{Kallsegğ}
+Fall eru annağ hvort úr basis eğa gert af notenda. Fall tekur inn breytur sem viğföng og reikningur úr şeim er frá vinstri til hægri. Dæmi um slíkt fall sem notendi getur gert og notkun:
+\begin{lstlisting}
+	foo(a,b,s){
+		var t;
+		return 1;
+	}
+	
+	main(){
+		var x;
+		x = foo(1+1,2-5,-3);	;;; foo fall skilar einum
+	}
+\end{lstlisting}
 
-\paragraph{Stafsegğ} 's' 
+\subsubsection{Tvíundarağgerğir}
+Tvíundarağgerğir eru á infix formi.
+\subsubsection{Einundarağgerğir}
+Einundarağgerğir hafa hæsta forgang.
+\pagebreak
+\subsubsection{if-segğ}
+Hér er dæmi um notkun á if elsif else segğum. Ef s1 er satt şá body1. Ef s1 ósatt og s2 satt şá body2. Ef s1 og s2 ósatt şá body3.
+\begin{lstlisting}
+	main(){
+		var s1,s2,s3;
+		if(s1){
+			;;; body1		
+		} elsif (s2) {
+			;;; body2
+		} else {
+			;;; body3		
+		};
+	}
+\end{lstlisting}
+\subsubsection{while-segğ}
+while-segğin mun alltaf keyrast ef ástandiğ s1 helst satt. Dæmi um while-segğ. Í gefni while-segğ ef röksegğini s1 helst sönn şá mun fyrir hvert stef í while lykkju i hækka um einn.
+
+\begin{lstlisting}
+	main(){
+	var i;
+	i = 0;
+	while(s1){
+		i = i + 1;		
+	};
+	}
+\end{lstlisting}
+\subsection{Föll og forrit}
+Hér er dæmi um heilt NanoMorpho forrit. Şetta forrit reiknar fyrstu 12 Fibonacci tölurnar.
+
+\begin{lstlisting}
+;;; Fibonacci
+	fibo(n){
+  		var ;
+  		if(n < 0) {
+    		return n * -1; 
+  		} elsif( n == 0) { 
+    		return n * ( 1 - 2);
+  		} else {
+    		return fibo(n-1) + fibo(n-2);
+  		};
+	}
+	main(){
+  		var n;
+  		n = 0;
+  		while(n < 12){
+    			n = n+1;
+    			println(fibo(n)); }; } 
+\end{lstlisting}
 
 \end{document}

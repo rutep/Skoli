@@ -1,0 +1,48 @@
+\select@language {icelandic}
+\contentsline {section}{\numberline {1}Software Engineer}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Definition}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Important skills}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}General project work}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Reasons for failure}{3}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Excessive schedule}{3}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Changing needs}{3}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Lack of documented project plan}{3}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Causes of Software Project Troubles}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}Software Process Models}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Plan-driven}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Agile software process models}{3}{subsection.3.2}
+\contentsline {section}{\numberline {4}Requirements Engineering}{3}{section.4}
+\contentsline {section}{\numberline {5}Software Engineer}{3}{section.5}
+\contentsline {subsection}{\numberline {5.1}Definition}{3}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Important skills}{4}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Functional requirement}{6}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Quality requirement}{6}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}General condition}{6}{subsubsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.4}Two conflict example}{6}{subsubsection.5.2.4}
+\contentsline {subsection}{\numberline {5.3}Technical detail in user story}{6}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}How much technical detail should be in a user story}{6}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Example: good user story}{6}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Example: bad user story}{6}{subsubsection.5.3.3}
+\contentsline {section}{\numberline {6}Effort Estimation}{6}{section.6}
+\contentsline {subsection}{\numberline {6.1}Planing poker}{6}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Based on differing skills and experience, individual team members may estimate different efforts for any requirement. Discuss whether planning poker eliminates this problem}{6}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}Assume your team came up with an effort spread of 8, 13, 40 and 40 for a particular user story. Interpret and deal with the result}{6}{subsubsection.6.1.2}
+\contentsline {subsection}{\numberline {6.2}Anchoring effect}{6}{subsection.6.2}
+\contentsline {section}{\numberline {7}Project Planning}{6}{section.7}
+\contentsline {subsection}{\numberline {7.1}Assume your 4-person team completed tasks comprising 20 person-days in a 2-week iteration. Calculate the velocity you should assume when planning the next iteration}{6}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Imagine the a client expects more functionality in a release then you will be able to complete until the deadline, based on your effort estimates. Suggest a strategy you could use in this situation}{6}{subsection.7.2}
+\contentsline {section}{\numberline {8}Object-Oriented Analysis and Design}{6}{section.8}
+\contentsline {subsection}{\numberline {8.1}UML University library diagram}{6}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Generalization and specialization seem to be contracting the same concept(inheritance). Explain why both terms are accurate nevertheless}{6}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Two key differences between abstract classes and interfaces in java}{6}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Explain the difference between aggregation and composition of classes in an object-oriented model}{6}{subsection.8.4}
+\contentsline {section}{\numberline {9}Object-Oriented Programming}{6}{section.9}
+\contentsline {subsection}{\numberline {9.1}Attributes}{6}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Explain why any static methods of java class can access only the static attributes of the class}{6}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Class variable}{6}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Instance variable}{6}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Instance vs Class}{6}{subsection.9.5}
+\contentsline {subsection}{\numberline {9.6}Explain how singleton pattern ensures that only one instance of a class can exists in the system}{6}{subsection.9.6}
+\contentsline {section}{\numberline {10}Testing}{6}{section.10}
+\contentsline {section}{\numberline {11}Design Patterns}{7}{section.11}
+\contentsline {section}{\numberline {12}Explain the purpose of Proxy pattern, and give an example of a scenario (outside the travel domain) where its use would be beneficial}{7}{section.12}

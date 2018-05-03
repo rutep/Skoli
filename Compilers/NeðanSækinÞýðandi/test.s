@@ -11,11 +11,18 @@ fibo(n){
 }
 
 main(){
-  var n,y;
+  var n;
   n = 0;
-  y = 1;
   while(n < 12){
     n = n+1;
     println(fibo(n));
   };
+
+  while(n != 0) {
+    n = n - 1;
+  };
+
+  println(n + 2 * -1 / -2);
+  println( false && true || false && true);
+
 }
