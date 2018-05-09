@@ -1,0 +1,16 @@
+.app {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.app__header {
+  margin-bottom: 40px;
+}
+
+.app__heading {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  text-align: center;
+}

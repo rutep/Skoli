@@ -1,0 +1,29 @@
+.department {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.department__icon {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.department__button {
+  border: 0;
+  font-size: 16px;
+  font-family: 'Noto sans', sans-serif;
+}
+
+.table th {
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+}
+
+.table tr:nth-child(2n) {
+  background-color: #eee;
+}

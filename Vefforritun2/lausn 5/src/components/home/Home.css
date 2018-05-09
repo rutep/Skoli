@@ -1,0 +1,16 @@
+.home__heading {
+  margin-bottom: 20px;
+}
+
+.home__stats {
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.home__term {
+  flex: 0 0 60%;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
