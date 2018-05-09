@@ -1,46 +1,47 @@
-require('dotenv').config();
-
+const path = require('path');
 const express = require('express');
-const auth = require('./auth');
-const api = require('./api');
 
-const {
-  PORT: port = 3000,
-  HOST: host = '127.0.0.1',
-} = process.env;
+const articles = require('./articles');
 
 const app = express();
-app.use(express.json());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next();
-});
+// app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.use(auth);
-app.use('/', api);
+app.locals.parseDate = (d) => {
+  const date = new Date(d);
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${day}.${month}.${year}`;
+};
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img', express.static(path.join(__dirname, 'articles/img')));
+
+app.use('/', articles);
 
 function notFoundHandler(req, res, next) { // eslint-disable-line
-  res.status(404).json({ error: 'Not found' });
+  const title = 'Fannst ekki';
+  const message = 'Ó nei, efnið finnst ekki!';
+  res.status(404).render('error', { title, message });
 }
 
 function errorHandler(err, req, res, next) { // eslint-disable-line
   console.error(err);
-
-  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
-    return res.status(400).json({ error: 'Invalid json' });
-  }
-
-  return res.status(500).json({ error: 'Internal server error' });
+  const title = 'Villa kom upp';
+  const message = '';
+  res.status(500).render('error', { title, message });
 }
 
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(port, () => {
-  if (host) {
-    console.info(`Server running at http://${host}:${port}/`);
-  }
+const hostname = '127.0.0.1';
+const port = 4002;
+
+app.listen(port, hostname, () => {
+  console.info(`Server running at http://${hostname}:${port}/`);
 });

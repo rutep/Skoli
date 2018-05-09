@@ -5,6 +5,7 @@
 *.js text
 *.ejs text
 *.json text
+*.sql text
 
 *.zip  binary
 *.gif  binary
