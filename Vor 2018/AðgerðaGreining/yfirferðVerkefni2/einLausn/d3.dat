@@ -1,0 +1,13 @@
+data;
+
+set MOVEMENT := wal	jog	swim	mac	ind	push ;
+
+param:		cal		t_max :=
+	wal		100		5
+	jog		200		2
+	swim	300		3
+	mac		150		3.5
+	ind		300		3
+	push	500		0.5	;
+	
+param minimum := 2000;

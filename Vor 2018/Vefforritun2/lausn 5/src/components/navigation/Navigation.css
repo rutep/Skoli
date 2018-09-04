@@ -1,0 +1,21 @@
+.navigation {
+  text-align: left;
+}
+
+.navigation__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+.navigation__item {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.navigation__link--active {
+  font-weight: bold;
+}

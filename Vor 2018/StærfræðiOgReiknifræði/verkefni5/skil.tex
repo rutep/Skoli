@@ -1,0 +1,97 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{mathtools}
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color
+	basicstyle=\footnotesize,        % size of fonts used for the code
+	breaklines=true,                 % automatic line breaking only at whitespace
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},       % keyword style
+	stringstyle=\color{mymauve},     % string literal style
+}
+\begin{document}
+	\title{Stærfræði og reiknifræði\\
+		Verkefni 5\\
+		Pétur Daníel Ámundason\\
+	}
+	\maketitle
+	
+	\section*{1.}
+	
+	\subsection*{a)}
+	Svar: Útkoman er skilgreind $ A^{T}A + C = 10 * 10$
+	
+	\subsection*{b)}
+	
+	Svar: Útkoman er skilgreind $B*C^{3} = 20 * 10$
+	
+	\subsection*{c)}
+	
+	Svar: Útkoman er skilgreind aðeins ef I = $ B^{T}B $ þá er lausninn $I + BC^{T} = 20*10$
+	
+	\subsection*{d)}
+	
+	Svar: Útkoman er ekki skilgreind
+	
+	\subsection*{e)}
+	
+	Svar: Útkoman er ekki skilgreind
+	
+	\section*{2.}
+	
+	\subsection*{10.17}
+	
+	\subsection*{a)}
+	
+	Svar: Niðurstaða sýnir heilda fjölda sjúkdóma sjúklings í N*1 vector.
+	
+	\subsection*{b)}
+	
+	Svar: Niðurstaða sýnir hversu margir eru sýktir með ákveðna sjúkdómi í n*1 	vector.
+	\pagebreak
+	\section*{3.}
+	
+	\subsection*{10.31}
+	
+		
+	\subsection*{a)}
+	
+	Svar: $ A^{2} $ Er þá fylki með fjölda færsla fyrir hverja nóðu.
+	
+	\subsection*{b)}
+	
+	Svar: $(A^{T})^{2}$
+	
+	\section*{4.}
+	
+	\subsection*{a)}
+	
+	Svar: Það er hægt að hafa þetta sem left inverse ef x$ _{i} \neq 0$
+	
+	\subsection*{b)}
+	
+	Svar: Fyrst að left inverse er til fyrir vinstri þá er það ekki til fyrir hægri. 
+	
+\end{document}

@@ -1,0 +1,15 @@
+ampl: reset;
+
+ampl: option solver gurobi;
+
+ampl: model d4.mod;
+
+ampl: data d4.dat;
+
+ampl: solve total;
+
+Gurobi 7.5.0: logical constraint _slogcon[1] is not an indicator constraint.
+
+ampl: printf: "Lausn\n">d4.txt;
+
+ampl: printf{j in AD}: "Type: %s Fjoldi: %s Total cost: %s\n",j,Buy[j],reach[j]*Buy[j]>>d4.txt;

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    ul
+        each note in notes
+            li= note.note
+
+    form(method="post" action="/addnote")
+        input(type="text" name="note")
+        input(type="text" name="note")
+        button Skrá
+        

@@ -1,0 +1,11 @@
+data;
+
+set AD := TV PAPER ;
+
+param: 		cost	f_min	f_max :=
+	TV		20000	10		50
+	PAPER	10000	0		100 ;
+
+param:		reach :=
+	TV		1800000
+	PAPER	1000000	;

@@ -1,0 +1,23 @@
+set sugars := CANE CORN BEET;
+set combinations := A B C D E F G;
+
+param amt (tr): A B C D E F G :=
+	CANE 10 10 20 30 40 20 60
+	CORN 30 40 40 20 60 70 10
+	BEET 60 50 40 50 0 10 30;
+	
+	
+param cost :=
+	A 10
+	B 11
+	C 12
+	D 13
+	E 14
+	F 12
+	G 15;
+	
+
+param out_min :=
+	CANE 30
+	CORN 56
+	BEET 59;

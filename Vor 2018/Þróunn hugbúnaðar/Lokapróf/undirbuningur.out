@@ -1,0 +1,69 @@
+\BOOKMARK [1][-]{section.1}{Software Engineer}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Definition}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Important skills}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{General project work}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Reasons for failure}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Excessive schedule}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Changing needs}{subsection.2.1}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Lack of documented project plan}{subsection.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Causes of Software Project Troubles}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{Software Process Models}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Big Bang Approach}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{The Waterfall Model}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Plan-driven}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Agile Models}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Software Engineer}{}% 15
+\BOOKMARK [2][-]{subsection.4.1}{Definition}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.2}{Important skills}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Requirements Engineering}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Functional requirement}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Quality requirement}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.3}{General condition}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.4}{Conflicts}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Subject conflict}{subsection.5.4}% 23
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Conflict of interest}{subsection.5.4}% 24
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Value conflict}{subsection.5.4}% 25
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Structural conflict}{subsection.5.4}% 26
+\BOOKMARK [3][-]{subsubsection.5.4.5}{Imagine the university contracted you to build a new social networking site for all students. Explain two types of conflicts that you may run into during the requirements elicitation and give an example for each of them}{subsection.5.4}% 27
+\BOOKMARK [2][-]{subsection.5.5}{Technical detail in user story}{section.5}% 28
+\BOOKMARK [3][-]{subsubsection.5.5.1}{User story recipe}{subsection.5.5}% 29
+\BOOKMARK [3][-]{subsubsection.5.5.2}{How much technical detail should be in a user story}{subsection.5.5}% 30
+\BOOKMARK [3][-]{subsubsection.5.5.3}{Example: good user story}{subsection.5.5}% 31
+\BOOKMARK [3][-]{subsubsection.5.5.4}{Example: bad user story}{subsection.5.5}% 32
+\BOOKMARK [1][-]{section.6}{Effort Estimation}{}% 33
+\BOOKMARK [2][-]{subsection.6.1}{Planing poker}{section.6}% 34
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Based on differing skills and experience, individual team members may estimate different efforts for any requirement. Discuss whether planning poker eliminates this problem}{subsection.6.1}% 35
+\BOOKMARK [3][-]{subsubsection.6.1.2}{Assume your team came up with an effort spread of 8, 13, 40 and 40 for a particular user story. Interpret and deal with the result}{subsection.6.1}% 36
+\BOOKMARK [2][-]{subsection.6.2}{Anchoring effect}{section.6}% 37
+\BOOKMARK [1][-]{section.7}{Project Planning}{}% 38
+\BOOKMARK [2][-]{subsection.7.1}{Calculating new velocity}{section.7}% 39
+\BOOKMARK [2][-]{subsection.7.2}{Predicting how much you can get done next time}{section.7}% 40
+\BOOKMARK [2][-]{subsection.7.3}{Assume your 4-person team completed tasks comprising 20 person-days in a 2-week iteration. Calculate the velocity you should assume when planning the next iteration}{section.7}% 41
+\BOOKMARK [2][-]{subsection.7.4}{Imagine the a client expects more functionality in a release then you will be able to complete until the deadline, based on your effort estimates. Suggest a strategy you could use in this situation}{section.7}% 42
+\BOOKMARK [1][-]{section.8}{Object-Oriented Analysis and Design}{}% 43
+\BOOKMARK [2][-]{subsection.8.1}{Associations}{section.8}% 44
+\BOOKMARK [2][-]{subsection.8.2}{Aggregation}{section.8}% 45
+\BOOKMARK [2][-]{subsection.8.3}{Composite}{section.8}% 46
+\BOOKMARK [2][-]{subsection.8.4}{UML University library diagram}{section.8}% 47
+\BOOKMARK [2][-]{subsection.8.5}{Generalization}{section.8}% 48
+\BOOKMARK [2][-]{subsection.8.6}{Specialization}{section.8}% 49
+\BOOKMARK [2][-]{subsection.8.7}{Generalization and specialization seem to be contracting the same concept\(inheritance\). Explain why both terms are accurate nevertheless}{section.8}% 50
+\BOOKMARK [2][-]{subsection.8.8}{Abstract classes}{section.8}% 51
+\BOOKMARK [2][-]{subsection.8.9}{Interface}{section.8}% 52
+\BOOKMARK [2][-]{subsection.8.10}{Two key differences between abstract classes and interfaces in java}{section.8}% 53
+\BOOKMARK [2][-]{subsection.8.11}{Explain the difference between aggregation and composition of classes in an object-oriented model}{section.8}% 54
+\BOOKMARK [1][-]{section.9}{Object-Oriented Programming}{}% 55
+\BOOKMARK [2][-]{subsection.9.1}{Attributes}{section.9}% 56
+\BOOKMARK [2][-]{subsection.9.2}{Behavior}{section.9}% 57
+\BOOKMARK [2][-]{subsection.9.3}{Identity}{section.9}% 58
+\BOOKMARK [2][-]{subsection.9.4}{Static in java}{section.9}% 59
+\BOOKMARK [2][-]{subsection.9.5}{Explain why any static methods of java class can access only the static attributes of the class}{section.9}% 60
+\BOOKMARK [2][-]{subsection.9.6}{Class variable}{section.9}% 61
+\BOOKMARK [2][-]{subsection.9.7}{Instance variable}{section.9}% 62
+\BOOKMARK [2][-]{subsection.9.8}{Instance vs Class}{section.9}% 63
+\BOOKMARK [2][-]{subsection.9.9}{Explain how singleton pattern ensures that only one instance of a class can exists in the system}{section.9}% 64
+\BOOKMARK [1][-]{section.10}{Test money class implement function isequal}{}% 65
+\BOOKMARK [2][-]{subsection.10.1}{a\) an equal amount in the same currency and compare it to stored item in Money}{section.10}% 66
+\BOOKMARK [1][-]{section.11}{Design Patterns}{}% 67
+\BOOKMARK [1][-]{section.12}{Explain the purpose of Proxy pattern, and give an example of a scenario \(outside the travel domain\) where its use would be beneficial}{}% 68
+\BOOKMARK [1][-]{section.13}{Polymorphism}{}% 69

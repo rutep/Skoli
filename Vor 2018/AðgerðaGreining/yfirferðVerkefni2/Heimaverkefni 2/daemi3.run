@@ -1,0 +1,36 @@
+#Byrjum á að reset-a console-inn til að við fáum enga errors.
+reset;
+
+#-----------------------------------------------
+#		Liður a
+#-----------------------------------------------
+
+#Færum nú mod og dat file-in inn í console-inn
+model daemi3.mod; data daemi3.dat;
+
+#Leysum dæmið
+solve;
+#MINOS 5.51: optimal solution found.
+#5 iterations, objective 6.333333333
+
+#Skoðum tímann á viku:
+display Time;
+#Time [*] :=
+#  IND  2.83333
+#  JOG  0
+# MACH  0
+#PUSHB  0.5
+# SWIM  3
+# WALK  0
+#;
+
+#Skoðum minnsta heildar tímann:
+display Total_time;
+#Total_time = 6.33333
+
+
+
+
+
+
+

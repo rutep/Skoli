@@ -1,0 +1,5 @@
+model daemi4.mod;
+data daemi4.dat;
+solve;
+display seldEining;
+reset;

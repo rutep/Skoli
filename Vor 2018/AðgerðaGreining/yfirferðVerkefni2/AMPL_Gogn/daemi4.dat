@@ -1,0 +1,9 @@
+data; 
+
+set P:= tv magazine;
+
+param: 			a		c :=
+	tv			20000	1800000
+	magazine	10000	1000000;
+	
+	param b := 1000000; 

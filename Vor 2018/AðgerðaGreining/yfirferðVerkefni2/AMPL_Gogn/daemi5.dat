@@ -1,0 +1,10 @@
+data; 
+
+set P:= T C L;
+
+param: 	time	profit	orders:=
+	T	1		200		10
+	C	2		500		20
+	L	3		700		15;
+	
+	param maxtime := 120; 

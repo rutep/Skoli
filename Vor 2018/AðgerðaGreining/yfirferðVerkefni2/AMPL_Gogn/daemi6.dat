@@ -1,0 +1,14 @@
+data; 
+
+set P:= tv radio camera CDp VCR camcorder;
+
+param: 			Value	Weight	Volume Available :=
+	tv			50		35		8		20	
+	radio		15		5		1		50
+	camera		85		4		2 		20
+	CDp			40		3		1		30
+	VCR			50		15		5		30
+	camcorder	120		20		4		15;
+
+	param maxpound := 500; 
+	param maxcubic := 300; 

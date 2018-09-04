@@ -1,0 +1,131 @@
+#Byrjum á að reset-a console-inn til að við fáum enga errors.
+reset;
+
+#-----------------------------------------------
+#		Liður a
+#-----------------------------------------------
+
+#Færum nú mod og dat file-in inn í console-inn
+model daemi2.mod; data daemi2.dat;
+
+#Leysum dæmið
+solve;
+#MINOS 5.51: optimal solution found.
+#2 iterations, objective 2068.5
+
+#Skoðum fjöldan af blöndu.
+display blend_amt;
+#blend_amt [*] :=
+#A  60
+#B   0
+#C   0
+#D   0
+#E   0
+#F  45.5
+#G  61.5
+#;
+
+#Skoðum heildar kostnað.
+display total_cost;
+#total_cost = 2068.5
+
+#-----------------------------------------------
+#		Liður b
+#-----------------------------------------------
+
+#Hækka lower bound fyrir variable fra 0 upp i 10.
+#Breytum línu i daemi2.mod í var blend_amt {j in combinations} >= 10;
+
+#Byrjum á að reset-a console-inn til að við fáum enga errors.
+reset;
+
+#Færum nú mod og dat file-in inn í console-inn
+model daemi2.mod; data daemi2.dat;
+
+#Leysum dæmið með nýjum tölum
+solve;
+#MINOS 5.51: optimal solution found.
+#2 iterations, objective 2093.954545
+
+#Skoðum fjöldan af blöndu.
+display blend_amt;
+#blend_amt [*] :=
+#A  43.6364
+#B  10
+#C  10
+#D  10
+#E  10
+#F  30.9545
+#G  52.4091
+#;
+
+#Skoðum heildar kostnað.
+display total_cost;
+#total_cost = 2093.95
+
+#-----------------------------------------------
+#		Liður c
+#-----------------------------------------------
+
+#Breytum out_min parametaer og bætum við out_max parameter. í daemi2.dat
+
+#param: out_min out_max :=
+#	CANE 30 37
+#	CORN 30 37
+#	BEET 30 37;
+
+# bæta við param í daemi.mod
+#param out_max {sugars};
+
+
+#breyta subject to min_sugar_amt (hver sykur má bara vera 30-37 prosent af heild).
+#subject to min_sugar_amt {i in sugars}:
+	#out_min[i] <= sum {j in combinations} amt[j,i] * blend_amt[j] <= out_max[i];
+	
+#baeta vid skilyrdi um ad tad megi bara vera 1 tonn af supplies.
+#subject to max_sumt_amt: sum {i in combinations} blend_amt[i] = 1;
+
+#Byrjum á að reset-a console-inn til að við fáum enga errors.
+reset;
+
+#Færum nú mod og dat file-in inn í console-inn
+model daemi2.mod; data daemi2.dat;
+
+#Leysum dæmið með nýjum tölum
+solve;
+#presolve: constraint max_sumt_amt cannot hold:
+#	body <= 1 cannot be >= 70; difference = -69
+#presolve: constraint min_sugar_amt['BEET'] cannot hold:
+#	body <= 37 cannot be >= 2400; difference = -2363
+#presolve: constraint min_sugar_amt['CORN'] cannot hold:
+#	body <= 37 cannot be >= 2700; difference = -2663
+#presolve: constraint min_sugar_amt['CANE'] cannot hold:
+#	body <= 37 cannot be >= 1900; difference = -1863
+
+#Skoðum nú minnstan sykur miðað við blöndu
+display min_sugar_amt.body;
+#min_sugar_amt.body [*] :=
+#BEET  0
+#CANE  0
+#CORN  0
+#;
+
+#Skoðum fjöldan af blöndu.
+display blend_amt;
+#blend_amt [*] :=
+#A  0
+#B  0
+#C  0
+#D  0
+#E  0
+#F  0
+#G  0
+#;
+
+#Skoðum heildar kostnað.
+display total_cost;
+#total_cost = 0
+
+#Sjáum að allt fer í 0 þar sem villa kom upp við að leysa dæmið.
+
+

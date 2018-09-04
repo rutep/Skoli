@@ -1,0 +1,40 @@
+\select@language {icelandic}
+\contentsline {section}{\numberline {1}Inngangur}{3}{section.1}
+\contentsline {paragraph}{Enn einn þýðandi NanoMorpho}{3}{section*.2}
+\contentsline {section}{\numberline {2}Notkun og uppsetning}{3}{section.2}
+\contentsline {paragraph}{Uppsetning}{3}{section*.3}
+\contentsline {paragraph}{Git}{3}{section*.4}
+\contentsline {paragraph}{Morpho}{3}{section*.5}
+\contentsline {paragraph}{makefile}{3}{section*.6}
+\contentsline {section}{\numberline {3}Málfræði}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Frumeiningar málsins}{4}{subsection.3.1}
+\contentsline {paragraph}{Samhengislaust mál}{4}{section*.7}
+\contentsline {subsubsection}{\numberline {3.1.1}Athugasemd}{4}{subsubsection.3.1.1}
+\contentsline {paragraph}{Dæmi um athugasemd}{4}{section*.8}
+\contentsline {subsubsection}{\numberline {3.1.2}Lykilorð}{4}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Mállýsing}{4}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Forrit}{4}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Föll}{4}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Stofnar}{4}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Segðir}{5}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}Merking málsins}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Breytur}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Merking segða}{6}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}null-segð}{6}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}true-false segð}{6}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}false-segð}{6}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}Heiltölusegð}{6}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.5}Fleytitölusegð}{6}{subsubsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.6}Stafsegð}{6}{subsubsection.4.2.6}
+\contentsline {subsubsection}{\numberline {4.2.7}Strengsegð}{6}{subsubsection.4.2.7}
+\contentsline {subsubsection}{\numberline {4.2.8}return-segð}{7}{subsubsection.4.2.8}
+\contentsline {subsubsection}{\numberline {4.2.9}Röksegðir}{7}{subsubsection.4.2.9}
+\contentsline {subsubsection}{\numberline {4.2.10}Kallsegð}{7}{subsubsection.4.2.10}
+\contentsline {subsubsection}{\numberline {4.2.11}Tvíundaraðgerðir}{7}{subsubsection.4.2.11}
+\contentsline {subsubsection}{\numberline {4.2.12}Einundaraðgerðir}{7}{subsubsection.4.2.12}
+\contentsline {subsubsection}{\numberline {4.2.13}if-segð}{8}{subsubsection.4.2.13}
+\contentsline {subsubsection}{\numberline {4.2.14}while-segð}{8}{subsubsection.4.2.14}
+\contentsline {subsection}{\numberline {4.3}Föll og forrit}{8}{subsection.4.3}
+\contentsline {section}{\numberline {5}Byjaccj skrá}{9}{section.5}
+\contentsline {section}{\numberline {6}Jflex skrá}{15}{section.6}
+\contentsline {section}{\numberline {7}Prófun}{19}{section.7}

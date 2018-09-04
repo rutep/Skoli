@@ -1,0 +1,11 @@
+reset;
+
+option solver gurobi;
+
+model 5.mod;
+
+data 5.dat;
+
+solve z;
+
+printf: "Markfallið er: %3.2f \n", sum {b in BILL}hagnadur[b]*(pantanir[b]+fjoldi[b])>>5.txt;
