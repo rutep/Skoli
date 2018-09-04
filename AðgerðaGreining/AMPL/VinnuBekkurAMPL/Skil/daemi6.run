@@ -1,7 +1,0 @@
-model daemi6.mod;
-data daemi6.dat;
-solve;
-display totalProfit;
-display demand;
-reset;
-

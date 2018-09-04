@@ -1,6 +1,0 @@
-model daemi5.mod;
-data daemi5.dat;
-solve;
-display nrCarsProduced;
-reset;
-

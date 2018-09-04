@@ -1,7 +1,0 @@
-ampl: model daemi4.run;
-CPLEX 12.8.0.0: optimal solution; objective 9.8e+07
-0 dual simplex iterations (0 in phase I)
-seldEining [*] :=
-grein  80
-sjonV  10
-;

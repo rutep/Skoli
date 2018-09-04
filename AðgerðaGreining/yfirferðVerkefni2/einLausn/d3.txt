@@ -1,6 +1,0 @@
-Lausn:
-Activity: swim Hours/week Spend: 2.8333333333333335 Calories burned per week: 850
-Activity: ind Hours/week Spend: 3 Calories burned per week: 900
-Activity: push Hours/week Spend: 0.5 Calories burned per week: 250
-Total hours per week for all activities: 6.333333333333334
-Total calories per week: 2000
