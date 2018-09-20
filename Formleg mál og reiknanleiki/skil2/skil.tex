@@ -44,15 +44,30 @@ yes it is the same language.
 grep -x ".\textbackslash\{3\textbackslash\}*"
 
 \subsection*{b)}
-grep  "[CSV|\%.\%.\%]" test.txt
+grep  "[\.CSV|\%\textbackslash.\%\textbackslash.\%]" test.txt
+
+\subsection*{c)}
+grep -x "[\.CSV|\textsuperscript{$\wedge$}.* .*@.*\textbackslash..*]" test.txt 
+
 
 \subsection*{c)}
 grep ".*@.*\textbackslash..*"  test.txt
 
 \section*{4.}
 
+<<<<<<< Updated upstream
 \includegraphics[scale=1]{mynd}
 
+=======
+\subsection*{a)}
+\includegraphics[scale=1]{myb}
+
+\subsection*{b)}
+\includegraphics[scale=1]{mynd}
+
+\subsection*{c)}
+
+>>>>>>> Stashed changes
 
 
 \end{document}
