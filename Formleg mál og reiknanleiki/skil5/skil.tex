@@ -1,0 +1,58 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+\begin{document}
+
+
+\title{Formleg mál og reiknanleiki}
+\author{Pétur}
+\maketitle
+
+\section*{1.}
+
+\subsection*{a)}
+$A = \{0^{n+m}1^{m}| n \geq 0, m \geq 0 \}$ \\
+\begin{itemize}
+	\item Assume A is regular only if pumping lemma holds for some p.
+	\item Let $s = 0^{p}1^{p}$, so that $|s| = 2p > p$.
+	 According to pumping lemma, s can be split into 3 pieces, $s=xyz$, such that $xy^{i}z \epsilon A$ for all $i \geq 0$
+	\item 3 cases
+	\begin{enumerate}
+		\item y consist only of zeros: $xy^{2}z$ has more zeros than ones and that is not in the language A.
+		\item y consist solely on ones: $xy^{2}z$  has more ones than zeros and that is not in the language A.
+		\item y consist of "10": $xy^{2}z$ has then "1010" witch is not in the language A.
+	\end{enumerate}
+	\item as all three cases lead to contradiction, the initial assumption, A being regular must be false.
+\end{itemize}
+
+\subsection*{b)}
+$B = \{0^{n}1^{m}0^{n}|n \geq 0, m \geq 0\}$
+
+\begin{itemize}
+	\item Assume B is regular only if pumping lemma holds for some p.
+	\item Let $s = 0^{p}10^{p}$, so that $|s| = 2p > p$. According to pumping lemma, s can be split into 3 pieces, $s = xyz$, such that $xy^{i}z \epsilon A$ for all $i\ge0$
+	\item 3 cases
+	\begin{enumerate}
+		\item y consist only of zeros left hand side of the one: $xy^{i}z$ has more zeros left hand side than right, witch is not in the language A.
+		\item y consist only of zeros right hand side of the one: $xy^{i}z$ has more zeros right hand side than left, witch is not in the language A.
+		\item 
+		 
+	\end{enumerate}
+\end{itemize}
+
+\subsection*{c)}
+$C = \{www|w\epsilon \{0,1\}*$
+\end{document}
