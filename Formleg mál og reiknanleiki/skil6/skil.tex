@@ -1,0 +1,174 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+% trees
+\usepackage[]{forest}
+\forestset{.style={for tree=
+{parent anchor=south, child anchor=north,align=center,inner sep=2pt}}}
+%fyrir listing
+\lstset{
+  basicstyle=\itshape,
+  xleftmargin=3em,
+  literate={->}{$\rightarrow$}{2}
+           {α}{$\alpha$}{1}
+           {δ}{$\delta$}{1}
+           {ep}{$\epsilon$}{2}
+           {|}{$\vert$}{1}
+}
+
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+\begin{document}
+
+
+\title{Formleg mál og reiknanleiki}
+\author{Pétur}
+\maketitle
+
+\section*{1.}
+
+\subsection*{a)}
+
+\begin{forest}
+[E
+	[T [F [ a]]]
+]
+\end{forest}
+\subsection*{b)}
+\begin{forest}
+[E
+	[E [T [F [a]]]]
+	[+]
+	[T [F [a]]]
+]
+\end{forest}
+
+\subsection*{c)}
+\begin{forest}
+[E
+	[E
+		[E [T [F [a]]]]
+		[+]
+		[T [F [a]]]	
+	]
+	[+]
+	[T [F [a]]]
+]
+\end{forest}
+
+\subsection*{d)}
+\begin{forest}
+[E
+	[T 	
+		[F
+			[(]
+			[E 
+				[T 
+					[F
+						[(]
+						[E [T [F [a]]]]
+						[)]					
+					]
+				]
+			]
+			[)]		
+		]
+	]
+]
+\end{forest}
+
+\section*{2.}
+\begin{lstlisting}
+A -> BAB | B | ep
+B -> 00 | ep
+\end{lstlisting}
+I use the first rule from the Chomsky algorithm. Add a new start so that the new start state dose not appear on the right hand side.
+\begin{lstlisting}
+S -> A
+A -> BAB | B | ep
+B -> 00 | ep
+\end{lstlisting}
+Second rule from Chomsky algorithm. Get rid of the $\epsilon$. Fyrst i take it from the rule
+\begin{lstlisting}
+B -> 00 | ep
+\end{lstlisting}
+After that modification the CFG looks like this.
+\begin{lstlisting}
+S -> A
+A -> BAB | B | ep | BA | AB
+B -> 00 
+\end{lstlisting}
+Then i move the last $\epsilon$ to the start state because the CFL has also the empty string in it.
+\begin{lstlisting}
+S -> A | ep
+A -> BAB | B | BA | AB
+B -> 00 
+\end{lstlisting}
+
+Third rule, remove all unit rules
+\begin{lstlisting}
+S -> A | ep
+A -> BAB | B  | BA | AB
+B -> 00 
+\end{lstlisting}
+After third rule has bin applied then the CFG looks like this.
+\begin{lstlisting}
+S -> BAB | 00 | BA | AB | ep
+A -> BAB | 00 | BA | AB
+B -> 00 
+\end{lstlisting}
+Then i ad new rules and make sure its in the form of Chomsky normal form.
+\begin{lstlisting}
+S -> BC | DD | BA | AB | ep
+A -> BC | DD | BA | AB
+B -> DD
+C -> AB
+D -> 0
+\end{lstlisting}
+\section*{3.}
+Here is the CFG for the CFL F.
+\begin{lstlisting}
+F -> A 
+A -> aA | B | aD
+B -> bB | C
+C -> cC | ep
+D -> bDc | ep
+\end{lstlisting}
+\section*{5.}
+\subsection*{a)}
+\begin{lstlisting}
+R -> aA | bB | cC
+A -> aR | bD | cE
+B -> aE | bR | cD
+C -> aD | bE | cR
+D -> aE | bE | cE | ep
+E -> aE | bE | cE
+\end{lstlisting}
+\subsubsection*{b)}
+\begin{forest}
+[R
+	[b]
+	[B 	
+		[b]
+		[R
+			[b]
+			[B
+				[c]
+				[D [$\epsilon$]]			
+			]		
+		]
+	]
+]
+\end{forest}
+\end{document}
