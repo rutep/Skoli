@@ -1,6 +1,6 @@
 timi <- read.table("dagar.txt")
-timi["V2"]
-timi
+# timi["V2"]
+# timi
 
 markmid <- rep(0.75,30)
 dagar <- (1:30)
