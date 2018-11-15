@@ -1,0 +1,80 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[icelandic]{babel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{grffile} 
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+% trees
+\usepackage[]{forest}
+\forestset{.style={for tree=
+{parent anchor=south, child anchor=north,align=center,inner sep=2pt}}}
+%fyrir listing
+\lstset{
+  basicstyle=\itshape,
+  xleftmargin=3em,
+  literate={->}{$\rightarrow$}{2}
+           {α}{$\alpha$}{1}
+           {δ}{$\delta$}{1}
+           {|}{$\vert$}{1}
+}
+
+% grffile er pakki sem leifir manni að nota "" til þess að forðast að nota
+% nafnið á myndinni með.
+\usepackage{graphicx}
+% \graphicspath{{images/}} Sýnir undir möppu þar sem myndirnar eru
+
+\usepackage{hyperref}
+%fyrirlinka - \url{www.....}
+\begin{document}
+
+
+\title{Formleg mál og reiknanleiki}
+\author{Pétur}
+\maketitle
+
+\section*{1.}
+$10^{n+2}$
+
+\section*{2.}
+$f(n) = n + 1$
+
+\section*{3.}
+
+\subsection*{a)}
+
+\begin{lstlisting}
+	Input string w
+	while true do
+		Sweep left to right across the tape sum tape 1 and tape 2 and 
+		write the outcome on tape 3.
+	end if tape1 and tape2 have reached the end
+	end while
+\end{lstlisting}
+
+\subsection*{b)}
+
+\begin{lstlisting}
+	Input string w
+	while true do
+		sweep left to right accross the tape sum tape 1 and 2 to tape3
+	end if tape1 and tape2 has reached the end
+	end while
+\end{lstlisting}
+
+\section*{4}
+
+\begin{lstlisting}
+	Proof:
+	Suppose that CFG R decides EQTM. Then construct a CFG S:
+	S = S(hMi), M is a CFG:
+	1. R constructs the string hM, M1i, where CFG cant produce the string
+	2. If R can construct the string then it is in the CFG ; Otherwise it is not in the language
+	The above S decides ETM, which is undecidable 
+	A contradiction and thus EQTM must be undecidable.
+\end{lstlisting}
+
+
+\end{document}
