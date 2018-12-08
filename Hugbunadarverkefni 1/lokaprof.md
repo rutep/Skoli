@@ -36,6 +36,7 @@ public class HomeController {
 ### Database
 
 ## Resbonsibilytis
+
 ### Controller 
     Grípur HTTP request parameter og framkvæmir einhverja skilgreinda logic fyrir þann request. Eftir að hafa framkvæmt logic þá er það að ákvaða view.
 ### Service
@@ -45,10 +46,10 @@ public class HomeController {
 ## Http fyrir gögn - sjá próf
 
 ## Domain Model
-    Skilja óðal verkefnisins
+    Skilja óðal verkefnisins, Hugmyndinn á bakvið verkefnið. Viðskipta hluti verkefnisins. Oft sett upp sem class diagram, concept classes. Associations between coneptual classes. Attributes of coneptual classes. Class[Bike attribute[size]] it dose not need to involve what attribute type is being used.
 
 ## Design Model
-    Til þess að geta sýnt hvernig lausninn okkar virkar
+    Til þess að geta sýnt hvernig lausninn okkar virkar. Gerir fólki auðvelt með að skylja tæknina og finna tæknilegar lausnir.
 
 ## UML 
 ### Activity diagram
