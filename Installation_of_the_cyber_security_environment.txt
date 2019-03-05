@@ -1,0 +1,37 @@
+
+The minimum requirements to setup the cyber security environment on the laptop is  as follows
+
+Processor - Atleast Intel I7 1.7 GhZ or higher
+Memory - At least 8GB or higher
+Storage - 500 GB
+OS - Windows or macOS
+
+The cyber security labs will be conducted in a virtualized environment. Below are the instructions to setup the environment on your laptop.
+
+1.     Install VirtualBox - https://www.virtualbox.org/
+
+2.     The cyber security labs will be conducted using virtual  machine images. The instructions for installing the virtual machine images are provided below.
+
+3.     Download and run SEED Ubuntu using VirtualBox
+
+Download image here - https://drive.google.com/file/d/1HxdUhq-J_-_QKyjngpH9m6Kmuvy0_68a/view?usp=sharing 
+Instructions -  http://www.cis.syr.edu/~wedu/seed/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf
+4.     Download and run KALI Linux using VirtualBox
+
+Download Image here - https://www.dropbox.com/s/e4mvl7wlayrlvyj/Kali-Linux.7z?dl=0
+Instructions - https://www.dropbox.com/s/i7drcnrrrlfpezb/Instructions%20for%20Adding%20VM%27s.docx?dl=0
+5.     Download and run Windows XP using VirtualBox
+
+Download Image here - https://www.dropbox.com/s/iadu68ef9lhnp01/Windows%20XP.7z?dl=0
+Instructions –https://www.dropbox.com/s/i7drcnrrrlfpezb/Instructions%20for%20Adding%20VM%27s.docx?dl=0
+6.     Download and run Metasploit using VirtualBox
+
+Download Image here - https://www.dropbox.com/s/n92ta3wg4wka3gm/metasploitable-linux-2.0.0.zip?dl=0
+Instructions – Load the vmdk file similar to Seedubuntu
+ 
+7.      Download and run Windows 7 using VirtualBox
+
+Download Image here – https://www.dropbox.com/s/owmo6qjbu3ci9qe/Windows%207.7z?dl=0
+Instructions –https://www.dropbox.com/s/i7drcnrrrlfpezb/Instructions%20for%20Adding%20VM%27s.docx?dl=0
+ 
+Video Instructions – If there are any issues in downloading and running virtual images using virtualbox,  the below videos provide a step-by-step process - https://www.dropbox.com/home/Video%20demonstration%20for%20adding%20VM%20images%20to%20VirtualBox
