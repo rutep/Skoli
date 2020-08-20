@@ -8,7 +8,7 @@
     "run": "node app.js"
   },
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "better-sqlite3": "^4.1.0",
     "browser-sync": "^2.23.6",
     "cookie-parser": "^1.4.3",
